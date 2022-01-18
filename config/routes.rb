@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/new'
-  resources :user
+  resources :users
   resources :sales
 end
