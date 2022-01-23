@@ -1,4 +1,4 @@
-class Sale < ApplicationRecord
+class Score < ApplicationRecord
   belongs_to :user
 
   validates :sales, presence: true
