@@ -1,2 +1,25 @@
-<h1>Sales#new</h1>
-<p>Find me in app/views/sales/new.html.erb</p>
+<h1>売上</h1>
+
+<%= form_with(model: @score, local: true) do |f| %>
+
+  <div class="title">
+    <%= f.label :score %>
+    <%= f.text_field :score %>
+  </div>
+
+    <div class="time">
+    <%= f.label :date %>
+    <%= f.datetime_select :date %>
+  </div>
+
+  <div class="content">
+    <%= f.label :memo %>
+    <%= f.text_field :memo %>
+  </div>
+
+
+  <div class="submit">
+    <%= f.submit %>
+  </div>
+
+<% end %>
