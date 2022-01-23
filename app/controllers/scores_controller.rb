@@ -7,5 +7,6 @@ class ScoresController < ApplicationController
   end
 
   def new
+    @score = Score.new
   end
 end
