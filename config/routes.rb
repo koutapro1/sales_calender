@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'sales#index'
+  root to: 'scores#index'
   get 'user_sessions/new'
   get 'user_sessions/create'
   get 'user_sessions/destroy'
