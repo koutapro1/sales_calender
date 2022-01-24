@@ -1,6 +1,6 @@
 class Score < ApplicationRecord
   belongs_to :user
 
-  validates :sales, presence: true
+  validates :score, presence: true
   validates :date, presence: true
 end
