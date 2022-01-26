@@ -1,6 +1,6 @@
 class ScoresController < ApplicationController
   def index
-    @scores = Score.all
+    @scores = current_user.scores.all
   end
 
   def show
