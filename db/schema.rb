@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_23_051003) do
+ActiveRecord::Schema.define(version: 2022_01_26_070803) do
 
   create_table "scores", force: :cascade do |t|
     t.integer "score"
     t.text "memo"
-    t.datetime "date"
+    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
