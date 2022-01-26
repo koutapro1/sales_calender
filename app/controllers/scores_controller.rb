@@ -4,6 +4,7 @@ class ScoresController < ApplicationController
   end
 
   def show
+    @score = Score.find(params[:id])
   end
 
   def new
