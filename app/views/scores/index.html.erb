@@ -3,7 +3,7 @@
   <%= date.day %>
   <% scores.each do |score| %>
     <div>
-      <%= score.score %>
+      <%= link_to score.score, score_path(score) %>
     </div>
   <% end %>
 <% end %>
