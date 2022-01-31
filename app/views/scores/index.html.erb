@@ -1,5 +1,5 @@
 <%= link_to '売上を追加', new_score_path %>
-<%= month_calendar(attribute: :date, events: @scores) do |date, scores| %>
+<%= month_calendar events: @scores do |date, scores| %>
   <%= date.day %>
   <% scores.each do |score| %>
     <div>
