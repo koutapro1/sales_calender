@@ -1,4 +1,16 @@
 ja:
+  activerecord:
+    models:
+      user: ユーザー
+      score: 売上
+    attributes:
+      user:
+        name: ユーザーネーム
+        password: パスワード
+      score:
+        score: 売上
+        memo: メモ
+        start_time: 日付
   simple_calendar:
     previous: "<<"
     next: ">>"
