@@ -1,5 +1,5 @@
 <div class="simple-calendar">
-  <div class="calendar-heading">
+  <div class="calendar-heading lead">
     <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
     <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
     <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
@@ -30,6 +30,8 @@
       <% end %>
     </tbody>
   </table>
-  <div><%= "#{start_date.month}月度の合計: #{@scores_in_previous_month.sum { |hash| hash[:score] }}"  %></div>
-  <div><%= "#{start_date.next_month.month}月度の合計: #{@scores_in_next_month.sum { |hash| hash[:score] }}"  %></div>
+  <div class="calculated_scores">
+    <%= "#{start_date.month}月度の合計: #{@scores_in_previous_month.sum { |hash| hash[:score] }}"  %><br>
+    <%= "#{start_date.next_month.month}月度の合計: #{@scores_in_next_month.sum { |hash| hash[:score] }}"  %>
+  </div>
 </div>
