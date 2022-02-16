@@ -2,24 +2,24 @@
 
 <%= form_with(model: @score, local: true) do |f| %>
 
-  <div class="title">
-    <%= f.label :score %>
-    <%= f.text_field :score %>
-  </div>
-
-    <div class="time">
+  <div class="time">
     <%= f.label :start_time %>
     <%= f.date_select :start_time %>
   </div>
 
-  <div class="content">
+  <div class="score">
+    <%= f.label :score %>
+    <%= f.text_field :score %> 円
+  </div>
+
+  <div class="memo">
     <%= f.label :memo %>
-    <%= f.text_field :memo %>
+    <%= f.text_area :memo, size: "40x5" %>
   </div>
 
 
   <div class="submit">
-    <%= f.submit %>
+    <%= f.submit nil, class: 'btn btn-primary' %>
   </div>
 
 <% end %>
