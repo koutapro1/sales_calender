@@ -29,6 +29,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (5.2.6)
       activesupport (= 5.2.6)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (5.2.6)
       activemodel (= 5.2.6)
       activesupport (= 5.2.6)
@@ -80,6 +84,13 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    draper (4.0.2)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
+      ruby2_keywords
     erubi (1.10.0)
     execjs (2.8.1)
     faraday (1.9.3)
@@ -182,6 +193,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.2.0)
+    request_store (1.5.1)
+      rack (>= 1.4)
     ruby2_keywords (0.0.5)
     ruby_dep (1.5.0)
     rubyzip (2.3.2)
@@ -256,6 +269,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  draper
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
