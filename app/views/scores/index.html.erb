@@ -1,9 +1,11 @@
-<%= link_to '売上を追加', new_score_path %>
-<%= month_calendar events: @scores do |date, scores| %>
-  <%= date.day %>
-  <% scores.each do |score| %>
-    <div>
-      <%= link_to score.score, score_path(score) %>
-    </div>
+<div class="container">
+  <%= link_to '売上を追加', new_score_path, {class: "btn btn-primary"} %>
+  <%= month_calendar events: @scores do |date, scores| %>
+    <%= date.day %>
+    <% scores.each do |score| %>
+      <div>
+        <%= link_to score.score, score_path(score) %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
