@@ -4,7 +4,7 @@ class Score < ApplicationRecord
   validates :score, presence: true
   validates :start_time, presence: true
 
-  def self.set_scores_in_previous_month(start_date, current_user)
+  def self.get_scores_in_previous_month(start_date, current_user)
     if start_date.month == 1
       self.where(user_id: current_user.id, start_time: "#{start_date.year - 1}-12-18"..."#{start_date.year}-01-16 23:59:59")
     elsif start_date.month == 2
@@ -16,7 +16,7 @@ class Score < ApplicationRecord
     end
   end
 
-  def self.set_scores_in_next_month(start_date, current_user)
+  def self.get_scores_in_next_month(start_date, current_user)
     if start_date.month == 1
       self.where(user_id: current_user.id, start_time: "#{start_date.year}-01-17"..."#{start_date.year}-02-15 23:59:59")
     elsif start_date.month == 2
