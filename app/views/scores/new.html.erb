@@ -1,7 +1,6 @@
 <h1>売上</h1>
 
 <%= form_with(model: @score, local: true) do |f| %>
-
   <div class="time">
     <%= f.label :start_time %>
     <%= f.date_select :start_time %>
@@ -21,5 +20,5 @@
   <div class="submit">
     <%= f.submit nil, class: 'btn btn-primary' %>
   </div>
-
 <% end %>
+<%= link_to '戻る', scores_path %>

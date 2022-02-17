@@ -1,3 +1,5 @@
 <div><%= @score.start_time.to_date %></div>
 <div><%= @score.score %></div>
 <div><%= @score.memo %></div>
+<%= link_to '削除', score_path, method: :delete, data: { confirm: '売上を削除しますか？' }, class: 'btn btn-danger' %>
+<%= link_to '戻る', scores_path %>
