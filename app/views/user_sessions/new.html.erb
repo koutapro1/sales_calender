@@ -8,5 +8,6 @@
     <%= f.label :password, "パスワード" %>
     <%= f.password_field :password%>
   </div>
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", class: 'btn btn-primary' %>
 <% end %>
+<%= link_to 'ユーザー登録', new_user_path, class: 'btn btn-outline-primary' %>
