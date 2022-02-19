@@ -20,5 +20,7 @@ module SalesCalendar
     config.active_record.default_timezone = :local
 
     config.i18n.default_locale = :ja
+
+    config.autoload_paths << Rails.root.join("lib")
   end
 end
