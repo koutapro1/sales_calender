@@ -2,7 +2,7 @@
   <div class="col">
     <%= link_to '売上を追加', new_score_path, {class: "btn btn-primary"} %>
     <%= SimpleCalendar::CustomLengthCalendar.new(self, {events: @scores}).render do |date, scores| %>
-      <%= date %>
+      <%= date.strftime('%m/%d') %>
       <% scores.each do |score| %>
         <div>
           <%= link_to "#{score.score}円", score_path(score) %>
