@@ -38,10 +38,16 @@
 
   .prev-month {
     background: rgba(150, 150, 150, 0.736);
+    a {
+      color: rgb(58, 56, 56);
+    }
   }
   .next-month {
     background: rgba(150, 150, 150, 0.736);
     color: black;
+    a {
+      color: rgb(58, 56, 56);
+    }
   }
   .current-month {}
 
