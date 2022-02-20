@@ -3,6 +3,7 @@ class ScoresController < ApplicationController
 
   def index
     start_date = params.fetch(:start_date, Date.today).to_date
+    @scores = Score.get_scores_in_current_page(start_date, current_user)
     @scores_in_current_month = Score.get_scores_in_current_month(start_date, current_user)
   end
 

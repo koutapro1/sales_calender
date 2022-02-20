@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
     <%= link_to '売上を追加', new_score_path, {class: "btn btn-primary"} %>
-    <%= SimpleCalendar::CustomLengthCalendar.new(self, {events: @scores_in_current_month}).render do |date, scores| %>
+    <%= SimpleCalendar::CustomLengthCalendar.new(self, {events: @scores}).render do |date, scores| %>
       <%= date.strftime('%m/%d') %>
       <% scores.each do |score| %>
         <div>
