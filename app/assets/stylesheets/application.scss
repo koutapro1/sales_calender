@@ -36,9 +36,11 @@
 
   .start-date {}
 
-  .prev-month {}
+  .prev-month {
+    background: rgba(150, 150, 150, 0.736);
+  }
   .next-month {
-    color: black;
+    background: rgba(150, 150, 150, 0.736);
   }
   .current-month {}
 
