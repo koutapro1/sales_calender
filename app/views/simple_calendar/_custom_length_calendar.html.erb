@@ -31,6 +31,5 @@
     </tbody>
   </table>
   <div class="calculated_scores">
-    <%= "#{start_date.month}月度の合計: #{@scores_in_previous_month.sum { |hash| hash[:score] }} 円" %><br>
-    <%= "#{start_date.next_month.month}月度の合計: #{@scores_in_next_month.sum { |hash| hash[:score] }} 円" %>
+    <%= "#{date_range.last.month}月度の合計: #{@scores_in_current_month.sum { |hash| hash[:score] }} 円" %>
   </div>
