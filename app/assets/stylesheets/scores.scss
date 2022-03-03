@@ -1,3 +1,49 @@
-// Place all the styles related to the sales controller here.
+// Place all the styles related to the scores controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.simple-calendar {
+  .day {}
+
+  .wday-0 {
+    color: red;
+  }
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {
+    color: blue;
+  }
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {
+    background: rgba(150, 150, 150, 0.736);
+    a {
+      color: rgb(58, 56, 56);
+    }
+  }
+  .next-month {
+    background: rgba(150, 150, 150, 0.736);
+    color: black;
+    a {
+      color: rgb(58, 56, 56);
+    }
+  }
+  .current-month {}
+
+  .has-events {}
+  
+  table {
+    width: 100%;
+    table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-all;
+    }
+}

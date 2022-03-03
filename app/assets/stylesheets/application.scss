@@ -10,46 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require_tree .
  */
 
 @import "bootstrap";
 @import "simple_calendar";
-
-.simple-calendar {
-  .day {}
-
-  .wday-0 {
-    color: red;
-  }
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {
-    color: blue;
-  }
-
-  .today {}
-  .past {}
-  .future {}
-
-  .start-date {}
-
-  .prev-month {
-    background: rgba(150, 150, 150, 0.736);
-    a {
-      color: rgb(58, 56, 56);
-    }
-  }
-  .next-month {
-    background: rgba(150, 150, 150, 0.736);
-    color: black;
-    a {
-      color: rgb(58, 56, 56);
-    }
-  }
-  .current-month {}
-
-  .has-events {}
-}
