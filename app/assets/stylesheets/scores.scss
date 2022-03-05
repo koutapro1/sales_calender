@@ -24,26 +24,37 @@
   .start-date {}
 
   .prev-month {
-    background: rgba(150, 150, 150, 0.736);
+    color: rgba(58, 56, 56, 0.352);
     a {
-      color: rgb(58, 56, 56);
+      color: rgba(58, 56, 56, 0.352);
     }
   }
   .next-month {
-    background: rgba(150, 150, 150, 0.736);
-    color: black;
+    color: rgba(58, 56, 56, 0.352);
     a {
-      color: rgb(58, 56, 56);
+      color: rgba(58, 56, 56, 0.352);
     }
   }
   .current-month {}
 
-  .has-events {}
-  
+  .has-events {
+    div {
+      padding-top: 0.7rem;
+    }
+  }
+
   table {
     width: 100%;
     table-layout: fixed;
     word-break: break-all;
     word-wrap: break-all;
+    @media (max-width: 767px) {
+      tbody {
+        font-size: 0.8rem;
+        a {
+          font-size: 0.7rem;
+        }
+      }
     }
+  }
 }
