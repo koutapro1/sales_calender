@@ -5,6 +5,7 @@ class ScoresController < ApplicationController
     start_date = params.fetch(:start_date, Date.today).to_date
     @scores = Score.get_scores_in_current_page(start_date, current_user)
     @scores_in_current_month = Score.get_scores_in_current_month(start_date, current_user)
+    @score = Score.new
   end
 
   def show; end
@@ -16,10 +17,9 @@ class ScoresController < ApplicationController
   def create
     @score = Score.new(score_params)
     if @score.save
-      redirect_to scores_path, success: '売上を登録しました'
+      redirect_back fallback_location: scores_path, success: '売上を登録しました'
     else
-      flash.now[:warning] = '売上を登録できませんでした'
-      render :new
+      redirect_back fallback_location: scores_path, warning: '売上を登録できませんでした'
     end
   end
 
