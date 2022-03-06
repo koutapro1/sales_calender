@@ -6,6 +6,12 @@
   display: none;
 }
 
+.dropdown-custom.dropdown-menu {
+  position: absolute;
+  left: initial;
+  right: 0;
+}
+
 .simple-calendar {
   .day {}
 
