@@ -1,21 +1,21 @@
 <%= form_with(model: score, class: 'js-new-score-form', local: true) do |f| %>
-  <div class="time">
-    <%= f.label :start_time %>
-    <%= f.date_select :start_time %>
+  <div class="form-group row">
+    <%= f.label :start_time, class: "col-2 col-md-1" %>
+    <%= f.date_select :start_time, {}, {class: 'form-control', style: 'display: inline-block;width: auto;'} %>
   </div>
 
-  <div class="score">
-    <%= f.label :score %>
-    <%= f.text_field :score %> 円
+  <div class="form-group row">
+    <%= f.label :score, class: "col-2 col-md-1" %>
+    <%= f.text_field :score, class:'form-control col-4', placeholder: '円' %>
   </div>
 
-  <div class="memo">
-    <%= f.label :memo %>
-    <%= f.text_area :memo, size: "40x5" %>
+  <div class="form-group row">
+    <%= f.label :memo, class: "col-2 col-md-1" %>
+    <%= f.text_area :memo, class:'form-control col-6', rows: 2 %>
   </div>
 
 
-  <div class="submit">
+  <div>
     <%= f.submit nil, class: 'btn btn-primary' %>
   </div>
 <% end %>
