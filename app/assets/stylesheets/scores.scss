@@ -14,14 +14,15 @@
 
 .new_score_form {
   text-align: right;
-  // background-color: pink;
   #score_score::placeholder {
     text-align: right;
   }
 }
 
 .simple-calendar {
-  .day {}
+  .day {
+    height: 9vh;
+  }
 
   .wday-0 {
     color: red;
@@ -69,6 +70,9 @@
     text-align: center;
     th {
       text-align: center;
+    }
+    td:hover {
+      background-color: pink;
     }
   }
 }
