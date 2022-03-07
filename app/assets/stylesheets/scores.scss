@@ -12,6 +12,14 @@
   right: 0;
 }
 
+.new_score_form {
+  text-align: right;
+  // background-color: pink;
+  #score_score::placeholder {
+    text-align: right;
+  }
+}
+
 .simple-calendar {
   .day {}
 
@@ -58,12 +66,29 @@
     table-layout: fixed;
     word-break: break-all;
     word-wrap: break-all;
-    @media (max-width: 767px) {
-      tbody {
-        font-size: 0.8rem;
-        a {
-          font-size: 0.7rem;
-        }
+    text-align: center;
+    th {
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .new_score_form {
+    margin-top: 0.4rem;
+    .btn {
+      position: relative;
+      z-index: 10;
+    }
+  }
+
+  .simple-calendar {
+    position: relative;
+    top: -1.5rem;
+    tbody {
+      font-size: 0.7rem;
+      a {
+        font-size: 0.7rem;
       }
     }
   }

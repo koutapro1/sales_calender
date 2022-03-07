@@ -1,7 +1,9 @@
 <main class="row">
   <div class="col">
-    <button class="btn btn-primary" id="js-toggle-button">▼ 売上追加</button>
-    <%= render('form', score: @score) %>
+    <div class="new_score_form">
+      <button class="btn btn-primary" id="js-toggle-button">▼ 売上追加</button>
+      <%= render('form', score: @score) %>
+    </div>
     <%= SimpleCalendar::CustomLengthCalendar.new(self, {events: @scores}).render do |date, scores| %>
       <%= date.strftime('%-m/%-d') %>
       <% scores.each do |score| %>
@@ -12,4 +14,3 @@
     <% end %>
   </div>
 </main>
-
