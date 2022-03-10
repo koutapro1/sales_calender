@@ -24,6 +24,10 @@
     height: 9vh;
   }
 
+  .day:hover {
+    background-color: pink;
+  }
+
   .wday-0 {
     color: red;
   }
@@ -71,9 +75,14 @@
     th {
       text-align: center;
     }
-    td:hover {
-      background-color: pink;
-    }
+  }
+}
+
+.score_details {
+  h3 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    border-bottom: solid 2px rgb(0, 179, 255);
   }
 }
 
@@ -94,6 +103,16 @@
       a {
         font-size: 0.7rem;
       }
+    }
+  }
+
+  .score_details {
+    position: relative;
+    top: -3vh;
+    h3 {
+      font-size: 1.2rem;
+      font-weight: normal;
+      border-bottom: solid 2px rgb(0, 179, 255);
     }
   }
 }
