@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2022_03_12_123047) do
 
   create_table "scores", force: :cascade do |t|
-    t.integer "scores", null: false
+    t.integer "score", null: false
     t.datetime "start_time", null: false
     t.text "memo"
     t.datetime "created_at", null: false
