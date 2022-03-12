@@ -70,13 +70,13 @@ document.addEventListener("turbolinks:load", function() {
     })
 
     .done(function (data) {
-      if ($('.js-searched_score').length) {
-        $('.js-searched_score').remove()
+      if ($('.js-searched-score').length) {
+        $('.js-searched-score').remove()
       };
 
       $(data).each(function(i, score) {
-        $('.js-searched_score_field').append(
-          `<div class="js-searched_score">
+        $('.js-searched-score-field').append(
+          `<div class="js-searched-score">
             日付: ${date}<br>
             売上: ${score.score} 円<br>
             メモ: ${score.memo}<br>
