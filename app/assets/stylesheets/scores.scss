@@ -10,14 +10,14 @@ body {
   height: 100%;
 }
 
-.login-page {
+.form-page {
   height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   max-width: 330px;
   margin: auto;
-  .login-form {
+  .form-area {
     max-width: 330px;
     h1 {
       font-size: 2rem;
@@ -121,10 +121,10 @@ body {
 }
 
 @media (max-width: 767px) {
-  .login-page {
-    .login-form {
+  .form-page {
+    .form-area {
       .form-group {
-        width: 14rem;
+        width: 100%;
       }
     }
   }
