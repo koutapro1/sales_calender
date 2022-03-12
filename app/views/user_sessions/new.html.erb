@@ -5,10 +5,12 @@
       <div class="form-group">
         <%= f.text_field :name, class: 'form-control', placeholder: "ユーザーネーム" %>
       </div>
+      
       <div class="form-group">
         <%= f.password_field :password, class: 'form-control', placeholder: "パスワード" %>
       </div>
-        <%= f.submit "ログイン", class: 'btn btn-lg btn-primary' %>
+
+      <%= f.submit "ログイン", class: 'btn btn-lg btn-primary' %>
     <% end %>
     <%= link_to 'ユーザー登録はこちら', new_user_path %>
   </main>
