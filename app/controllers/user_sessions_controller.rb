@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
   def new; end
 
   def create
-    @user = login(params[:name], params[:password])
+    @user = login(params[:name], params[:password], params[:remember])
     if @user
       redirect_back_or_to root_path, success: 'ログインに成功しました'
     else
