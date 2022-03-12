@@ -2,6 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.login-page {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 330px;
+  margin: auto;
+  .login-form {
+    max-width: 330px;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      width: 20rem;
+      .form-control {
+        height: 3rem;
+      }
+    }
+    .btn {
+      width: 100%;
+      margin: 1rem 0;
+    }
+  }
+}
+
 .js-new-score-form {
   display: none;
 }
@@ -12,7 +46,7 @@
   right: 0;
 }
 
-.new_score_form {
+.new-score-form {
   text-align: right;
   #score_score::placeholder {
     text-align: right;
@@ -78,7 +112,7 @@
   }
 }
 
-.score_details {
+.score-details {
   h3 {
     font-size: 1.2rem;
     font-weight: normal;
@@ -87,7 +121,15 @@
 }
 
 @media (max-width: 767px) {
-  .new_score_form {
+  .login-page {
+    .login-form {
+      .form-group {
+        width: 14rem;
+      }
+    }
+  }
+
+  .new-score-form {
     margin-top: 0.4rem;
     .btn {
       position: relative;
@@ -106,7 +148,7 @@
     }
   }
 
-  .score_details {
+  .score-details {
     position: relative;
     top: -3vh;
     h3 {
