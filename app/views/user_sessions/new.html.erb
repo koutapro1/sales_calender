@@ -10,8 +10,12 @@
         <%= f.password_field :password, class: 'form-control', placeholder: "パスワード" %>
       </div>
 
+      <%= check_box_tag :remember, params[:remember], true %>
+      <%= label_tag "ログイン状態を維持する" %>
+
       <%= f.submit "ログイン", class: 'btn btn-lg btn-primary' %>
     <% end %>
+    
     <%= link_to 'ユーザー登録はこちら', new_user_path %>
   </main>
 </div>
