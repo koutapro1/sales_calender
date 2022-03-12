@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 2022_03_12_123047) do
 
   create_table "scores", force: :cascade do |t|
-    t.integer "score"
+    t.integer "scores", null: false
+    t.datetime "start_time", null: false
     t.text "memo"
-    t.datetime "start_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
@@ -24,12 +24,14 @@ ActiveRecord::Schema.define(version: 2022_03_12_123047) do
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
+    t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
   end
