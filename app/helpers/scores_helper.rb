@@ -29,5 +29,9 @@ module ScoresHelper
     td_class
   end
 
+  def total_scores_in_current_month(scores_in_current_month)
+    scores_in_current_month.sum { |hash| hash[:score] }
+  end
+
 end
 
