@@ -1,8 +1,9 @@
 class Score < ApplicationRecord
   belongs_to :user
 
-  validates :score, presence: true
+  validates :score, presence: true, length: { maximum: 6 }, numericality: { only_integer: true }
   validates :start_time, presence: true
+  validates :memo, length: { maximum: 300 }
 
   # 表示している月度の範囲
   def self.get_scores_in_current_month(start_date, current_user)

@@ -3,9 +3,11 @@ class User < ApplicationRecord
   
   has_many :scores, dependent: :destroy
 
-  validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, length: { in: 6..20 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
+  validates :email, presence: true, uniqueness: true, confirmation: true
+  validates :email_confirmation, presence: true
 end
