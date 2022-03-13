@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    redirect_to login_path, danger: 'ログインしてください'
+    redirect_to login_path, warning: 'ログインしてください'
   end
 
   def already_logged_in
@@ -14,4 +14,5 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
 end
