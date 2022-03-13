@@ -10,6 +10,12 @@ body {
   height: 100%;
 }
 
+.navbar {
+  .navbar-brand {
+    margin: auto auto auto 8px;
+  }
+}
+
 .flash-messages {
   width: max-content;
   margin: auto;
