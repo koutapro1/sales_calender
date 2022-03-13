@@ -12,12 +12,13 @@ class UsersController < ApplicationController
     else
       flash.now[:danger] = 'ユーザー登録に失敗しました'
       render :new
+      byebug
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :email_confirmation, :password, :password_confirmation)
   end
 end
