@@ -29,9 +29,14 @@ module ScoresHelper
     td_class
   end
 
-  def total_scores_in_current_month(scores_in_current_month)
+  def total_score_in_current_month(scores_in_current_month)
     scores_in_current_month.sum { |hash| hash[:score] }
   end
 
+  def average_score_in_current_month(scores_in_current_month)
+    scores_in_current_month.sum { |hash| hash[:score] } / scores_in_current_month.size
+  rescue ZeroDivisionError
+    0
+  end
 end
 
