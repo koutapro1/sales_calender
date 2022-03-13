@@ -1,4 +1,5 @@
 <%= form_with(model: score, class: 'js-new-score-form', local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <div class="form-group row">
     <%= f.label :start_time, class: "col-2 col-md-1" %>
     <%= f.date_select :start_time, {}, {class: 'form-control', style: 'display: inline-block;width: auto;'} %>

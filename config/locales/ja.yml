@@ -7,6 +7,9 @@ ja:
       user:
         name: ユーザーネーム
         password: パスワード
+        password_confirmation: パスワード確認
+        email: メールアドレス
+        email_confirmation: メールアドレス確認
       score:
         score: 売上
         memo: メモ

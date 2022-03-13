@@ -2,6 +2,7 @@
   <main class="form-area">
     <h1>新規ユーザー登録</h1>
     <%= form_with model: @user, local: true do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
       <div class="form-group">
         <%= f.text_field :name, placeholder: "ユーザーネーム", class: "form-control" %>
       </div>
@@ -22,7 +23,7 @@
         <%= f.password_field :password_confirmation, placeholder: "パスワード確認", class: "form-control" %>
       </div>
 
-      <%= f.submit class: "btn btn-lg btn-primary" %>
+      <%= f.submit class: "btn btn-lg btn-primary form-group" %>
     <% end %>
     <%= link_to "ログインページへ", login_path %>
   </main>

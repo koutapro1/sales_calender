@@ -15,26 +15,31 @@ body {
 }
 
 .form-page {
-  height: 80%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 330px;
   margin: auto;
   .form-area {
-    max-width: 330px;
     h1 {
       font-size: 2rem;
       margin-bottom: 1rem;
     }
+    .error-messages-field {
+      max-width: 90vw;
+      .error-messages {
+        text-align: left;
+        padding-left: 20px;
+      }
+    }
     .form-group {
       width: 20rem;
+      margin: 0 auto 1rem auto;
       .form-control {
         height: 3rem;
       }
     }
     .btn {
-      width: 100%;
       margin: 1rem 0;
     }
   }
@@ -129,7 +134,7 @@ body {
   .form-page {
     .form-area {
       .form-group {
-        width: 100%;
+        max-width: 250px;
       }
     }
   }
