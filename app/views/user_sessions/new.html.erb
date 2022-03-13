@@ -10,8 +10,10 @@
         <%= f.password_field :password, class: 'form-control', placeholder: "パスワード" %>
       </div>
 
-      <%= check_box_tag :remember, params[:remember], true %>
-      <%= label_tag "ログイン状態を維持する" %>
+      <div class="remember-me">
+        <%= check_box_tag :remember, params[:remember], true %>
+        <%= label_tag "ログイン状態を維持する" %>
+      </div>
 
       <%= f.submit "ログイン", class: 'btn btn-lg btn-primary' %>
     <% end %>
