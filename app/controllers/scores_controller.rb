@@ -8,10 +8,6 @@ class ScoresController < ApplicationController
     @score = Score.new
   end
 
-  def show; end
-
-  def new; end
-
   def create
     @score = Score.new(score_params)
     if @score.save

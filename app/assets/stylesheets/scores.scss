@@ -30,7 +30,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  // margin: auto;
   .form-area {
     h1 {
       font-size: 2rem;
@@ -78,6 +78,10 @@ body {
 }
 
 .simple-calendar {
+  .calendar-heading {
+    font-size: 1.5rem;
+  }
+
   .day {
     height: 9vh;
   }
@@ -119,7 +123,8 @@ body {
   .current-month {}
 
   .has-events {
-    div {
+    .score_in_td {
+      color: rgb(50, 125, 254);
       padding-top: 0.7rem;
     }
   }
@@ -149,6 +154,14 @@ body {
   p {
     margin-bottom: 0;
   }
+  .js-searched-score {
+    position: relative;
+  }
+  .delete-button {
+    position: absolute;
+    left: 8rem;
+    top: 0.25rem;
+  }
 }
 
 @media (max-width: 767px) {
@@ -171,6 +184,9 @@ body {
   .simple-calendar {
     position: relative;
     top: -1.5rem;
+    .calendar-heading {
+      font-size: 1.3rem;
+    }
     tbody {
       font-size: 0.7rem;
       a {

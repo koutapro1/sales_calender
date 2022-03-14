@@ -77,7 +77,10 @@ document.addEventListener("turbolinks:load", function() {
       $(data).each(function(i, score) {
         $('.js-searched-score-field').append(
           `<div class="js-searched-score">
-            <p>日付: ${date}</p>
+            <p>
+              日付: ${date}
+              <a data-confirm="売上を削除しますか？" class="delete-button far fa-trash-alt" rel="nofollow" data-method="delete" href="/scores/${score.id}"></a>
+            </p>
             <p>売上: ${score.score} 円</p>
             <p>メモ: ${score.memo}</p>
           </div>`

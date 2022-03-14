@@ -7,8 +7,8 @@
     <%= SimpleCalendar::CustomLengthCalendar.new(self, {events: @scores}).render do |date, scores| %>
       <%= date.strftime('%-m/%-d') %>
       <% scores.each do |score| %>
-        <div>
-          <%= link_to "#{score.score}", score_path(score) %>
+        <div class="score_in_td">
+          <%= score.score %>
         </div>
       <% end %>
     <% end %>

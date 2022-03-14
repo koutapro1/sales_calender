@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     resources :searches, only: :index, defaults: { format: :json }
   end
 
-  resources :users
-  resources :scores
+  resources :users,  only: [:new, :create]
+  resources :scores, only: [:index, :new, :create, :destroy]
 end
