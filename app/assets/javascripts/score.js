@@ -77,9 +77,9 @@ document.addEventListener("turbolinks:load", function() {
       $(data).each(function(i, score) {
         $('.js-searched-score-field').append(
           `<div class="js-searched-score">
-            日付: ${date}<br>
-            売上: ${score.score} 円<br>
-            メモ: ${score.memo}<br>
+            <p>日付: ${date}</p>
+            <p>売上: ${score.score} 円</p>
+            <p>メモ: ${score.memo}</p>
           </div>`
         )
       })
