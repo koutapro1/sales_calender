@@ -21,6 +21,7 @@ module SalesCalendar
 
     config.i18n.default_locale = :ja
 
+    config.enable_dependency_loading = true
     config.autoload_paths << Rails.root.join("lib")
   end
 end
