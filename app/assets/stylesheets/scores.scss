@@ -55,6 +55,10 @@ body {
     }
   }
 }
+.login-page {
+  position: relative;
+  top: -3rem;
+}
 
 .js-new-score-form {
   display: none;
@@ -134,8 +138,9 @@ body {
 
 .score-details {
   word-break:break-all;
+  font-size: 1.2rem;
   h3 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: normal;
     border-bottom: solid 2px rgb(0, 179, 255);
   }
