@@ -54,6 +54,14 @@ document.addEventListener("turbolinks:load", function() {
     }
   };
 
+  // ajaxで指定するurlを取得
+  function getFullUrl(url) {
+    var protocol = window.location.protocol
+    var host = window.location.host
+    var fullUrl = protocol + '//' + host + url
+    return fullUrl
+  }
+
   // クリックした日付の日付を取得して、ajaxで送信
   $('.table td').click(function(e){
     var date = getSurfaceText($(this));
@@ -61,7 +69,7 @@ document.addEventListener("turbolinks:load", function() {
 
     $.ajax({
       type: 'GET',
-      url: '/scores/searches',
+      url: getFullUrl('/scores/searches'),
       data: {
         date: date,
         start_date: start_date

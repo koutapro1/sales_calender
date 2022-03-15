@@ -25,4 +25,4 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: Kouta #本番環境用
+  # database: Kouta #本番環境用
