@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_12_123047) do
+ActiveRecord::Schema.define(version: 2022_03_16_052350) do
 
   create_table "scores", force: :cascade do |t|
     t.integer "score", null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_123047) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.index ["start_time", "user_id"], name: "index_scores_on_start_time_and_user_id", unique: true
     t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
