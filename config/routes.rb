@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy', as: :logout
 
   namespace :scores do
-    resources :searches, only: :index, defaults: { format: :json }
+    resources :searches, only: :index do
+      get 'score', on: :collection, defaults: { format: :json }
+    end
   end
 
   resources :users,  only: [:new, :create]

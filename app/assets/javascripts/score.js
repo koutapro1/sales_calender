@@ -69,7 +69,7 @@ document.addEventListener("turbolinks:load", function() {
 
     $.ajax({
       type: 'GET',
-      url: getFullUrl('/scores/searches'),
+      url: getFullUrl('/scores/searches/score'),
       data: {
         date: date,
         start_date: start_date
