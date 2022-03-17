@@ -39,4 +39,3 @@ module ScoresHelper
     0
   end
 end
-

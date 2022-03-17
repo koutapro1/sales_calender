@@ -1,8 +1,16 @@
 <div class="simple-calendar">
-  <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-    <span class="calendar-title"><%= t('date.month_names')[date_range.last.month] + '度' %> <%= date_range.last.year %></span>
-    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+  <div class="calendar-heading row">
+    <div class="calendar-heading main col-6">
+      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+      <span class="calendar-title"><%= t('date.month_names')[date_range.last.month] + '度' %> <%= date_range.last.year %></span>
+      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+    </div>
+      <%= form_with url: scores_searches_path, method: :get, class: "col-6", local: true do |f| %>
+        <div class="form-group">
+          <%= f.date_select :selected_month, {discard_day: true, use_month_numbers: true, selected: start_date}, {class: 'form-control', style: 'display: inline-block;width: auto;'} %>
+        </div>
+        <%= f.submit "Go", class: "btn btn-primary" %>
+      <% end %>
   </div>
 
   <table class="table table-striped">
