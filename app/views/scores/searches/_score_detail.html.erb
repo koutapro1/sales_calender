@@ -3,7 +3,7 @@
     <p>日付: <%= params[:date] %></p>
     <div class="new-score-form">
       <button class="btn btn-primary" id="js-toggle-button">▼ 売上追加</button>
-      <%= render('scores/form', score: @score) %>
+      <%= render partial: 'scores/form', locals: { score: @score, start_date: start_date, date: date } %>
     </div>
   <% else %>
     <p>日付: <%= params[:date] %></p>

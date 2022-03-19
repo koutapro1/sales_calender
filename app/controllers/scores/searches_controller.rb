@@ -10,6 +10,6 @@ class Scores::SearchesController < ApplicationController
     date = params[:date].sub(/\//, '-')
     @searched_score = Score.get_searched_score_in_current_page(date, start_date, current_user)
     @score = Score.new
-    render partial: "score_detail"
+    render partial: "score_detail", locals: { start_date: start_date, date: date }
   end
 end
