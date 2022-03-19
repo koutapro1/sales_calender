@@ -1,6 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
   // 売上追加フォームの開閉
-  $('#js-toggle-button').on("click", function(){
+  $(document).on("click",'#js-toggle-button', function(){
     $('.js-new-score-form').slideToggle(200, alertFunc);
   });
 
@@ -66,34 +66,21 @@ document.addEventListener("turbolinks:load", function() {
   $('.table td').click(function(e){
     var date = getSurfaceText($(this));
     var start_date = setStartDate();
+    if ($('.js-searched-score').length) {
+      $('.js-searched-score').remove()
+    };
 
     $.ajax({
       type: 'GET',
-      url: getFullUrl('/scores/searches/score'),
+      url: getFullUrl('/scores/searches/score.html'),
       data: {
         date: date,
         start_date: start_date
-        },
-      dataType: 'json'
+        }
     })
 
     .done(function (data) {
-      if ($('.js-searched-score').length) {
-        $('.js-searched-score').remove()
-      };
-
-      $(data).each(function(i, score) {
-        $('.js-searched-score-field').append(
-          `<div class="js-searched-score">
-            <p>
-              日付: ${date}
-              <a data-confirm="売上を削除しますか？" class="delete-button far fa-trash-alt" rel="nofollow" data-method="delete" href="/scores/${score.id}"></a>
-            </p>
-            <p>売上: ${score.score} 円</p>
-            <p>メモ: ${score.memo}</p>
-          </div>`
-        )
-      })
+      $(".js-searched-score-field").append(data)
     })
   });
 });
