@@ -1,18 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
-  // 売上追加フォームの開閉
-  $(document).on("click",'#js-toggle-button', function(){
-    $('.js-new-score-form').slideToggle(200, alertFunc);
-  });
-
-  function alertFunc() {
-    if($(this).css('display') == 'block') {
-      $('#js-toggle-button').text("▲ 閉じる");
-    }else{
-      $('#js-toggle-button').text("▼ 売上追加");
-    }
-  }
-
   // ---------選んだ日付の売上詳細をajaxで表示するための処理----------
+
   // 子要素を含まないtextを取得
   function getSurfaceText(selector){
     var elem = $(selector[0].outerHTML);
@@ -83,4 +71,18 @@ document.addEventListener("turbolinks:load", function() {
       $(".js-searched-score-field").append(data)
     })
   });
+
+  // ---------売上追加フォームの開閉----------
+  $(document).off("click");
+  $(document).on("click",'#js-toggle-button', function(){
+    $('.js-new-score-form').slideToggle(200, alertFunc);
+  });
+
+  function alertFunc() {
+    if($(this).css('display') == 'block') {
+      $('#js-toggle-button').text("▲ 閉じる");
+    }else{
+      $('#js-toggle-button').text("▼ 売上追加");
+    }
+  };
 });
