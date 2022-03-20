@@ -83,6 +83,7 @@ body {
 .simple-calendar {
   .calendar-heading {
     font-size: 1.5rem;
+    padding-right: 0;
   }
 
   .day {
@@ -111,18 +112,13 @@ body {
 
   .start-date {}
 
-  .prev-month {
+  .prev-month, .next-month {
     color: rgba(58, 56, 56, 0.352);
-    a {
+    .score_in_td {
       color: rgba(58, 56, 56, 0.352);
     }
   }
-  .next-month {
-    color: rgba(58, 56, 56, 0.352);
-    a {
-      color: rgba(58, 56, 56, 0.352);
-    }
-  }
+
   .current-month {}
 
   .has-events {
@@ -188,8 +184,20 @@ body {
     position: relative;
     top: -1.5rem;
     .calendar-heading {
+      margin-top: 1rem;
+      padding-top: 0.2rem;
       font-size: 1.3rem;
+      .jump-form {
+        padding: 0;
+        .form-group {
+          margin: 1rem 0 0.5rem 0;
+        }
+        .form-control {
+          padding: 0;
+        }
+      }
     }
+
     tbody {
       font-size: 0.7rem;
       a {
