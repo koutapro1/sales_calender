@@ -1,11 +1,10 @@
+<h3><%= params[:date] %> 詳細</h3>
 <div class="js-searched-score">
   <% if @searched_score.nil? %>
-    <p>日付: <%= params[:date] %></p>
     <div class="new-score-form">
       <%= render partial: 'scores/form', locals: { score: @score, start_date: start_date, date: date } %>
     </div>
   <% else %>
-    <p>日付: <%= params[:date] %></p>
     <p>売上: <%= @searched_score.score %> 円</p>
     <p>メモ: <%= @searched_score.memo %></p>
     <%= link_to score_path(@searched_score), method: :delete, data: { confirm: '売上を削除しますか？' }, class: "delete-button" do %>

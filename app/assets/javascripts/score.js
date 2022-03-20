@@ -68,7 +68,7 @@ document.addEventListener("turbolinks:load", function() {
     })
 
     .done(function (data) {
-      $(".js-searched-score-field").append(data)
+      $(".js-searched-score-field").html(data)
     })
   });
 
