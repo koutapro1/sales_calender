@@ -148,13 +148,17 @@ body {
   p {
     margin-bottom: 0;
   }
-  .js-searched-score {
-    position: relative;
-  }
-  .delete-button {
-    position: absolute;
-    left: 8rem;
-    top: 0.25rem;
+}
+
+  .js-searched-score-field {
+    .js-searched-score {
+      position: relative;
+    }
+    .delete-button {
+      position: absolute;
+      left: 8rem;
+      top: 0.25rem;
+    }
   }
 
   .new-score-form {
@@ -164,7 +168,6 @@ body {
       text-align: right;
     }
   }
-}
 
 @media (max-width: 767px) {
   .form-page {
@@ -217,6 +220,15 @@ body {
       font-size: 1.2rem;
       font-weight: normal;
       border-bottom: solid 2px rgb(0, 179, 255);
+    }
+    .calculated-score-field {
+      .calculated-score {
+        display: flex;
+        .calculated-result {
+          display: block;
+          margin-left: auto;
+        }
+      }
     }
     .new-score-form {
       .form-group {
