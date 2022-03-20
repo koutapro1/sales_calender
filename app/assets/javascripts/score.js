@@ -73,16 +73,16 @@ document.addEventListener("turbolinks:load", function() {
   });
 
   // ---------売上追加フォームの開閉----------
-  $(document).off("click", '#js-toggle-button');
-  $(document).on("click", '#js-toggle-button', function(){
-    $('.js-new-score-form').slideToggle(200, alertFunc);
-  });
+  // $(document).off("click", '#js-toggle-button');
+  // $(document).on("click", '#js-toggle-button', function(){
+  //   $('.js-new-score-form').slideToggle(200, alertFunc);
+  // });
 
-  function alertFunc() {
-    if($(this).css('display') == 'block') {
-      $('#js-toggle-button').text("▲ 閉じる");
-    }else{
-      $('#js-toggle-button').text("▼ 売上追加");
-    }
-  };
+  // function alertFunc() {
+  //   if($(this).css('display') == 'block') {
+  //     $('#js-toggle-button').text("▲ 閉じる");
+  //   }else{
+  //     $('#js-toggle-button').text("▼ 売上追加");
+  //   }
+  // };
 });
