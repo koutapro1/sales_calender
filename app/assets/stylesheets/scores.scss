@@ -63,9 +63,9 @@ body {
   top: -3rem;
 }
 
-.js-new-score-form {
-  display: none;
-}
+// .js-new-score-form {
+//   display: none;
+// }
 
 .dropdown-custom.dropdown-menu {
   position: absolute;
@@ -73,12 +73,7 @@ body {
   right: 0;
 }
 
-.new-score-form {
-  text-align: right;
-  #score_score::placeholder {
-    text-align: right;
-  }
-}
+
 
 .simple-calendar {
   .calendar-heading {
@@ -161,6 +156,14 @@ body {
     left: 8rem;
     top: 0.25rem;
   }
+
+  .new-score-form {
+    text-align: right;
+    margin-top: 0;
+    #score_score::placeholder {
+      text-align: right;
+    }
+  }
 }
 
 @media (max-width: 767px) {
@@ -214,6 +217,17 @@ body {
       font-size: 1.2rem;
       font-weight: normal;
       border-bottom: solid 2px rgb(0, 179, 255);
+    }
+    .new-score-form {
+      .form-group {
+        margin-bottom: 0;
+        .new-score-label {
+          margin-bottom: 0;
+        }
+      }
+      .submit-new-score {
+        margin-top: 0.5rem;
+      }
     }
   }
 }
