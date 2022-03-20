@@ -73,8 +73,8 @@ document.addEventListener("turbolinks:load", function() {
   });
 
   // ---------売上追加フォームの開閉----------
-  $(document).off("click");
-  $(document).on("click",'#js-toggle-button', function(){
+  $(document).off("click", '#js-toggle-button');
+  $(document).on("click", '#js-toggle-button', function(){
     $('.js-new-score-form').slideToggle(200, alertFunc);
   });
 
