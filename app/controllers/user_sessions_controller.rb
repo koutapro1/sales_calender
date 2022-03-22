@@ -1,6 +1,6 @@
 class UserSessionsController < ApplicationController
   skip_before_action :require_login
-  before_action :already_logged_in, only: [:new, :show]
+  before_action :already_logged_in, only: [:new]
 
   def new; end
 
