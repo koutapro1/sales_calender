@@ -1,0 +1,85 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.navbar {
+  .navbar-brand {
+    margin: auto auto auto 8px;
+    a {
+      color: #495057;
+    }
+  }
+  .dropdown-custom.dropdown-menu {
+    position: absolute;
+    left: initial;
+    right: 0;
+  }
+}
+
+.flash-messages {
+  width: max-content;
+  margin: auto;
+}
+
+.container-xl {
+  height: 100%;
+}
+
+// ------------------
+
+.form-page {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form-area {
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .error-messages-field {
+      max-width: 90vw;
+      .error-messages {
+        text-align: left;
+        padding-left: 20px;
+      }
+    }
+    .form-group {
+      width: 20rem;
+      margin: 0 auto 1rem auto;
+      .form-control {
+        height: 3rem;
+      }
+    }
+    .btn {
+      margin: 1rem 0;
+    }
+  }
+}
+
+.login-page {
+  position: relative;
+  top: -3rem;
+}
+
+@media (max-width: 767px) {
+  .form-page {
+    .form-area {
+      .form-group {
+        max-width: 250px;
+      }
+    }
+  }
+
+  .new-score-form {
+    margin-top: 0.4rem;
+    .btn {
+      position: relative;
+      z-index: 10;
+    }
+  }
+}
