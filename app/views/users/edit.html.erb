@@ -1,4 +1,4 @@
-<div class="form-page text-center signup-page">
+<div class="form-page text-center edit-page">
   <main class="form-area">
     <h1>ユーザー編集</h1>
     <%= form_with model: @user, local: true do |f| %>
@@ -11,7 +11,7 @@
         <%= f.email_field :email, placeholder: "メールアドレス", class: "form-control" %>
       </div>
 
-      <%= f.submit class: "btn btn-lg btn-primary form-group" %>
+      <%= f.submit '変更する', class: "btn btn-lg btn-primary form-group" %>
     <% end %>
     <%= link_to "戻る", user_path(@user) %>
   </main>
