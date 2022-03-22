@@ -6,6 +6,7 @@ class ScoresController < ApplicationController
     @scores = Score.get_scores_in_current_page(start_date, current_user)
     @scores_in_current_month = Score.get_scores_in_current_month(start_date, current_user)
     @score = Score.new
+    @user = User.find(current_user.id)
   end
 
   def create
@@ -19,7 +20,7 @@ class ScoresController < ApplicationController
 
   def destroy
     @score.destroy!
-    redirect_to scores_path, success: '売上を削除しました'
+    redirect_back fallback_location: scores_path, success: '売上を削除しました'
   end
 
   private
