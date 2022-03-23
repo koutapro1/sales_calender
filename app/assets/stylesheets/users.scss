@@ -25,3 +25,14 @@
 .edit-page {
   height: 80% !important;
 }
+
+@media (min-width: 768px) {
+  .profile-page {
+    h1 {
+      padding-left: 6rem;
+    }
+    .table {
+      width: 50rem !important;
+    }
+  }
+}
