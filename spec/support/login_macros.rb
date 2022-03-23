@@ -1,4 +1,4 @@
-module loginMacros
+module LoginMacros
   def login_as(user)
     visit login_path
     fill_in 'name', with: user.name
