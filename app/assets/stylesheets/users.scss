@@ -1,3 +1,38 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+  .btn {
+    margin-left: auto;
+  }
+  h1 {
+    display: block;
+    float: left;
+    font-size: 2rem;
+    text-align: left;
+    padding-left: 0.75rem;
+  }
+  table {
+    margin-top: 2rem;
+  }
+}
+
+.edit-page {
+  height: 80% !important;
+}
+
+@media (min-width: 768px) {
+  .profile-page {
+    h1 {
+      padding-left: 6rem;
+    }
+    .table {
+      width: 50rem !important;
+    }
+  }
+}
