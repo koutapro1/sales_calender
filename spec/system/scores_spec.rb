@@ -13,7 +13,7 @@ RSpec.describe "Scores", type: :system do
       #   page.all('.day')[7].click
       #   byebug
       #   expect(current_path).to eq scores_path
-      end
+      # end
     end
   end
 end
