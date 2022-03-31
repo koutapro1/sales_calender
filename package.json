@@ -1,5 +1,4 @@
 {
   "name": "sales_calendar",
-  "private": true,
-  "dependencies": {}
+  "private": true
 }
