@@ -8,18 +8,6 @@ document.addEventListener("turbolinks:load", function() {
     return $.trim(elem.text());
   }
 
-  // 今日の日付を取得
-  function getToday() {
-    var now = new Date();
-    var y = now.getFullYear();
-    var m = now.getMonth();
-    var d = now.getDate();
-    var w = now.getDay();
-    var wd = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    var today = `${wd[w]}, ${d} ${m} ${y}`
-    return today
-  };
-
   // URLから特定のパラメーターを取得
   function getParam(name, url) {
     if (!url) url = window.location.href;
@@ -31,15 +19,9 @@ document.addEventListener("turbolinks:load", function() {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
 
-  // start_dateがURLになかったら、今日の日付をstart_dateに入れる
+  // start_dateをパラメーターから取得
   function setStartDate() {
     var start_date = getParam('start_date')
-    if(start_date){
-      return start_date
-    }else{
-      var start_date = getToday()
-      return start_date
-    }
   };
 
   // クリックした日付の日付を取得して、ajaxで送信
