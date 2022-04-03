@@ -15,9 +15,8 @@ gem 'sass-rails'
 gem 'uglifier'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -38,7 +37,6 @@ gem 'bootsnap', require: false
 
 gem 'sorcery'
 gem 'simple_calendar'
-gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
 gem 'draper'
 gem 'rails-i18n'
