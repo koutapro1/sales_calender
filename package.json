@@ -2,6 +2,7 @@
   "name": "sales_calendar",
   "private": true,
   "dependencies": {
+    "@rails/ujs": "^6.1.5",
     "@rails/webpacker": "5.4.3",
     "bootstrap": "4.6.1",
     "jquery": "^3.6.0",
