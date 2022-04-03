@@ -39,7 +39,6 @@ gem 'bootsnap', require: false
 
 gem 'sorcery'
 gem 'simple_calendar'
-gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
 gem 'draper'
 gem 'rails-i18n'
