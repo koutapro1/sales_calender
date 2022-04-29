@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_29_071639) do
+ActiveRecord::Schema.define(version: 2022_04_29_101806) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_04_29_071639) do
   end
 
   create_table "scores", force: :cascade do |t|
-    t.integer "score", null: false
+    t.integer "score", default: 0, null: false
     t.datetime "start_time", null: false
     t.text "memo"
     t.datetime "created_at", null: false
