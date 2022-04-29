@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_03_053608) do
+ActiveRecord::Schema.define(version: 2022_04_29_071639) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2022_04_03_053608) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "score_details", force: :cascade do |t|
+    t.text "coords", null: false
+    t.string "start_address", null: false
+    t.string "end_address", null: false
+    t.integer "score_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["score_id"], name: "index_score_details_on_score_id"
+  end
+
   create_table "scores", force: :cascade do |t|
     t.integer "score", null: false
     t.datetime "start_time", null: false
@@ -67,4 +77,5 @@ ActiveRecord::Schema.define(version: 2022_04_03_053608) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "score_details", "scores"
 end
