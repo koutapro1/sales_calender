@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
   namespace :scores do
     resources :searches, only: :index do
-      get 'score', on: :collection, defaults: { format: :json }
+      collection do
+        get 'score'
+        get 'check'
+      end
     end
   end
 
