@@ -1,5 +1,26 @@
 document.addEventListener("turbolinks:load", function() {
-  // ---------選んだ日付の売上詳細をajaxで表示するための処理----------
+  // ---------選んだ日付の売上詳細、又は売上追加フォームを表示するための処理----------
+
+  // クリックした日付の日付を取得して、ajaxで送信
+  $('.table td').click(function(e){
+    var date = getSurfaceText($(this));
+    var start_date = setStartDate();
+    if ($('.js-searched-score').length) {
+      $('.js-searched-score').remove()
+    };
+
+    $.ajax({
+      type: 'GET',
+      url: '/scores/searches/score.html',
+      data: {
+        date: date,
+        start_date: start_date
+        }
+    })
+    .done(function (data) {
+      $(".js-searched-score-field").html(data)
+    })
+  });
 
   // 子要素を含まないtextを取得
   function getSurfaceText(selector){
@@ -19,45 +40,24 @@ document.addEventListener("turbolinks:load", function() {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
 
-  // start_dateをパラメーターから取得
-  function setStartDate() {
-    var start_date = getParam('start_date')
-    return start_date;
+  // 今日の日付を取得
+  function getToday() {
+    var now = new Date();
+    var y = now.getFullYear();
+    var m = now.getMonth();
+    var d = now.getDate();
+    var today = `${y}-${m}-${d}`
+    return today
   };
 
-  // クリックした日付の日付を取得して、ajaxで送信
-  $('.table td').click(function(e){
-    var date = getSurfaceText($(this));
-    var start_date = setStartDate();
-    if ($('.js-searched-score').length) {
-      $('.js-searched-score').remove()
-    };
-
-    $.ajax({
-      type: 'GET',
-      url: '/scores/searches/score.html',
-      data: {
-        date: date,
-        start_date: start_date
-        }
-    })
-
-    .done(function (data) {
-      $(".js-searched-score-field").html(data)
-    })
-  });
-
-  // ---------売上追加フォームの開閉----------
-  // $(document).off("click", '#js-toggle-button');
-  // $(document).on("click", '#js-toggle-button', function(){
-  //   $('.js-new-score-form').slideToggle(200, alertFunc);
-  // });
-
-  // function alertFunc() {
-  //   if($(this).css('display') == 'block') {
-  //     $('#js-toggle-button').text("▲ 閉じる");
-  //   }else{
-  //     $('#js-toggle-button').text("▼ 売上追加");
-  //   }
-  // };
+  // start_dateをパラメーターから取得。無ければ今日の日付を返す
+  function setStartDate() {
+    var start_date = getParam('start_date')
+    if(start_date){
+      return start_date
+    }else{
+      var start_date = getToday()
+      return start_date
+    }
+  };
 });
