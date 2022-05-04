@@ -22,6 +22,7 @@ document.addEventListener("turbolinks:load", function() {
   // start_dateをパラメーターから取得
   function setStartDate() {
     var start_date = getParam('start_date')
+    return start_date;
   };
 
   // クリックした日付の日付を取得して、ajaxで送信
