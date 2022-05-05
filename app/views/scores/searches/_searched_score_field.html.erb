@@ -2,7 +2,7 @@
 <div class="js-searched-score">
   <% if @searched_score.nil? %>
     <div class="new-score-form">
-      <%= render partial: 'scores/form', locals: { score: @score, start_date: start_date, date: date } %>
+      <%= render partial: 'scores/form', locals: { score: @score, start_time: start_time } %>
     </div>
   <% else %>
     <p>売上: <%= @searched_score.score %> 円</p>
@@ -12,8 +12,7 @@
     <% end %>
   <% end %>
   <%= form_with url: check_scores_searches_path, method: :get, local: true do %>
-    <input name="start_date" type="hidden" value="<%= start_date %>">
-    <input name="date" type="hidden" value="<%= params[:date] %>">
+    <input name="start_time" type="hidden" value="<%= start_time %>">
     <%= button_tag '日報作成', type: 'submit', class: 'btn btn-success', method: :get %>
   <% end %>
 </div>

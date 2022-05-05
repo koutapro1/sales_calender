@@ -1,26 +1,25 @@
 class Scores::SearchesController < ApplicationController
-  include SearchesHelper
-
+  # 月度ジャンプ機能
   def index
     redirect_path = %Q[#{root_path}?start_date=#{params["selected_month(1i)"]}-#{params["selected_month(2i)"]}-#{params["selected_month(3i)"]}]
     redirect_to redirect_path
   end
 
+  # クリックした日付の売上詳細、もしくは売上追加フォームを表示する機能
   def score
-    start_date = params.fetch(:start_date, Date.today).to_date
-    date = convert_slash_into_hyphen(params[:date])
-    @searched_score = Score.get_searched_score_in_current_page(date, start_date, current_user)
+    start_time = params.fetch(:start_time).to_date
+    @searched_score = Score.find_by(start_time: params[:start_time], user: current_user)
     @score = Score.new
-    render partial: "searched_score_field", locals: { start_date: start_date, date: date }
+    render partial: "searched_score_field", locals: { start_time: start_time }
   end
 
+  # 日報ページに遷移するときに、選択した日付のScoreがなければ作成してから遷移する
   def check
-    date = (check_start_date_year(params[:start_date], params[:date]).to_s + "-" + convert_slash_into_hyphen(params[:date]))
-    @score = Score.find_by(start_time: date, user: current_user)
+    @score = Score.find_by(start_time: params[:start_time], user: current_user)
     if @score.present?
       redirect_to score_score_details_path(@score), success: "あった"
     else
-      @score = Score.create(start_time: date, user: current_user)
+      @score = Score.create!(start_time: params[:start_time], user: current_user)
       redirect_to score_score_details_path(@score), warning: "なかった"
     end
   end
