@@ -40,6 +40,7 @@ gem 'simple_calendar'
 gem 'jquery-rails'
 gem 'draper'
 gem 'rails-i18n'
+gem 'dotenv-rails'
 # アップデートすると@import "font-awesome";でバグがでるようになる
 gem 'font-awesome-sass', '~> 5.15.1'
 
