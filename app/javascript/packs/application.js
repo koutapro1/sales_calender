@@ -21,3 +21,4 @@ require("bootstrap");
 require("jquery");
 
 import '../javascripts/score'
+import '../javascripts/jquery.ba-throttle-debounce'
