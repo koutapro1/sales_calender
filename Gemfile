@@ -37,11 +37,10 @@ gem 'bootsnap', require: false
 
 gem 'sorcery'
 gem 'simple_calendar'
-gem 'jquery-rails'
 gem 'draper'
 gem 'rails-i18n'
 gem 'dotenv-rails'
-# アップデートすると@import "font-awesome";でバグがでるようになる
+# アップデートすると@import "font-awesome";でエラーがでるようになる
 gem 'font-awesome-sass', '~> 5.15.1'
 
 group :development, :test do
