@@ -42,8 +42,10 @@ ActiveRecord::Schema.define(version: 2022_04_29_101806) do
 
   create_table "score_details", force: :cascade do |t|
     t.text "coords", null: false
-    t.string "start_address", null: false
-    t.string "end_address", null: false
+    t.string "pickup_address", null: false
+    t.string "dropoff_address", null: false
+    t.datetime "pickup_time", null: false
+    t.datetime "dropoff_time", null: false
     t.integer "score_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -78,4 +80,5 @@ ActiveRecord::Schema.define(version: 2022_04_29_101806) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "score_details", "scores"
+  add_foreign_key "scores", "users"
 end
