@@ -7,7 +7,7 @@ class Scores::SearchesController < ApplicationController
 
   # クリックした日付の売上詳細、もしくは売上追加フォームを表示する機能
   def score
-    start_time = params.fetch(:start_time).to_date
+    start_time = params[:start_time].to_date
     @searched_score = Score.find_by(start_time: params[:start_time], user: current_user)
     @score = Score.new
     render partial: "searched_score_field", locals: { start_time: start_time }
@@ -17,10 +17,10 @@ class Scores::SearchesController < ApplicationController
   def check
     @score = Score.find_by(start_time: params[:start_time], user: current_user)
     if @score.present?
-      redirect_to score_score_details_path(@score), success: "あった"
+      redirect_to score_score_details_path(@score)
     else
       @score = Score.create!(start_time: params[:start_time], user: current_user)
-      redirect_to score_score_details_path(@score), warning: "なかった"
+      redirect_to score_score_details_path(@score)
     end
   end
 end

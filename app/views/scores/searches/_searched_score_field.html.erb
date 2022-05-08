@@ -1,4 +1,4 @@
-<h3><%= params[:date] %> 詳細</h3>
+<h3><%= start_time.strftime("%-m/%-d") %> 詳細</h3>
 <div class="js-searched-score">
   <% if @searched_score.nil? %>
     <div class="new-score-form">
