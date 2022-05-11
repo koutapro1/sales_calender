@@ -40,6 +40,7 @@ gem 'simple_calendar'
 gem 'draper'
 gem 'rails-i18n'
 gem 'dotenv-rails'
+gem 'thin'
 # アップデートすると@import "font-awesome";でエラーがでるようになる
 gem 'font-awesome-sass', '~> 5.15.1'
 
