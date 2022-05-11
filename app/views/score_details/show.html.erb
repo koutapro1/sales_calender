@@ -1,0 +1,112 @@
+<p><%= @score_detail.pickup_address %></p>
+<p><%= @score_detail.dropoff_address %></p>
+<p><%= @score_detail.pickup_time.strftime("%-H時%-M分%-S秒") %></p>
+<p><%= @score_detail.dropoff_time.strftime("%-H時%-M分%-S秒") %></p>
+
+<p id="map"></p>
+<div id="mapdata" data-map-routes="<%= @maps.to_json %>"></div>
+
+<style>
+#map {
+  height: 800px;
+  width: 1200px;
+}
+</style>
+
+<script>
+function initMap() {
+  // マップを描画
+  var mapOptions = {
+    zoom: 17,
+    center: {lat: 35.859683, lng: 139.909924,}
+  };
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+  var coordinates = "<%= @score_detail.translate_for_google_map %>"
+  requestSnapToRoads(coordinates)
+
+  function requestSnapToRoads(originalPath) {
+    $.get("https://roads.googleapis.com/v1/snapToRoads", {
+      interpolate: true,	// 補完を行うかどうか
+      key: '<%= ENV['GOOGLE_MAP_API_KEY'] %>',
+      path: originalPath
+    }, function(data) {
+      processResponse(data);
+      console.log(data)
+    });
+  };
+
+  function processResponse(data) {
+    const snappedCoordinates = [];
+		for(var i = 0; i < data.snappedPoints.length; i++) {
+			// スナップされた地点の取得
+			var position = new google.maps.LatLng(
+				data.snappedPoints[i].location.latitude,
+				data.snappedPoints[i].location.longitude);
+			snappedCoordinates.push(position);
+		}
+    // スナップされた地点をもとにPolylineを表示
+		var polyline = new google.maps.Polyline({
+			path: snappedCoordinates,
+			strokeColor: "red",
+			strokeWeight: 3
+		});
+		polyline.setMap(map);
+
+		// スタート地点の取得
+		var pickupPosition = new google.maps.LatLng(
+			data.snappedPoints[0].location.latitude,
+			data.snappedPoints[0].location.longitude
+		);
+		// ゴール地点の取得
+		var dropoffPosition = new google.maps.LatLng(
+			data.snappedPoints[data.snappedPoints.length - 1].location.latitude,
+			data.snappedPoints[data.snappedPoints.length - 1].location.longitude
+		);
+    setMarker(pickupPosition)
+    setMarker(dropoffPosition)
+
+    // var latLngBounds = new google.maps.LatLngBounds(
+    //   pickupPosition,
+    //   dropoffPosition
+    // );
+    // map.fitBounds(latLngBounds)
+    var bounds = new google.maps.LatLngBounds();
+    bounds.extend(pickupPosition)
+    bounds.extend(dropoffPosition)
+    map.fitBounds(bounds)
+
+    function setMarker(place) {
+      if (place == pickupPosition) {
+        // スタート地点にマーカーを設置
+        var pickupMarker = new google.maps.Marker({
+          position: pickupPosition,
+          map: map
+        });
+        // スタート地点のマーカーをクリックで住所表示
+        var pickupInfowindow = new google.maps.InfoWindow({
+          content: "<%= @score_detail.pickup_address %>"
+        });
+        pickupMarker.addListener('click', function() {
+          pickupInfowindow.open(map, pickupMarker);
+        });
+      } else if (place == dropoffPosition) {
+        // ゴール地点にマーカーを設置
+        var dropoffMarker = new google.maps.Marker({
+          position: dropoffPosition,
+          map: map,
+        });
+        // ゴール地点のマーカーをクリックで住所表示
+        var dropoffInfowindow = new google.maps.InfoWindow({
+          content: "<%= @score_detail.dropoff_address %>"
+        });
+        dropoffMarker.addListener('click', function() {
+          dropoffInfowindow.open(map, dropoffMarker);
+        });
+      }
+    }
+	}
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script>
