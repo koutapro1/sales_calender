@@ -27,7 +27,7 @@ document.addEventListener("turbolinks:load", function() {
     var elem = $(selector[0].outerHTML);
     elem.children().empty();
     var elem = $.trim(elem.text());
-    return elem.replace("/", "-");
+    return elem;
   }
 
   // URLから特定のパラメーターを取得
@@ -45,14 +45,14 @@ document.addEventListener("turbolinks:load", function() {
   function getToday() {
     var now = new Date();
     var y = now.getFullYear();
-    var m = now.getMonth();
+    var m = now.getMonth() + 1;
     var d = now.getDate();
-    var today = `${y}-${m}-${d}`;
+    var today = `${y}/${m}/${d}`;
     return today;
   };
 
   // start_dateをパラメーターから取得。無ければ今日の日付を返す
-  function setStartDate() {
+  function getStartDate() {
     var start_date = getParam('start_date');
     if(start_date) {
       return start_date;
@@ -64,11 +64,12 @@ document.addEventListener("turbolinks:load", function() {
 
   // ajaxで送信するstart_timeを取得
   function setStartTime () {
+    var startDate = new Date(getStartDate().replace(/-/g, "/"));
+    var startDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
     var date = getSurfaceText(clickedElem);
-    var date = new Date(date);
+    var date = new Date(`${startDate.getFullYear()}/${date}`);
     var dateMonth = date.getMonth();
     var dateDate = date.getDate();
-    var startDate = new Date(setStartDate());
     var startDateYear = startDate.getFullYear();
     const decFirst = new Date(startDateYear, 11, 18);
     const decLast = new Date(startDateYear, 11, 31);
