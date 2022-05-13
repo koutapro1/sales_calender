@@ -8,8 +8,8 @@
 
 <style>
 #map {
-  height: 800px;
-  width: 1200px;
+  height: 80vh;
+  width: 80vw;
 }
 </style>
 
@@ -22,22 +22,66 @@ function initMap() {
   };
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+  const snappedCoordinates = [];
   var coordinates = "<%= @score_detail.translate_for_google_map %>"
   requestSnapToRoads(coordinates)
 
+  // function requestSnapToRoads(originalPath) {
+  //   $.get("https://roads.googleapis.com/v1/snapToRoads", {
+  //     interpolate: true,	// 補完を行うかどうか
+  //     key: '<%= ENV['GOOGLE_MAP_API_KEY'] %>',
+  //     path: originalPath
+  //   }, function(data) {
+  //     processResponse(data);
+  //     console.log(data)
+  //   });
+  // };
+
   function requestSnapToRoads(originalPath) {
+    if (originalPath.split("|").length > 100) {
+      moreThanOneHundred(originalPath)
+    } else {
+      $.get("https://roads.googleapis.com/v1/snapToRoads", {
+        interpolate: true,	// 補完を行うかどうか
+        key: '<%= ENV['GOOGLE_MAP_API_KEY'] %>',
+        path: originalPath
+      }, function(data) {
+        processResponse(data);
+        console.log(data)
+      });
+    }
+  };
+
+  function moreThanOneHundred(originalPath) {
+    sourcePath = originalPath.split("|")
+    var pathes = sourcePath.splice(0, 100)
+    var pathes = pathes.join("|")
+
     $.get("https://roads.googleapis.com/v1/snapToRoads", {
       interpolate: true,	// 補完を行うかどうか
       key: '<%= ENV['GOOGLE_MAP_API_KEY'] %>',
-      path: originalPath
+      path: pathes
     }, function(data) {
-      processResponse(data);
-      console.log(data)
+      pushCoords(data);
+      if (sourcePath.length >= 100) {
+        requestSnapToRoads(sourcePath.join("|"));
+      } else if (sourcePath.length < 100) {
+        processResponse(data);
+      }
     });
-  };
+  }
+
+  function pushCoords(data) {
+    for(var i = 0; i < data.snappedPoints.length; i++) {
+			// スナップされた地点の取得
+			var position = new google.maps.LatLng(
+				data.snappedPoints[i].location.latitude,
+				data.snappedPoints[i].location.longitude);
+			snappedCoordinates.push(position);
+		}
+  }
 
   function processResponse(data) {
-    const snappedCoordinates = [];
 		for(var i = 0; i < data.snappedPoints.length; i++) {
 			// スナップされた地点の取得
 			var position = new google.maps.LatLng(
@@ -45,6 +89,7 @@ function initMap() {
 				data.snappedPoints[i].location.longitude);
 			snappedCoordinates.push(position);
 		}
+    console.log(snappedCoordinates)
     // スナップされた地点をもとにPolylineを表示
 		var polyline = new google.maps.Polyline({
 			path: snappedCoordinates,
