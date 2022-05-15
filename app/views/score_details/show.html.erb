@@ -16,141 +16,104 @@
 <script>
 function initMap() {
   // マップを描画
-  var mapOptions = {
+  const mapOptions = {
     zoom: 17,
     center: {lat: 35.859683, lng: 139.909924,}
   };
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-  const snappedCoordinates = [];
-  var coordinates = "<%= @score_detail.translate_for_google_map %>"
-  requestSnapToRoads(coordinates)
+  const snappedCoordinates = [];    //修正された緯度経度を格納しておく配列
+  const coordinates = "<%= @score_detail.translate_for_google_map %>"
 
-  // function requestSnapToRoads(originalPath) {
-  //   $.get("https://roads.googleapis.com/v1/snapToRoads", {
-  //     interpolate: true,	// 補完を行うかどうか
-  //     key: '<%= ENV['GOOGLE_MAP_API_KEY'] %>',
-  //     path: originalPath
-  //   }, function(data) {
-  //     processResponse(data);
-  //     console.log(data)
-  //   });
-  // };
-
-  function requestSnapToRoads(originalPath) {
+  // coordinatesが100個以上か以下を判定
+  const beforeRequestSnapToRoads = (originalPath) => {
     if (originalPath.split("|").length > 100) {
       moreThanOneHundred(originalPath)
     } else {
-      $.get("https://roads.googleapis.com/v1/snapToRoads", {
-        interpolate: true,	// 補完を行うかどうか
-        key: '<%= ENV['GOOGLE_MAP_API_KEY'] %>',
-        path: originalPath
-      }, function(data) {
-        processResponse(data);
-        console.log(data)
-      });
+      requestSnapToRoads(originalPath, processResponse)
     }
-  };
+  }
 
-  function moreThanOneHundred(originalPath) {
-    sourcePath = originalPath.split("|")
-    var pathes = sourcePath.splice(0, 100)
-    var pathes = pathes.join("|")
-
+  // Roads API にリクエストを送信
+  const requestSnapToRoads = (originalPath, callback) => {
     $.get("https://roads.googleapis.com/v1/snapToRoads", {
-      interpolate: true,	// 補完を行うかどうか
+      interpolate: true,
       key: '<%= ENV['GOOGLE_MAP_API_KEY'] %>',
-      path: pathes
+      path: originalPath
     }, function(data) {
-      pushCoords(data);
-      if (sourcePath.length >= 100) {
-        requestSnapToRoads(sourcePath.join("|"));
-      } else if (sourcePath.length < 100) {
-        processResponse(data);
-      }
+      callback(data);
     });
   }
 
-  function pushCoords(data) {
-    for(var i = 0; i < data.snappedPoints.length; i++) {
+  // coordinates を 100個ずつに分割してリクエストを送信
+  const moreThanOneHundred = (originalPath) => {
+    sourcePath = originalPath.split("|")
+    let pathes = sourcePath.splice(0, 100)
+    pathes = pathes.join("|")
+    requestSnapToRoads(pathes, function(data) {
+      pushCoords(data);
+      if (sourcePath.length >= 100) {
+        beforeRequestSnapToRoads(sourcePath.join("|"));
+      } else if (sourcePath.length < 100) {
+        requestSnapToRoads(sourcePath.join("|"), processResponse)
+      }
+    })
+  }
+
+  // 修正された緯度経度を取得後、配列 SnappedCoordinates に格納
+  const pushCoords = (data) => {
+    for(let i = 0; i < data.snappedPoints.length; i++) {
 			// スナップされた地点の取得
-			var position = new google.maps.LatLng(
+			const position = new google.maps.LatLng(
 				data.snappedPoints[i].location.latitude,
 				data.snappedPoints[i].location.longitude);
 			snappedCoordinates.push(position);
 		}
   }
 
-  function processResponse(data) {
-		for(var i = 0; i < data.snappedPoints.length; i++) {
-			// スナップされた地点の取得
-			var position = new google.maps.LatLng(
-				data.snappedPoints[i].location.latitude,
-				data.snappedPoints[i].location.longitude);
-			snappedCoordinates.push(position);
-		}
-    console.log(snappedCoordinates)
+  // 取得したデータをもとに、地図上にルートやマーカーを表示
+  const processResponse = (data) => {
+		pushCoords(data)
     // スナップされた地点をもとにPolylineを表示
-		var polyline = new google.maps.Polyline({
+		const polyline = new google.maps.Polyline({
 			path: snappedCoordinates,
 			strokeColor: "red",
 			strokeWeight: 3
 		});
 		polyline.setMap(map);
-
-		// スタート地点の取得
-		var pickupPosition = new google.maps.LatLng(
-			data.snappedPoints[0].location.latitude,
-			data.snappedPoints[0].location.longitude
-		);
-		// ゴール地点の取得
-		var dropoffPosition = new google.maps.LatLng(
-			data.snappedPoints[data.snappedPoints.length - 1].location.latitude,
-			data.snappedPoints[data.snappedPoints.length - 1].location.longitude
-		);
-    setMarker(pickupPosition)
-    setMarker(dropoffPosition)
-
-    // var latLngBounds = new google.maps.LatLngBounds(
-    //   pickupPosition,
-    //   dropoffPosition
-    // );
-    // map.fitBounds(latLngBounds)
-    var bounds = new google.maps.LatLngBounds();
+		// スタート地点とゴール地点にマーカーを設置し、クリックで住所を表示
+		const pickupPosition = snappedCoordinates[0];
+		const dropoffPosition = snappedCoordinates[snappedCoordinates.length - 1]
+    const marker = []
+    const InfoWindow = []
+    const markerData = [
+      {
+        position: pickupPosition,
+        address: "<%= @score_detail.pickup_address %>"
+      }, {
+        position: dropoffPosition,
+        address: "<%= @score_detail.dropoff_address %>"
+      }
+    ];
+    for ( let i = 0; i < markerData.length; i++) {
+      marker[i] = new google.maps.Marker({
+        position: markerData[i].position,
+        map: map
+      });
+      InfoWindow[i] = new google.maps.InfoWindow({
+        content: markerData[i].address
+      });
+      marker[i].addListener('click', function() {
+        InfoWindow[i].open(map, marker[i])
+      });
+    }
+    // スタート地点とゴール地点が収まるようにマップの縮尺を調節
+    const bounds = new google.maps.LatLngBounds();
     bounds.extend(pickupPosition)
     bounds.extend(dropoffPosition)
     map.fitBounds(bounds)
-
-    function setMarker(place) {
-      if (place == pickupPosition) {
-        // スタート地点にマーカーを設置
-        var pickupMarker = new google.maps.Marker({
-          position: pickupPosition,
-          map: map
-        });
-        // スタート地点のマーカーをクリックで住所表示
-        var pickupInfowindow = new google.maps.InfoWindow({
-          content: "<%= @score_detail.pickup_address %>"
-        });
-        pickupMarker.addListener('click', function() {
-          pickupInfowindow.open(map, pickupMarker);
-        });
-      } else if (place == dropoffPosition) {
-        // ゴール地点にマーカーを設置
-        var dropoffMarker = new google.maps.Marker({
-          position: dropoffPosition,
-          map: map,
-        });
-        // ゴール地点のマーカーをクリックで住所表示
-        var dropoffInfowindow = new google.maps.InfoWindow({
-          content: "<%= @score_detail.dropoff_address %>"
-        });
-        dropoffMarker.addListener('click', function() {
-          dropoffInfowindow.open(map, dropoffMarker);
-        });
-      }
-    }
 	}
+  beforeRequestSnapToRoads(coordinates)
 }
 </script>
 
