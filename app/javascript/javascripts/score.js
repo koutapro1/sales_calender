@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+$(function(){
   // ---------選んだ日付の売上詳細、又は売上追加フォームを表示するための処理----------
 
   // クリックした日付の日付を取得して、ajaxで送信
@@ -96,4 +96,4 @@ document.addEventListener("turbolinks:load", function() {
       };
     };
   };
-});
+})
