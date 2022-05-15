@@ -1,26 +1,28 @@
 class ScoreDetailsController < ApplicationController
+  before_action :set_score, only: [:index, :show]
+  
   def index
-    score = Score.find(params[:score_id])
-    @score_details = score.score_details
+    @score_details = @score.score_details
   end
 
   def create
     @score_detail = ScoreDetail.new(params_to_time_with_zone(score_detail_params))
     if @score_detail.save!
       render json: @score_detail
-      # respond_to do |format|
-      #   format.html { redirect_to score_score_details_path }
-      #   format.json { render json: @score_detail }
-      # end
     else
       redirect_to new_score_score_detail_path, warning: "失敗"
     end
   end
 
   def show
+    @score_detail = @score.score_details.find(params[:id])
   end
 
   private
+
+  def set_score
+    @score = Score.find(params[:score_id])
+  end
 
   def score_detail_params
     params.require(:score_detail).permit(:pickup_address, :dropoff_address, :pickup_time, :dropoff_time, coords: []).merge(score_id: params[:score_id])
