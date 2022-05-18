@@ -16,8 +16,6 @@
     </li>
   <% end %>
   </ol>
-  
-  <input type="hidden" id="scoreId" value="<%= @score_id %>">
 
   <%= javascript_pack_tag 'score_details_pack' %>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script>

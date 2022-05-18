@@ -1,8 +1,10 @@
 class ScoreDetailsController < ApplicationController
+  protect_from_forgery
   before_action :set_score, only: [:index, :show]
   
   def index
     @score_details = @score.score_details
+    gon.score = @score
   end
 
   def create

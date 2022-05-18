@@ -1,7 +1,7 @@
 function initMap() {
   const timeStamps = [];
   const coordinates = [];
-  const scoreId = $('#scoreId').val()
+  const scoreId = gon.score.id
   const pickupTiming = "pickup"
   const dropoffTiming = "dropoff"
   const geocoder = new google.maps.Geocoder();
