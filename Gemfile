@@ -41,6 +41,7 @@ gem 'draper'
 gem 'rails-i18n'
 gem 'dotenv-rails'
 gem 'thin'
+gem 'gon'
 # アップデートすると@import "font-awesome";でエラーがでるようになる
 gem 'font-awesome-sass', '~> 5.15.1'
 
