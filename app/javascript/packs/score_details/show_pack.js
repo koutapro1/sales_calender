@@ -1,0 +1,1 @@
+import '../../javascripts/score_details/show'
