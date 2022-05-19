@@ -1,6 +1,6 @@
 class Score < ApplicationRecord
   belongs_to :user
-  has_many :score_details
+  has_many :score_details, dependent: :destroy
 
   validates :score, presence: true, length: { maximum: 6 }, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :start_time, presence: true, uniqueness: {scope: :user_id}
