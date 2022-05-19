@@ -15,14 +15,4 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-
-  # 引数をFloatオブジェクトに変換できるか判定する
-  def unixtime_string?(str)
-    Float(str)
-    true
-  rescue ArgumentError
-    false
-  rescue TypeError
-    false
-  end
 end
