@@ -41,17 +41,17 @@ class Score < ApplicationRecord
   end
 
   # 選択されたセルの日付の売上を検索する
-  def self.get_searched_score_in_current_page(date, start_date, current_user)
-    if start_date >= Date.new(start_date.year, 12, 18) && start_date <= Date.new(start_date.year, 12, 31) && date.include?("12-")
-      self.find_by(user_id: current_user.id,  start_time: "#{start_date.year}-#{date}")
-    elsif start_date >= Date.new(start_date.year, 12, 18) && start_date <= Date.new(start_date.year, 12, 31) && date.include?("1-")
-      self.find_by(user_id: current_user.id,  start_time: "#{start_date.year + 1}-#{date}")
-    elsif start_date >= Date.new(start_date.year, 1, 1) && start_date <= Date.new(start_date.year, 1, 16) && date.include?("12-")
-      self.find_by(user_id: current_user.id,  start_time: "#{start_date.year - 1}-#{date}")
-    elsif start_date >= Date.new(start_date.year, 1, 1) && start_date <= Date.new(start_date.year, 1, 16) && date.include?("1-")
-      self.find_by(user_id: current_user.id,  start_time: "#{start_date.year}-#{date}")
+  def self.get_searched_score_in_current_page(selected_date, start_date, current_user)
+    if start_date >= Date.new(start_date.year, 12, 18) && start_date <= Date.new(start_date.year, 12, 31) && selected_date.include?("12-")
+      self.find_by(user_id: current_user.id,  start_time: "#{start_date.year}-#{selected_date}")
+    elsif start_date >= Date.new(start_date.year, 12, 18) && start_date <= Date.new(start_date.year, 12, 31) && selected_date.include?("1-")
+      self.find_by(user_id: current_user.id,  start_time: "#{start_date.year + 1}-#{selected_date}")
+    elsif start_date >= Date.new(start_date.year, 1, 1) && start_date <= Date.new(start_date.year, 1, 16) && selected_date.include?("12-")
+      self.find_by(user_id: current_user.id,  start_time: "#{start_date.year - 1}-#{selected_date}")
+    elsif start_date >= Date.new(start_date.year, 1, 1) && start_date <= Date.new(start_date.year, 1, 16) && selected_date.include?("1-")
+      self.find_by(user_id: current_user.id,  start_time: "#{start_date.year}-#{selected_date}")
     else
-      self.find_by(user_id: current_user.id,  start_time: "#{start_date.year}-#{date}")
+      self.find_by(user_id: current_user.id,  start_time: "#{start_date.year}-#{selected_date}")
     end
   end
 end
