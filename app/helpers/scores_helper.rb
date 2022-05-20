@@ -40,17 +40,20 @@ module ScoresHelper
   end
 
   # クリックされた日付を売上登録フォームのstart_timeに入れる処理
-  def set_value_of_start_time(start_date, date)
-    if start_date >= Date.new(start_date.year, 12, 18) && start_date <= Date.new(start_date.year, 12, 31) && date.include?("12-")
-      "#{start_date.year}-#{date}".to_date
-    elsif start_date >= Date.new(start_date.year, 12, 18) && start_date <= Date.new(start_date.year, 12, 31) && date.include?("1-")
-      "#{start_date.year + 1}-#{date}".to_date
-    elsif start_date >= Date.new(start_date.year, 1, 1) && start_date <= Date.new(start_date.year, 1, 16) && date.include?("12-")
-      "#{start_date.year - 1}-#{date}".to_date
-    elsif start_date >= Date.new(start_date.year, 1, 1) && start_date <= Date.new(start_date.year, 1, 16) && date.include?("1-")
-      "#{start_date.year}-#{date}".to_date
+  def set_value_of_start_time(start_date, selected_date)
+    dec_first = Date.new(start_date.year, 12, 18)
+    dec_last = Date.new(start_date.year, 12, 31)
+    jan_first = Date.new(start_date.year, 1, 1)
+    jan_last = Date.new(start_date.year, 1, 16)
+
+    if (start_date.between?(dec_first, dec_last) && selected_date.include?("12-")) || (start_date.between?(jan_first, jan_last) && selected_date.include?("1-"))
+      "#{start_date.year}-#{selected_date}".to_date
+    elsif start_date.between?(dec_first, dec_last) && selected_date.include?("1-")
+      "#{start_date.year + 1}-#{selected_date}".to_date
+    elsif start_date.between?(jan_first, jan_last) && selected_date.include?("12-")
+      "#{start_date.year - 1}-#{selected_date}".to_date
     else
-      "#{start_date.year}-#{date}".to_date
+      "#{start_date.year}-#{selected_date}".to_date
     end
   end
 end

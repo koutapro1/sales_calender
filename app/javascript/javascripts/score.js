@@ -1,32 +1,33 @@
-$(function(){
+import { format } from 'date-fns'
+$(function () {
   // ---------選んだ日付の売上詳細、又は売上追加フォームを表示するための処理----------
 
   // クリックした日付の日付を取得して、ajaxで送信
-  $('.table td').click(function(e){
+  $('.table td').click(function() {
+    let selectedDate = getSurfaceText($(this));
+    let startDate = getStartDate();
     if ($('.js-searched-score').length) {
-      $('.js-searched-score').remove();
+      $('.js-searched-score').remove()
     };
-
-    clickedElem = $(this);
-    var start_time = setStartTime();
 
     $.ajax({
       type: 'GET',
       url: '/scores/searches/score.html',
       data: {
-        start_time: start_time
+        selected_date: selectedDate,
+        start_date: startDate
         }
     })
     .done(function (data) {
-      $(".js-searched-score-field").html(data);
+      $(".js-searched-score-field").html(data)
     })
   });
 
-  // 子要素を含まないtextを取得し、/ を - に変換
+  // 子要素を含まないtextを取得
   function getSurfaceText(selector) {
-    var elem = $(selector[0].outerHTML);
+    let elem = $(selector[0].outerHTML);
     elem.children().empty();
-    var elem = $.trim(elem.text());
+    elem = $.trim(elem.text());
     return elem;
   }
 
@@ -34,7 +35,7 @@ $(function(){
   function getParam(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
@@ -43,57 +44,19 @@ $(function(){
 
   // 今日の日付を取得
   function getToday() {
-    var now = new Date();
-    var y = now.getFullYear();
-    var m = now.getMonth() + 1;
-    var d = now.getDate();
-    var today = `${y}/${m}/${d}`;
+    let now = new Date();
+    let today = format(now, 'yyyy/MM/dd');
     return today;
   };
 
   // start_dateをパラメーターから取得。無ければ今日の日付を返す
   function getStartDate() {
-    var start_date = getParam('start_date');
-    if(start_date) {
-      return start_date;
+    let startDate = getParam('start_date');
+    if(startDate) {
+      return startDate;
     } else {
-      var start_date = getToday();
-      return start_date;
+      let startDate = getToday();
+      return startDate;
     }
-  };
-
-  // ajaxで送信するstart_timeを取得
-  function setStartTime () {
-    var startDate = new Date(getStartDate().replace(/-/g, "/"));
-    var startDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-    var date = getSurfaceText(clickedElem);
-    var date = new Date(`${startDate.getFullYear()}/${date}`);
-    var dateMonth = date.getMonth();
-    var dateDate = date.getDate();
-    var startDateYear = startDate.getFullYear();
-    const decFirst = new Date(startDateYear, 11, 18);
-    const decLast = new Date(startDateYear, 11, 31);
-    const janFirst = new Date(startDateYear, 0, 1);
-    const janLast = new Date(startDateYear, 0, 16);
-    var startTimeParts = setStartTimeParts();
-    var startTimeYaer = startTimeParts.getFullYear();
-    var startTimeMonth = startTimeParts.getMonth() + 1;
-    var startTimeDate = startTimeParts.getDate();
-    return `${startTimeYaer}-${startTimeMonth}-${startTimeDate}`;
-
-    // start_timeを、start_dateの月やクリックされた日付によって設定
-    function setStartTimeParts () {
-      if (startDate >= decFirst && startDate <= decLast && dateMonth == 11) {
-        return new Date(startDateYear, dateMonth, dateDate);
-      } else if (startDate >= decFirst && startDate <= decLast && dateMonth == 0) {
-        return new Date(startDateYear + 1, dateMonth, dateDate);
-      } else if (startDate >= janFirst && startDate <= janLast && dateMonth == 0) {
-        return new Date(startDateYear, dateMonth, dateDate);
-      } else if (startDate >= janFirst && startDate <= janLast && dateMonth == 11) {
-        return new Date(startDateYear -1, dateMonth, dateDate);
-      } else {
-        return new Date(startDateYear, dateMonth, dateDate);
-      };
-    };
   };
 })

@@ -1,10 +1,17 @@
+import { format } from 'date-fns'
 function initMap() {
   const timeStamps = [];
   const coordinates = [];
-  const scoreId = gon.score.id
-  const pickupTiming = "pickup"
-  const dropoffTiming = "dropoff"
-  const geocoder = new google.maps.Geocoder();
+  const scoreId = gon.score.id;
+  const pickupTiming = "pickup";
+  const dropoffTiming = "dropoff";
+  let watchId;
+  let pickupLatLng;
+  let dropoffLatLng;
+  let pickupTime;
+  let dropoffTime;
+  let pickupAddress;
+  let dropoffAddress;
 
   $('#pickup').click( () => {
     watchId = navigator.geolocation.watchPosition(
@@ -23,7 +30,6 @@ function initMap() {
 
   function success (data) {
     setTimestamp(data);
-    timeStamps.push(timeStr);
     coordinates.push(data.coords.latitude, data.coords.longitude);
     pickupLatLng = new google.maps.LatLng(coordinates[0], coordinates[1]);
     dropoffLatLng = new google.maps.LatLng(coordinates[coordinates.length - 2], coordinates[coordinates.length - 1]);
@@ -37,19 +43,17 @@ function initMap() {
   }
 
   function setTimestamp (data) {
-    var time = data.timestamp;
-    var dateObj = new Date(time);
-    var Y = dateObj.getFullYear();
-    var M = dateObj.getMonth() + 1;
-    var D = dateObj.getDate();
-    var HH = dateObj.getHours();
-    var MM = dateObj.getMinutes();
-    var SS = dateObj.getSeconds();
-    var MS = dateObj.getMilliseconds();
-    timeStr = `${Y}-${M}-${D} ${HH}:${MM}:${SS}.${MS}`
+    let time = data.timestamp;
+    let dateObj = new Date(time);
+    let timeStr = format(dateObj, 'yyyy-MM-dd HH:mm:ss.SSS');
+    timeStamps.push(timeStr);
   }
 
   function GeocodingFunc(latlng, timing, callback) {
+    const geocoder = new google.maps.Geocoder();
+    let city;
+    let area;
+    let block;
     geocoder.geocode(
       {
         'latLng': latlng
@@ -57,8 +61,8 @@ function initMap() {
       function(results, status){
         if(status==google.maps.GeocoderStatus.OK) {
           console.log(results);
-          for (var i = 0; i < results[0].address_components.length; i++) {
-            for (var j = 0; j < results[0].address_components[i].types.length; j++) {
+          for (let i = 0; i < results[0].address_components.length; i++) {
+            for (let j = 0; j < results[0].address_components[i].types.length; j++) {
               if (results[0].address_components[i].types[j] == "locality") {
                 city = results[0].address_components[i].long_name
               } else if (results[0].address_components[i].types[j] == "sublocality_level_2") {
