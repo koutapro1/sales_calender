@@ -1,14 +1,15 @@
-$(function(){
+import { format } from 'date-fns'
+$(function () {
   // ---------選んだ日付の売上詳細、又は売上追加フォームを表示するための処理----------
 
   // クリックした日付の日付を取得して、ajaxで送信
-  $('.table td').click(function(e){
+  $('.table td').click(function () {
     if ($('.js-searched-score').length) {
       $('.js-searched-score').remove();
     };
 
-    clickedElem = $(this);
-    var start_time = setStartTime();
+    let clickedElem = $(this);
+    var start_time = setStartTime(clickedElem);
 
     $.ajax({
       type: 'GET',
@@ -22,7 +23,7 @@ $(function(){
     })
   });
 
-  // 子要素を含まないtextを取得し、/ を - に変換
+  // 子要素を含まないtextを取得
   function getSurfaceText(selector) {
     var elem = $(selector[0].outerHTML);
     elem.children().empty();
@@ -43,11 +44,8 @@ $(function(){
 
   // 今日の日付を取得
   function getToday() {
-    var now = new Date();
-    var y = now.getFullYear();
-    var m = now.getMonth() + 1;
-    var d = now.getDate();
-    var today = `${y}/${m}/${d}`;
+    let now = new Date();
+    let today = format(now, 'yyyy/MM/dd');
     return today;
   };
 
@@ -63,10 +61,10 @@ $(function(){
   };
 
   // ajaxで送信するstart_timeを取得
-  function setStartTime () {
+  function setStartTime (clickedDate) {
     var startDate = new Date(getStartDate().replace(/-/g, "/"));
     var startDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-    var date = getSurfaceText(clickedElem);
+    var date = getSurfaceText(clickedDate);
     var date = new Date(`${startDate.getFullYear()}/${date}`);
     var dateMonth = date.getMonth();
     var dateDate = date.getDate();
