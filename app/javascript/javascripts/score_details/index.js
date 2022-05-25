@@ -80,7 +80,7 @@ function initMap() {
     }
     console.log("メーター距離:" + meterDistance + "m");
     console.log(fare + "円");
-    $('#meter').html(`<div>${fare} 円</div>`);
+    $('#meter').html(`<div>メーター料金: ${fare}円</div>`);
   }
 
   function GeocodingFunc(latlng, timing, callback) {
@@ -124,7 +124,7 @@ function initMap() {
     fare = 420;
     meterDistance = 0;
     oneMeter = true;
-    $('#meter').html("<div>0 円</div>");
+    $('#meter').html("<div>メーター料金: 0円</div>");
   }
 
   function ajaxScoreDetail () {
