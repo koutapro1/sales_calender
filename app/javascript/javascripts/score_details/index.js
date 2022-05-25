@@ -138,7 +138,8 @@ function initMap() {
           pickup_address: pickupAddress,
           dropoff_address: dropoffAddress,
           pickup_time: pickupTime,
-          dropoff_time: dropoffTime
+          dropoff_time: dropoffTime,
+          fare: fare
         }
       },
       dataType: "json"
