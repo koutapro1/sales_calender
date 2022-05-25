@@ -1,4 +1,3 @@
-import { differenceInQuarters, format } from 'date-fns'
 const getHaversineDistance = require('get-haversine-distance')
 
 function initMap() {
@@ -57,7 +56,7 @@ function initMap() {
       let a = { lat: coordinates[coordinates.length - 4], lng: coordinates[coordinates.length - 3] }
       let b = { lat: coordinates[coordinates.length - 2], lng: coordinates[coordinates.length - 1] }
       let distance = getHaversineDistance(a,b) * 1000     //メートル
-      let duration = (new Date(timeStamps[timeStamps.length - 1]) - new Date(timeStamps[timeStamps.length - 2])) / 1000   //秒
+      let duration = (timeStamps[timeStamps.length - 1] - timeStamps[timeStamps.length - 2]) / 1000   //秒
       let speed = (distance / duration) * 60 * 60 / 1000    //毎時キロ
 
       if (speed <= 10) {
