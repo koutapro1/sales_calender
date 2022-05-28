@@ -1,4 +1,5 @@
 const getHaversineDistance = require('get-haversine-distance')
+import { format } from 'date-fns'
 
 function initMap() {
   const scoreId = gon.score.id;
@@ -19,30 +20,30 @@ function initMap() {
 
   $('#pickup').click( () => {
     watchId = navigator.geolocation.watchPosition(
-      $.throttle(5000, success),
-        error => console.log(error),
-        {
-          enableHighAccuracy: true
-        }
+    $.throttle(5000, success),
+      error => console.log(error),
+      {
+        enableHighAccuracy: true
+      }
     );
   });
 
   $("#dropoff").click( () => {
     navigator.geolocation.clearWatch(watchId);
-    pickupLatLng = new google.maps.LatLng(coordinates[0], coordinates[1]);
     dropoffLatLng = new google.maps.LatLng(coordinates[coordinates.length - 2], coordinates[coordinates.length - 1]);
-    pickupTime = timeStamps[0];
     dropoffTime = timeStamps[timeStamps.length - 1];
-    GeocodingFunc(pickupLatLng, pickupTiming, GeocodingFunc);
+    GeocodingFunc(dropoffLatLng, dropoffTiming, ajaxScoreDetail);
   })
 
   function success (data) {
     setTimestamp(data);
     coordinates.push(data.coords.latitude, data.coords.longitude);
+    if (coordinates.length <= 2) {
+      pickupLatLng = new google.maps.LatLng(coordinates[0], coordinates[1]);
+      pickupTime = timeStamps[0];
+      GeocodingFunc(pickupLatLng, pickupTiming);
+    }
     calcFare();
-    // console.log(data);
-    // console.log(coordinates);
-    // console.log(timeStamps);
   }
 
   function setTimestamp (data) {
@@ -94,7 +95,7 @@ function initMap() {
       },
       function(results, status){
         if(status==google.maps.GeocoderStatus.OK) {
-          console.log(results);
+          // console.log(results);
           for (let i = 0; i < results[0].address_components.length; i++) {
             for (let j = 0; j < results[0].address_components[i].types.length; j++) {
               if (results[0].address_components[i].types[j] == "locality") {
@@ -108,10 +109,14 @@ function initMap() {
           }
           if (timing == "pickup") {
             pickupAddress = `${city} ${area} ${block}`
-            callback(dropoffLatLng, dropoffTiming);
+            // callback(dropoffLatLng, dropoffTiming);
+            $('.lists').append(
+              `<li id="js-addedList">${pickupAddress}</li>`
+              )
           } else if(timing == "dropoff") {
             dropoffAddress = `${city} ${area} ${block}`
-            ajaxScoreDetail();
+            // ajaxScoreDetail();
+            callback();
           }
         }
       }
@@ -145,8 +150,12 @@ function initMap() {
       dataType: "json"
     })
     .done(function(data) {
-      $('.lists').append(
-        `<li><a href="/scores/${scoreId}/score_details/${data.id}"> ${data.pickup_address} ~ ${data.dropoff_address}</a> </li>`
+      let pickupDateData = format(new Date(data.pickup_time), 'HH:mm:ss')
+      let dropoffDateData = format(new Date(data.dropoff_time), 'HH:mm:ss')
+      console.log(new Date(data.dropoffTime))
+      $('#js-addedList').remove();
+      $('ol').append(
+        `<li><a href="/scores/${scoreId}/score_details/${data.id}"> ${data.pickup_address} ~ ${data.dropoff_address} ${pickupDateData} ${dropoffDateData} ${data.fare}円</a> </li>`
         )
       resetMeter();
     })
