@@ -59,4 +59,16 @@ $(function () {
       return startDate;
     }
   };
+
+  // ----------月度ジャンプの開閉
+  $(document).on("click", '.js-toggle-button, .calendar-title', function(){
+    $('.js-month-jump').slideToggle(200, alertFunc);
+  });
+  function alertFunc() {
+    if($(this).css('display') == 'block') {
+      $('.js-toggle-button').text("▲");
+    }else{
+      $('.js-toggle-button').text("▼");
+    }
+  };
 })

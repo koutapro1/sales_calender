@@ -6,6 +6,9 @@
   .calendar-heading {
     font-size: 1.5rem;
     padding-right: 0;
+    .js-month-jump {
+      display: none;
+    }
   }
 
   .day {
@@ -63,7 +66,6 @@
 }
 
 .score-status {
-  position: relative;
   top: 3vh;
   word-break:break-all;
   font-size: 1.2rem;
@@ -98,13 +100,12 @@
 
 @media (max-width: 767px) {
   .simple-calendar {
-    position: relative;
     top: -1.5rem;
     .calendar-heading {
-      margin-top: 1rem;
+      text-align: center;
       padding-top: 0.2rem;
       font-size: 1.3rem;
-      .jump-form {
+      .js-month-jump {
         padding: 0;
         .form-group {
           margin: 1rem 0 0.5rem 0;
@@ -124,7 +125,6 @@
   }
 
   .score-status {
-    position: relative;
     top: -3vh;
     font-size: 1rem;
     h3 {
