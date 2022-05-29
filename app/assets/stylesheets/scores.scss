@@ -67,7 +67,6 @@
 }
 
 .score-status {
-  position: relative;
   top: 3vh;
   word-break:break-all;
   font-size: 1.2rem;
@@ -102,10 +101,8 @@
 
 @media (max-width: 767px) {
   .simple-calendar {
-    position: relative;
     top: -1.5rem;
     .calendar-heading {
-      margin-top: 1rem;
       padding-top: 0.2rem;
       font-size: 1.3rem;
       .jump-form {
@@ -128,7 +125,6 @@
   }
 
   .score-status {
-    position: relative;
     top: -3vh;
     font-size: 1rem;
     h3 {
