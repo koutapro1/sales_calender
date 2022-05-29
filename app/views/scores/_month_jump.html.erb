@@ -1,0 +1,6 @@
+<%= form_with url: scores_searches_path, method: :get, class: "js-month-jump", style: "display:inline-flex", local: true do |f| %>
+  <div class="form-group">
+    <%= f.date_select :selected_month, {discard_day: true, use_month_numbers: true, selected: start_date}, {class: 'form-control', style: 'display: inline-block;width: auto;'} %>
+    <%= f.submit "Go", class: "btn btn-primary" %>
+  </div>
+<% end %>
