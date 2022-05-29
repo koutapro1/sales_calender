@@ -61,8 +61,7 @@ $(function () {
   };
 
   // ----------月度ジャンプの開閉
-  $(document).off("click", '.js-toggle-button');
-  $(document).on("click", '.js-toggle-button', function(){
+  $(document).on("click", '.js-toggle-button, .calendar-title', function(){
     $('.js-month-jump').slideToggle(200, alertFunc);
   });
   function alertFunc() {
