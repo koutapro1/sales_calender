@@ -44,7 +44,7 @@ document.addEventListener("turbolinks:load", function() {
   function getToday() {
     var now = new Date();
     var y = now.getFullYear();
-    var m = now.getMonth();
+    var m = now.getMonth() + 1;
     var d = now.getDate();
     var today = `${y}-${m}-${d}`
     return today
