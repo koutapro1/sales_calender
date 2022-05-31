@@ -5,6 +5,7 @@ function initMap() {
   const scoreId = gon.score.id;
   const pickupTiming = "pickup";
   const dropoffTiming = "dropoff";
+  let status;
   let timeStamps = [];
   let coordinates = [];
   let watchId;
@@ -19,6 +20,7 @@ function initMap() {
   let oneMeter = true;
 
   $('#pickup').click( () => {
+    status = "occupied"
     watchId = navigator.geolocation.watchPosition(
     $.throttle(5000, success),
       error => console.log(error),
@@ -29,6 +31,7 @@ function initMap() {
   });
 
   $("#dropoff").click( () => {
+    status = "vacant"
     navigator.geolocation.clearWatch(watchId);
     dropoffLatLng = new google.maps.LatLng(coordinates[coordinates.length - 2], coordinates[coordinates.length - 1]);
     dropoffTime = timeStamps[timeStamps.length - 1];
@@ -36,14 +39,17 @@ function initMap() {
   })
 
   function success (data) {
-    setTimestamp(data);
-    coordinates.push(data.coords.latitude, data.coords.longitude);
-    if (coordinates.length <= 2) {
-      pickupLatLng = new google.maps.LatLng(coordinates[0], coordinates[1]);
-      pickupTime = timeStamps[0];
-      GeocodingFunc(pickupLatLng, pickupTiming);
+    if (status == "occupied") {
+      console.log(watchId);
+      setTimestamp(data);
+      coordinates.push(data.coords.latitude, data.coords.longitude);
+      if (coordinates.length <= 2) {
+        pickupLatLng = new google.maps.LatLng(coordinates[0], coordinates[1]);
+        pickupTime = timeStamps[0];
+        GeocodingFunc(pickupLatLng, pickupTiming);
+      }
+      calcFare();
     }
-    calcFare();
   }
 
   function setTimestamp (data) {
@@ -79,6 +85,7 @@ function initMap() {
       console.log("距離:" + distance + "m");
       console.log("時速" + speed + "km")
     }
+    console.log(timeStamps[timeStamps.length - 1])
     console.log("メーター距離:" + meterDistance + "m");
     console.log(fare + "円");
     $('#meter').html(`<div>メーター料金: ${fare}円</div>`);
@@ -109,13 +116,11 @@ function initMap() {
           }
           if (timing == "pickup") {
             pickupAddress = `${city} ${area} ${block}`
-            // callback(dropoffLatLng, dropoffTiming);
             $('.lists').append(
               `<li id="js-addedList">${pickupAddress}</li>`
               )
           } else if(timing == "dropoff") {
             dropoffAddress = `${city} ${area} ${block}`
-            // ajaxScoreDetail();
             callback();
           }
         }
@@ -152,7 +157,6 @@ function initMap() {
     .done(function(data) {
       let pickupDateData = format(new Date(data.pickup_time), 'HH:mm:ss')
       let dropoffDateData = format(new Date(data.dropoff_time), 'HH:mm:ss')
-      console.log(new Date(data.dropoffTime))
       $('#js-addedList').remove();
       $('ol').append(
         `<li><a href="/scores/${scoreId}/score_details/${data.id}"> ${data.pickup_address} ~ ${data.dropoff_address} ${pickupDateData} ${dropoffDateData} ${data.fare}円</a> </li>`
@@ -160,7 +164,7 @@ function initMap() {
       resetMeter();
     })
     .fail(function() {
-      alert("error");
+      alert("通信に失敗しました。");
     });
   }
 }
