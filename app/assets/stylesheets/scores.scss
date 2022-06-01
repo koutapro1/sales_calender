@@ -4,8 +4,16 @@
 
 .simple-calendar {
   .calendar-heading {
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
     font-size: 1.5rem;
-    padding-right: 0;
+    .main-field {
+      margin-top: 0.7rem;
+      margin-bottom: 0.3rem;
+      .calendar-title {
+        line-height: 3rem;
+      }
+    }
     .js-month-jump {
       display: none;
     }
@@ -16,7 +24,9 @@
   }
 
   .day:hover {
-    background-color: pink;
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.3);
+    background-color: rgba(118, 203, 255, 0.7);
   }
 
   .wday-0 {
@@ -39,7 +49,8 @@
 
   .prev-month, .next-month {
     color: rgba(58, 56, 56, 0.352);
-    .score_in_td {
+    background-color: white;
+    .score-in-td {
       color: rgba(58, 56, 56, 0.352);
     }
   }
@@ -47,20 +58,31 @@
   .current-month {}
 
   .has-events {
-    .score_in_td {
+    .score-in-td {
       color: rgb(50, 125, 254);
       padding-top: 0.7rem;
     }
   }
 
   table {
+    border: none;
     width: 100%;
     table-layout: fixed;
     word-break: break-all;
     word-wrap: break-all;
     text-align: center;
+    border-collapse: separate;
+    border-spacing: 0 3px;
     th {
+      line-height: 0.5rem;
       text-align: center;
+      border: none;
+      font-size: 0.9rem;
+    }
+    td {
+      border: none;
+      background-color: white;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
     }
   }
 }
@@ -69,13 +91,16 @@
   top: 3vh;
   word-break:break-all;
   font-size: 1.2rem;
-  h3 {
-    font-size: 1.4rem;
-    font-weight: normal;
-    border-bottom: solid 2px rgb(0, 179, 255);
-  }
-  p {
-    margin-bottom: 0;
+  .row {
+    margin: auto;
+    h3 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      border-bottom: solid 2px rgb(0, 179, 255);
+    }
+    p {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -99,57 +124,60 @@
   }
 
 @media (max-width: 767px) {
-  .simple-calendar {
-    top: -1.5rem;
-    .calendar-heading {
-      text-align: center;
-      padding-top: 0.2rem;
-      font-size: 1.3rem;
-      .js-month-jump {
-        padding: 0;
-        .form-group {
-          margin: 1rem 0 0.5rem 0;
-        }
-        .form-control {
-          padding: 0;
+  .calendar-page-body {
+    padding-right: 8px;
+    padding-left: 8px;
+    .simple-calendar {
+      top: -1.5rem;
+      .calendar-heading {
+        text-align: center;
+        font-size: 1.3rem;
+        .js-month-jump {
+          .form-group {
+            margin: 0;
+          }
+          padding: 1rem;
+          .form-control {
+            padding: 0;
+          }
         }
       }
-    }
 
-    tbody {
-      font-size: 0.7rem;
-      a {
+      tbody {
         font-size: 0.7rem;
+        a {
+          font-size: 0.7rem;
+        }
       }
     }
-  }
 
-  .score-status {
-    top: -3vh;
-    font-size: 1rem;
-    h3 {
-      font-size: 1.2rem;
-      font-weight: normal;
-      border-bottom: solid 2px rgb(0, 179, 255);
-    }
-    .calculated-score-field {
-      .calculated-score {
-        display: flex;
-        .calculated-result {
-          display: block;
-          margin-left: auto;
+    .score-status {
+      top: -3vh;
+      font-size: 1rem;
+      h3 {
+        font-size: 1.2rem;
+        font-weight: normal;
+        border-bottom: solid 2px rgb(0, 179, 255);
+      }
+      .calculated-score-field {
+        .calculated-score {
+          display: flex;
+          .calculated-result {
+            display: block;
+            margin-left: auto;
+          }
         }
       }
-    }
-    .new-score-form {
-      .form-group {
-        margin-bottom: 0;
-        .new-score-label {
+      .new-score-form {
+        .form-group {
           margin-bottom: 0;
+          .new-score-label {
+            margin-bottom: 0;
+          }
         }
-      }
-      .submit-new-score {
-        margin-top: 0.5rem;
+        .submit-new-score {
+          margin-top: 0.5rem;
+        }
       }
     }
   }
