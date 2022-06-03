@@ -43,9 +43,9 @@ function initMap() {
       console.log(watchId);
       setTimestamp(data);
       coordinates.push(data.coords.latitude, data.coords.longitude);
-      if (coordinates.length <= 2) {
-        pickupLatLng = new google.maps.LatLng(coordinates[0], coordinates[1]);
-        pickupTime = timeStamps[0];
+      if (coordinates.length <= 4 && coordinates.length >= 3) {
+        pickupLatLng = new google.maps.LatLng(coordinates[2], coordinates[3]);
+        pickupTime = timeStamps[1];
         GeocodingFunc(pickupLatLng, pickupTiming);
       }
       calcFare();
@@ -59,36 +59,52 @@ function initMap() {
   }
 
   function calcFare () {
-    if (coordinates.length > 3) {
-      let a = { lat: coordinates[coordinates.length - 4], lng: coordinates[coordinates.length - 3] }
-      let b = { lat: coordinates[coordinates.length - 2], lng: coordinates[coordinates.length - 1] }
-      let distance = getHaversineDistance(a,b) * 1000     //メートル
+    if (coordinates.length < 3) {
+      $('.lists').append(
+        `<li id="js-addedList">場所取得中</li>`
+      )
+    }
+    let hour = timeStamps[timeStamps.length - 1].getHours()
+    if (coordinates.length > 5) {
+      let lastPosition = { lat: coordinates[coordinates.length - 4], lng: coordinates[coordinates.length - 3] }
+      let currentPosition = { lat: coordinates[coordinates.length - 2], lng: coordinates[coordinates.length - 1] }
+      let distance = getHaversineDistance(lastPosition, currentPosition) * 1000     //メートル
       let duration = (timeStamps[timeStamps.length - 1] - timeStamps[timeStamps.length - 2]) / 1000   //秒
-      let speed = (distance / duration) * 60 * 60 / 1000    //毎時キロ
-
-      if (speed <= 10) {
-        meterDistance += duration * (233 / 85);               // 時間メーター
-      } else if (speed >= 10) {
-        meterDistance += getHaversineDistance(a,b) * 1000;    // 距離メーター
+      let speed = (distance / duration) * 60 * 60 / 1000      //毎時キロ
+      let oneMeterLimit = 1052;
+      let distanceLimit = 233;
+      let timeLimit = 85;
+      if (hour >= 22 || hour < 5) {
+        oneMeterLimit = oneMeterLimit / 1.2;
+        distanceLimit = distanceLimit / 1.2;
+        timeLimit = timeLimit / 1.2;
       }
-      if(meterDistance > 1052) {                              // ワンメーター超えたときの処理
+      if (speed <= 10) {
+        meterDistance += duration * (distanceLimit / timeLimit);      // 時間メーター
+      } else if (speed > 10) {
+        meterDistance += distance;                                     // 距離メーター
+      }
+      if(meterDistance > oneMeterLimit) {                              // ワンメーター超えたときの処理
         fare += 80;
-        meterDistance -= 1052;
+        meterDistance -= oneMeterLimit;
         oneMeter = false;
       }
-      if (oneMeter ==false && meterDistance > 233) {          // ワンメーター以降の計算
-        let counter = Math.floor(meterDistance / 233)
+      if (oneMeter ==false && meterDistance > oneMeterLimit) {          // ワンメーター以降の計算
+        let counter = Math.floor(meterDistance / distanceLimit)
         fare += counter * 80;
-        meterDistance = meterDistance % 233;
+        meterDistance = meterDistance % distanceLimit;
       }
       console.log("時間:" + duration + "秒");
       console.log("距離:" + distance + "m");
-      console.log("時速" + speed + "km")
+      console.log("時速" + speed + "km");
     }
-    console.log(timeStamps[timeStamps.length - 1])
+    console.log(timeStamps[timeStamps.length - 1]);
     console.log("メーター距離:" + meterDistance + "m");
     console.log(fare + "円");
-    $('#meter').html(`<div>メーター料金: ${fare}円</div>`);
+    $('.meter').html(`<div>メーター料金: ${fare}円</div>`);
+    if (hour >= 22 || hour < 5) {
+      $('.extra-fee').html(`<div>割増</div>`);
+    }
   }
 
   function GeocodingFunc(latlng, timing, callback) {
@@ -102,7 +118,6 @@ function initMap() {
       },
       function(results, status){
         if(status==google.maps.GeocoderStatus.OK) {
-          // console.log(results);
           for (let i = 0; i < results[0].address_components.length; i++) {
             for (let j = 0; j < results[0].address_components[i].types.length; j++) {
               if (results[0].address_components[i].types[j] == "locality") {
@@ -116,6 +131,7 @@ function initMap() {
           }
           if (timing == "pickup") {
             pickupAddress = `${city} ${area} ${block}`
+            $('#js-addedList').remove();
             $('.lists').append(
               `<li id="js-addedList">${pickupAddress}</li>`
               )
@@ -134,7 +150,7 @@ function initMap() {
     fare = 420;
     meterDistance = 0;
     oneMeter = true;
-    $('#meter').html("<div>メーター料金: 0円</div>");
+    $('.meter').html("<div>メーター料金: 0円</div>");
   }
 
   function ajaxScoreDetail () {
@@ -169,3 +185,15 @@ function initMap() {
   }
 }
 window.initMap = initMap;
+
+
+
+
+
+
+// 割増ワンメーター:
+// 1052 / 1.2 = 876.66m
+// 割増後続距離:
+// 233 / 1.2 = 194.16m
+// 割増時間メーター:
+// 70.86秒
