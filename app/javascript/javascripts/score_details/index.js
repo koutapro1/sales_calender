@@ -89,7 +89,7 @@ function initMap() {
         meterDistance -= oneMeterLimit;
         oneMeter = false;
       }
-      if (oneMeter ==false && meterDistance > oneMeterLimit) {          // ワンメーター以降の計算
+      if (oneMeter == false && meterDistance > distanceLimit) {          // ワンメーター以降の計算
         let counter = Math.floor(meterDistance / distanceLimit)
         fare += counter * 80;
         meterDistance = meterDistance % distanceLimit;
