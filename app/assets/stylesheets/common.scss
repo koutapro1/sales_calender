@@ -1,9 +1,14 @@
 html {
   height: 100%;
+  width: 100%;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   height: 100%;
+  width: 100%;
+  background-color: rgb(237, 240, 243);
 }
 
 .navbar {
@@ -67,6 +72,11 @@ body {
 }
 
 @media (max-width: 767px) {
+  .navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   .form-page {
     .form-area {
       .form-group {

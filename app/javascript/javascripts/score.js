@@ -67,8 +67,12 @@ $(function () {
   function alertFunc() {
     if($(this).css('display') == 'block') {
       $('.js-toggle-button').text("▲");
+      $('.calendar-heading').css('box-shadow', '')
+      $('.js-month-jump').css({'box-shadow': '0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05)'});
     }else{
       $('.js-toggle-button').text("▼");
+      $('.js-month-jump').css('box-shadow', '')
+      $('.calendar-heading').css({'box-shadow': '0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05)'});
     }
   };
 })

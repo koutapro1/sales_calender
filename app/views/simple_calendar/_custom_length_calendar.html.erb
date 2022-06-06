@@ -1,6 +1,6 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <div class="calendar-heading main">
+    <div class="main-field">
       <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
       <span class="calendar-title"><%= t('date.month_names')[date_range.last.month] + '度' %> <%= date_range.last.year %></span>
       <span class="js-toggle-button">▼</span>
@@ -9,7 +9,7 @@
       <%= render 'scores/month_jump', start_date: start_date %>
   </div>
 
-  <table class="table table-striped">
+  <table class="table">
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
@@ -35,17 +35,19 @@
     </tbody>
   </table>
 </div>
-<div class="score-status row">
-  <div class="calculated-score-field col-6">
-    <h3><%= t('date.month_names')[date_range.last.month] + '度' %></h3>
-    <div class="calculated-score">
-      <p>合計:</p> <p class="calculated-result"><%= "#{total_score_in_current_month(@scores_in_current_month)} 円" %></p>
+<div class="score-status">
+  <div class="row">
+    <div class="calculated-score-field col-5">
+      <h3><%= t('date.month_names')[date_range.last.month] + '度' %></h3>
+      <div class="calculated-score">
+        <p>合計:</p> <p class="calculated-result"><%= "#{total_score_in_current_month(@scores_in_current_month)} 円" %></p>
+      </div>
+      <div class="calculated-score">
+        <p>平均:</p> <p class="calculated-result"><%= "#{average_score_in_current_month(@scores_in_current_month)} 円" %></p>
+      </div>
     </div>
-    <div class="calculated-score">
-      <p>平均:</p> <p class="calculated-result"><%= "#{average_score_in_current_month(@scores_in_current_month)} 円" %></p>
+    <div class="js-searched-score-field col-7">
+      <h3>詳細</h3>
     </div>
-  </div>
-  <div class="js-searched-score-field col-6">
-    <h3>詳細</h3>
   </div>
 </div>
