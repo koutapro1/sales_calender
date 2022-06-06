@@ -8,7 +8,7 @@ class ScoresController < ApplicationController
   end
 
   def create
-    @score = Score.new(score_params)
+    @score = current_user.scores.build(score_params)
     if @score.save
       redirect_back fallback_location: scores_path, success: '売上を登録しました'
     else
@@ -24,7 +24,7 @@ class ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:score, :start_time, :memo).merge(user_id: current_user.id)
+    params.require(:score).permit(:score, :start_time, :memo)
   end
 
   def set_score
