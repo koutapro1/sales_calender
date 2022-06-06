@@ -13,6 +13,8 @@
   <% end %>
   <%= form_with url: check_scores_searches_path, method: :get, local: true do %>
     <input name="start_time" type="hidden" value="<%= set_value_of_start_time(start_date, selected_date) %>">
-    <%= button_tag '日報作成', type: 'submit', class: 'btn btn-success', method: :get %>
+    <div class="text-left">
+      <%= button_tag '日報作成', type: 'submit', class: 'btn btn-success score-detail-button', method: :get %>
+    </div>
   <% end %>
 </div>

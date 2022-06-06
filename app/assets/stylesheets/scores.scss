@@ -8,8 +8,8 @@
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
     font-size: 1.5rem;
     .main-field {
-      margin-top: 0.7rem;
-      margin-bottom: 0.3rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.2rem;
       .calendar-title {
         line-height: 3rem;
       }
@@ -71,6 +71,7 @@
     word-break: break-all;
     word-wrap: break-all;
     text-align: center;
+    margin-bottom: 0.4rem;
     border-collapse: separate;
     border-spacing: 0 3px;
     th {
@@ -94,6 +95,8 @@
   .row {
     margin: auto;
     .calculated-score-field, .js-searched-score-field {
+      padding-top: 0.7rem;
+      padding-bottom: 1rem;
       background-color: white;
       border-radius: 3px;
       box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -118,6 +121,9 @@
       left: 8rem;
       top: 0.25rem;
     }
+    .submit-new-score, .score-detail-button {
+      margin-top: 0.5rem;
+    }
   }
 
   .new-score-form {
@@ -141,7 +147,7 @@
           .form-group {
             margin: 0;
           }
-          padding: 1rem;
+          padding: 0.5rem 1rem 1rem 1rem;
           .form-control {
             padding: 0;
           }
@@ -173,15 +179,15 @@
           }
         }
       }
-      .new-score-form {
-        .form-group {
-          margin-bottom: 0;
-          .new-score-label {
+      .js-searched-score-field {
+        height: 19rem;
+        .new-score-form {
+          .form-group {
             margin-bottom: 0;
+            .new-score-label {
+              margin-bottom: 0;
+            }
           }
-        }
-        .submit-new-score {
-          margin-top: 0.5rem;
         }
       }
     }
