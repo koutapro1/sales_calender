@@ -1,6 +1,8 @@
 <body>
   <button id="pickup" style="font-size: 50px">pickup</button>
   <button id="dropoff" style="font-size: 50px">dropoff</button>
+  <div class="extra-fee"></div>
+  <div class="meter">メーター料金: 0円</div>
 
   <div id="coords"></div>
   <div id="form"></div>
@@ -12,6 +14,7 @@
         <%= score_detail.dropoff_address %>
         <%= score_detail.pickup_time.strftime("%-H時%-M分%-S秒") %> ~
         <%= score_detail.dropoff_time.strftime("%-H時%-M分%-S秒") %>
+        <%= score_detail.fare %>円
       <% end %>
     </li>
   <% end %>
