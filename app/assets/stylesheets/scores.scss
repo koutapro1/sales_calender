@@ -115,11 +115,9 @@
   .js-searched-score-field {
     .js-searched-score {
       position: relative;
-    }
-    .delete-button {
-      position: absolute;
-      left: 8rem;
-      top: 0.25rem;
+      .flash-messages {
+        padding: 0.5rem;
+      }
     }
     .submit-new-score, .score-detail-button {
       margin-top: 0.5rem;
@@ -129,6 +127,27 @@
   .new-score-form {
     text-align: right;
     margin-top: 0;
+    .error-messages-field {
+      padding: 0;
+      text-align: center;
+      ul {
+        padding: 0;
+        li:before {
+          content:  "";
+          width:  5px;
+          height:  5px;
+          display:  inline-block;
+          background-color: rgb(114, 28, 36);
+          border-radius:  50%;
+          position: relative;
+          top: -3px;
+        }
+        li {
+          list-style-type: none;
+          font-size: 0.9rem;
+        }
+      }
+    }
     #score_score::placeholder {
       text-align: right;
     }
@@ -180,7 +199,7 @@
         }
       }
       .js-searched-score-field {
-        height: 19rem;
+        min-height: 19rem;
         .new-score-form {
           .form-group {
             margin-bottom: 0;
