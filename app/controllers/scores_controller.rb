@@ -1,5 +1,5 @@
 class ScoresController < ApplicationController
-  before_action :set_score, only: [:show, :destroy]
+  before_action :set_score, only: [:edit, :update, :destroy]
 
   def index
     start_date = params.fetch(:start_date, Date.today).to_date
@@ -8,14 +8,21 @@ class ScoresController < ApplicationController
   end
 
   def create
-    @success_message = "売上を登録しました。"
+    @success_message = "売上を登録しました"
     @score = current_user.scores.build(score_params)
     @score.save
   end
 
+  def edit; end
+
+  def update
+    @success_message = "売上を変更しました"
+    @score.update(score_params)
+  end
+
   def destroy
+    @success_message = "売上を削除しました"
     @score.destroy!
-    redirect_back fallback_location: scores_path, success: '売上を削除しました'
   end
 
   private
