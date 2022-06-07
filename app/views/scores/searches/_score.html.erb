@@ -1,0 +1,7 @@
+<div class="js-searched-score">
+  <p>売上: <%= searched_score.score %> 円</p>
+  <p>メモ: <%= searched_score.memo %></p>
+  <%= link_to score_path(searched_score), method: :delete, data: { confirm: '売上を削除しますか？' }, class: "delete-button" do %>
+    <span class="far fa-trash-alt"></span>
+  <% end %>
+</div>
