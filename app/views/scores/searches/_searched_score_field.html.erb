@@ -1,20 +1,12 @@
-<h3><%= params[:selected_date] %> 詳細</h3>
-<div class="js-searched-score">
+<h3><%= start_time.to_date.strftime('%-m/%-d') %> 詳細</h3>
   <% if @searched_score.nil? %>
-    <div class="new-score-form">
-      <%= render partial: 'scores/form', locals: { score: @score, start_date: start_date, selected_date: selected_date } %>
-    </div>
+      <%= render partial: 'scores/form', locals: { score: @score, start_time: start_time } %>
   <% else %>
-    <p>売上: <%= @searched_score.score %> 円</p>
-    <p>メモ: <%= @searched_score.memo %></p>
-    <%= link_to score_path(@searched_score), method: :delete, data: { confirm: '売上を削除しますか？' }, class: "delete-button" do %>
-      <span class="far fa-trash-alt"></span>
-    <% end %>
+    <%= render 'score', searched_score: @searched_score %>
   <% end %>
   <%= form_with url: check_scores_searches_path, method: :get, local: true do %>
-    <input name="start_time" type="hidden" value="<%= set_value_of_start_time(start_date, selected_date) %>">
+    <input name="start_time" type="hidden" value="<%= start_time %>">
     <div class="text-left">
       <%= button_tag '日報作成', type: 'submit', class: 'btn btn-success score-detail-button', method: :get %>
     </div>
   <% end %>
-</div>
