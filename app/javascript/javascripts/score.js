@@ -4,8 +4,7 @@ $(function () {
 
   // クリックした日付の日付を取得して、ajaxで送信
   $('.table td').click(function() {
-    let selectedDate = getSurfaceText($(this));
-    let startDate = getStartDate();
+    const startTime = getStartTime($(this));
     if ($('.js-searched-score').length) {
       $('.js-searched-score').remove()
     };
@@ -14,8 +13,7 @@ $(function () {
       type: 'GET',
       url: '/scores/searches/score.html',
       data: {
-        selected_date: selectedDate,
-        start_date: startDate
+        start_time: startTime
         }
     })
     .done(function (data) {
@@ -23,41 +21,9 @@ $(function () {
     })
   });
 
-  // 子要素を含まないtextを取得
-  function getSurfaceText(selector) {
-    let elem = $(selector[0].outerHTML);
-    elem.children().empty();
-    elem = $.trim(elem.text());
-    return elem;
-  }
-
-  // URLから特定のパラメーターを取得
-  function getParam(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-  }
-
-  // 今日の日付を取得
-  function getToday() {
-    let now = new Date();
-    let today = format(now, 'yyyy/MM/dd');
-    return today;
-  };
-
-  // start_dateをパラメーターから取得。無ければ今日の日付を返す
-  function getStartDate() {
-    let startDate = getParam('start_date');
-    if(startDate) {
-      return startDate;
-    } else {
-      let startDate = getToday();
-      return startDate;
-    }
+  const getStartTime = (selector) => {
+    const classes = $(selector).attr('class').split(" ");
+    return classes[classes.length - 1];
   };
 
   // ----------月度ジャンプの開閉
