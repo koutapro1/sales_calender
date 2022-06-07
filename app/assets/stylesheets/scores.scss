@@ -113,11 +113,11 @@
 }
 
   .js-searched-score-field {
+    .flash-messages {
+      padding: 0.5rem;
+    }
     .js-searched-score {
       position: relative;
-      .flash-messages {
-        padding: 0.5rem;
-      }
     }
     .submit-new-score, .score-detail-button {
       margin-top: 0.5rem;
@@ -207,6 +207,10 @@
               margin-bottom: 0;
             }
           }
+        }
+        .edit-button, .delete-button {
+          font-size: 1.5rem;
+          margin-left: 0.5rem;
         }
       }
     }
