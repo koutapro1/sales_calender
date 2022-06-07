@@ -8,12 +8,9 @@ class ScoresController < ApplicationController
   end
 
   def create
+    @success_message = "売上を登録しました。"
     @score = current_user.scores.build(score_params)
-    if @score.save
-      redirect_back fallback_location: scores_path, success: '売上を登録しました'
-    else
-      redirect_back fallback_location: scores_path, warning: '売上を登録できませんでした'
-    end
+    @score.save
   end
 
   def destroy
