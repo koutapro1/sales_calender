@@ -45,7 +45,6 @@ function initMap() {
       coordinates.push(data.coords.latitude, data.coords.longitude);
       if (coordinates.length <= 4 && coordinates.length >= 3) {
         pickupLatLng = new google.maps.LatLng(coordinates[2], coordinates[3]);
-        pickupTime = timeStamps[1];
         GeocodingFunc(pickupLatLng, pickupTiming);
       }
       calcFare();
@@ -61,7 +60,14 @@ function initMap() {
   function calcFare () {
     if (coordinates.length < 3) {
       $('.lists').append(
-        `<li id="js-addedList">場所取得中</li>`
+        `<tr class="js-addedList">
+          <td class="js-added-pickup-time"></td>
+          <td class="js-added-dropoff-time"></td>
+          <td class="js-added-pickup-address">場所取得中</td>
+          <td class="js-added-dropoff-address"></td>
+          <td class="js-added-fare"></td>
+          <td class="js-added-delete-button"></td>
+        </tr>`
       )
     }
     let hour = timeStamps[timeStamps.length - 1].getHours()
@@ -130,11 +136,15 @@ function initMap() {
             }
           }
           if (timing == "pickup") {
+            pickupTime = timeStamps[1];
             pickupAddress = `${city} ${area} ${block}`
-            $('#js-addedList').remove();
-            $('.lists').append(
-              `<li id="js-addedList">${pickupAddress}</li>`
-              )
+            // $('#js-addedList').remove();
+            $('.js-added-pickup-time').replaceWith(
+              `<td class="js-added-pickup-time">${format(pickupTime, 'HH:mm')}</td>`
+            );
+            $('.js-added-pickup-address').replaceWith(
+              `<td class="js-added-pickup-address">${pickupAddress}</td>`
+            );
           } else if(timing == "dropoff") {
             dropoffAddress = `${city} ${area} ${block}`
             callback();
@@ -167,16 +177,10 @@ function initMap() {
           dropoff_time: dropoffTime,
           fare: fare
         }
-      },
-      dataType: "json"
+      }
     })
-    .done(function(data) {
-      let pickupDateData = format(new Date(data.pickup_time), 'HH:mm:ss')
-      let dropoffDateData = format(new Date(data.dropoff_time), 'HH:mm:ss')
-      $('#js-addedList').remove();
-      $('ol').append(
-        `<li><a href="/scores/${scoreId}/score_details/${data.id}"> ${data.pickup_address} ~ ${data.dropoff_address} ${pickupDateData} ${dropoffDateData} ${data.fare}円</a> </li>`
-        )
+    .done(function(responce) {
+      $('.js-addedList').replaceWith(responce);
       resetMeter();
     })
     .fail(function() {

@@ -10,7 +10,7 @@ class ScoreDetailsController < ApplicationController
   def create
     @score_detail = ScoreDetail.new(score_detail_params)
     if @score_detail.save!
-      render json: @score_detail
+      render partial: "score_detail", locals: { score_detail: @score_detail }
     else
       redirect_to new_score_score_detail_path, warning: "失敗"
     end
