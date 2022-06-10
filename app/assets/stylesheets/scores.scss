@@ -162,6 +162,12 @@
       .calendar-heading {
         text-align: center;
         font-size: 1.3rem;
+        .main-field {
+          padding: 0.2rem 0.5rem;
+          .calendar-title {
+            line-height: 100%;
+          }
+        }
         .js-month-jump {
           .form-group {
             margin: 0;
