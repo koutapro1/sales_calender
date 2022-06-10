@@ -1,10 +1,16 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
     <div class="main-field">
-      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-      <span class="calendar-title"><%= t('date.month_names')[date_range.last.month] + '度' %> <%= date_range.last.year %></span>
+      <span class="calendar-title"><%= date_range.last.year %>年<%= t('date.month_names')[date_range.last.month] + '度' %></span>
       <span class="js-toggle-button fas fa-caret-down"></span>
-      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+      <div class="month-buttons">
+        <%= link_to(calendar.url_for_previous_view) do %>
+          <i class="fas fa-angle-double-left"></i>
+        <% end %>
+        <%= link_to(calendar.url_for_next_view) do %>
+          <i class="fas fa-angle-double-right"></i>
+        <% end %>
+      </div>
     </div>
       <%= render 'scores/month_jump', start_date: start_date %>
   </div>
