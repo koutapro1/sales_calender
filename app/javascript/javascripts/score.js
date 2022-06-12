@@ -32,11 +32,13 @@ $(function () {
   });
   function alertFunc() {
     if($(this).css('display') == 'block') {
-      $('.js-toggle-button').text("▲");
+      $('.js-toggle-button').removeClass('fas fa-caret-down');
+      $('.js-toggle-button').addClass('fas fa-caret-up');
       $('.calendar-heading').css('box-shadow', '')
       $('.js-month-jump').css({'box-shadow': '0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05)'});
     }else{
-      $('.js-toggle-button').text("▼");
+      $('.js-toggle-button').removeClass('fas fa-caret-up');
+      $('.js-toggle-button').addClass('fas fa-caret-down');
       $('.js-month-jump').css('box-shadow', '')
       $('.calendar-heading').css({'box-shadow': '0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05)'});
     }
