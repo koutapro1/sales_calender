@@ -16,6 +16,6 @@ Rails.application.routes.draw do
 
   resources :users,  only: [:new, :show, :create, :edit, :update]
   resources :scores, only: [:index, :new, :create, :edit, :update, :destroy] do
-    resources :score_details, only: [:index, :show, :create]
+    resources :score_details, only: [:index, :show, :create, :edit, :update, :destroy]
   end
 end
