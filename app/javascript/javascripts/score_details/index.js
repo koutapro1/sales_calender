@@ -35,6 +35,9 @@ function initMap() {
     navigator.geolocation.clearWatch(watchId);
     dropoffLatLng = new google.maps.LatLng(coordinates[coordinates.length - 2], coordinates[coordinates.length - 1]);
     dropoffTime = timeStamps[timeStamps.length - 1];
+    if (fare >= 9000) {
+      fare = Math.floor((fare - (fare - 9000) * 0.1) / 10) * 10
+    };
     GeocodingFunc(dropoffLatLng, dropoffTiming, ajaxScoreDetail);
   })
 
@@ -61,6 +64,7 @@ function initMap() {
     if (coordinates.length < 3) {
       $('.lists').append(
         `<tr class="js-addedList">
+          <td></td>
           <td class="js-added-pickup-time"></td>
           <td class="js-added-dropoff-time"></td>
           <td class="js-added-pickup-address">場所取得中</td>
