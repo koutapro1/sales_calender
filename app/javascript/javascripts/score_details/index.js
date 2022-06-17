@@ -111,9 +111,9 @@ function initMap() {
     console.log(timeStamps[timeStamps.length - 1]);
     console.log("メーター距離:" + meterDistance + "m");
     console.log(fare + "円");
-    $('.meter').html(`<div>メーター料金: ${fare}円</div>`);
+    $('.meter').html(`<p class="meter-fare">${fare}</p><p class="meter-yen">円</p>`);
     if (hour >= 22 || hour < 5) {
-      $('.extra-fee').html(`<div>割増</div>`);
+      $('.meter').prepend(`<p class="extra-fee">割増</p>`);
     }
   }
 
@@ -142,7 +142,6 @@ function initMap() {
           if (timing == "pickup") {
             pickupTime = timeStamps[1];
             pickupAddress = `${city} ${area} ${block}`
-            // $('#js-addedList').remove();
             $('.js-added-pickup-time').replaceWith(
               `<td class="js-added-pickup-time">${format(pickupTime, 'HH:mm')}</td>`
             );
@@ -164,7 +163,9 @@ function initMap() {
     fare = 420;
     meterDistance = 0;
     oneMeter = true;
-    $('.meter').html("<div>メーター料金: 0円</div>");
+    $('.meter').html(
+      '<p class="meter-fare">0</p><p class="meter-yen">円</p>'
+    );
   }
 
   function ajaxScoreDetail () {

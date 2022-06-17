@@ -9,10 +9,29 @@
     border-radius:4px;
   }
   .btn:active {
-    -webkit-transform: translate(0,4px);
-    -moz-transform: translate(0,4px);
     transform: translate(0,4px);
-    border-bottom:none;
+    border-bottom: none;
+  }
+}
+
+.meter {
+  background-color: rgb(33, 33, 33);
+  color: white;
+  text-align: center;
+  margin: 0 auto 0.5rem auto;
+  width: 7rem;
+  height: 3rem;
+  line-height: 3rem;
+  p {
+    display: inline-block;
+  }
+  .meter-fare {
+    font-size: 1.5rem;
+  }
+  .extra-fee {
+    font-size: 0.5rem;
+    color: lightgreen;
+    margin-right: 0.2rem;
   }
 }
   
