@@ -65,12 +65,12 @@ function initMap() {
       $('.lists').append(
         `<tr class="js-addedList">
           <td></td>
-          <td class="js-added-pickup-time"></td>
-          <td class="js-added-dropoff-time"></td>
-          <td class="js-added-pickup-address">場所取得中</td>
-          <td class="js-added-dropoff-address"></td>
-          <td class="js-added-fare"></td>
-          <td class="js-added-delete-button"></td>
+          <td class="js-added-pickup-time pickup-time"></td>
+          <td class="js-added-dropoff-time dropoff-time"></td>
+          <td class="js-added-pickup-address pickup-address">場所取得中</td>
+          <td class="js-added-dropoff-address dropoff-address"></td>
+          <td class="js-added-fare fare"></td>
+          <td class="js-added-delete-button delete-button"></td>
         </tr>`
       )
     }

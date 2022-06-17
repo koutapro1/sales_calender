@@ -1,11 +1,40 @@
+.texi-meter-buttons {
+  text-align: center;
+  margin: 1rem auto;
+  .btn {
+    color: white;
+    background-color: #007bff;
+    border-top:4px solid rgba(255,255,255,0.2);
+    border-bottom:4px solid rgba(0,0,0,0.2);
+    border-radius:4px;
+  }
+  .btn:active {
+    -webkit-transform: translate(0,4px);
+    -moz-transform: translate(0,4px);
+    transform: translate(0,4px);
+    border-bottom:none;
+  }
+}
+  
 table {
   counter-reset: rowCount;
+  background-color: white;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: none;
 }
 
 table > tbody > tr {
   counter-increment: rowCount;
 }
 
+table > tbody > tr > td {
+  border-left: none;
+  border-right: none;
+  border-bottom: solid 1px rgb(230, 230, 230);
+  padding: 1rem 0.3rem;
+}
+
 table > tbody > tr > td:first-child::before {
   content: counter(rowCount);
 }
+

@@ -1,12 +1,12 @@
 <tr class="score-detail-<%= score_detail.id %>">
-  <td></td>
-  <td><%= link_to score_detail.pickup_time.strftime("%H:%M"), score_score_detail_path(score_detail.score_id, score_detail) %></td>
-  <td><%= link_to score_detail.dropoff_time.strftime("%H:%M"), score_score_detail_path(score_detail.score_id, score_detail) %></td>
-  <td><%= link_to score_detail.pickup_address, score_score_detail_path(score_detail.score_id, score_detail) %></td>
-  <td><%= link_to score_detail.dropoff_address, score_score_detail_path(score_detail.score_id, score_detail) %></td>
-  <td><%= link_to score_detail.fare, score_score_detail_path(score_detail.score_id, score_detail) %></td>
-  <td>
-    <%= link_to score_score_detail_path(score_detail.score_id, score_detail), method: :delete, data: { confirm: '削除しますか？' }, class: "delete-button", remote: true do %>
+  <td class="number"></td>
+  <td class="pickup-time"><%= link_to score_detail.pickup_time.strftime("%H:%M"), score_score_detail_path(score_detail.score_id, score_detail) %></td>
+  <td class="dropoff-time"><%= link_to score_detail.dropoff_time.strftime("%H:%M"), score_score_detail_path(score_detail.score_id, score_detail) %></td>
+  <td class="pickup-address"><%= link_to score_detail.pickup_address, score_score_detail_path(score_detail.score_id, score_detail) %></td>
+  <td class="pickup-address"><%= link_to score_detail.dropoff_address, score_score_detail_path(score_detail.score_id, score_detail) %></td>
+  <td class="fare"><%= link_to score_detail.fare, score_score_detail_path(score_detail.score_id, score_detail) %></td>
+  <td class="delete-button">
+    <%= link_to score_score_detail_path(score_detail.score_id, score_detail), method: :delete, data: { confirm: '削除しますか？' }, remote: true do %>
       <span class="far fa-trash-alt"></span>
     <% end %>
   </td>

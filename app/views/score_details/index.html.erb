@@ -1,14 +1,23 @@
 <body>
-  <button id="pickup" style="font-size: 50px">pickup</button>
-  <button id="dropoff" style="font-size: 50px">dropoff</button>
+  <div class="texi-meter-buttons row">
+    <div class="col-6">
+      <button id="pickup" class="btn" style="font-size: 30px">pickup</button>
+    </div>
+    <div class="col-6">
+      <button id="dropoff" class="btn" style="font-size: 30px">dropoff</button>
+    </div>
+  </div>
+
   <div class="extra-fee"></div>
   <div class="meter">メーター料金: 0円</div>
 
-  <table border="1">
-    <tbody class="lists">
-      <%= render @score_details %>
-    </tbody>
-  </table>
+  <div class="row">
+    <table border="1" class="col-12">
+      <tbody class="lists">
+        <%= render @score_details %>
+      </tbody>
+    </table>
+  </div>
 
   <%= javascript_pack_tag 'score_details/index_pack' %>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script>
