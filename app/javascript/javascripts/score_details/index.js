@@ -66,10 +66,12 @@ function initMap() {
   function calcFare () {
     if (coordinates.length < 3) {
       $('.lists').append(
-        `<tr class="js-addedList">
+        `<tr class="js-added-list">
           <td></td>
-          <td class="js-added-pickup-time pickup-time"></td>
-          <td class="js-added-dropoff-time dropoff-time"></td>
+          <td class="js-added-time">
+            <div class="js-added-pickup-time"></div>
+            <div class="js-added-dropoff-time"></div>
+          </td>
           <td class="js-added-pickup-address pickup-address">場所取得中</td>
           <td class="js-added-dropoff-address dropoff-address"></td>
           <td class="js-added-fare fare"></td>
@@ -146,7 +148,7 @@ function initMap() {
             pickupTime = timeStamps[1];
             pickupAddress = `${city} ${area} ${block}`
             $('.js-added-pickup-time').replaceWith(
-              `<td class="js-added-pickup-time">${format(pickupTime, 'HH:mm')}</td>`
+              `<div class="js-added-pickup-time">${format(pickupTime, 'HH:mm')}</div>`
             );
             $('.js-added-pickup-address').replaceWith(
               `<td class="js-added-pickup-address">${pickupAddress}</td>`
@@ -191,7 +193,7 @@ function initMap() {
       }
     })
     .done(function(responce) {
-      $('.js-addedList').replaceWith(responce);
+      $('.js-added-list').replaceWith(responce);
       resetMeter();
     })
     .fail(function() {
