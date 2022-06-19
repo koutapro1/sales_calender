@@ -1,24 +1,38 @@
-.texi-meter-buttons {
+.texi-meter {
   text-align: center;
   margin: 1rem auto;
-  .btn {
-    color: white;
-    background-color: #007bff;
-    border-top:4px solid rgba(255,255,255,0.2);
-    border-bottom:4px solid rgba(0,0,0,0.2);
-    border-radius:4px;
-  }
-  .btn:active {
-    transform: translate(0,4px);
-    border-bottom: none;
+  .meter-button {
+    .btn {
+      color: white;
+      font-size: 2rem;
+      position: relative;
+      box-shadow: 0 5px 1px rgba(0,0,0,0.7);
+      border-radius:4px;
+    }
+    .pickup-button {
+      background-color: #007bff;
+    }
+    .dropoff-button {
+      background-color: #ef693f;
+    }
+    .btn:active {
+      top: 5px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.7);
+    }
+    .pickup-button:active {
+      background-color: #026de0;
+    }
+    .dropoff-button:active {
+      background-color: #cd5631;
+    }
   }
 }
 
-.meter {
+.meter-display {
   background-color: rgb(33, 33, 33);
   color: white;
   text-align: center;
-  margin: 0 auto 0.5rem auto;
+  margin: auto;
   width: 7rem;
   height: 3rem;
   line-height: 3rem;

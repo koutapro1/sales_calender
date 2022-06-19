@@ -19,8 +19,11 @@ function initMap() {
   let meterDistance = 0;
   let oneMeter = true;
 
-  $('#pickup').click( () => {
-    status = "occupied"
+  $(document).on("click", "#pickup", function () {
+    status = "occupied";
+    $(".meter-button").html(
+      '<button id="dropoff" class="btn dropoff-button">支払い</button>'
+    )
     watchId = navigator.geolocation.watchPosition(
     $.throttle(5000, success),
       error => console.log(error),
@@ -30,8 +33,8 @@ function initMap() {
     );
   });
 
-  $("#dropoff").click( () => {
-    status = "vacant"
+  $(document).on("click", "#dropoff", function () {
+    status = "vacant";
     navigator.geolocation.clearWatch(watchId);
     dropoffLatLng = new google.maps.LatLng(coordinates[coordinates.length - 2], coordinates[coordinates.length - 1]);
     dropoffTime = timeStamps[timeStamps.length - 1];
@@ -111,9 +114,9 @@ function initMap() {
     console.log(timeStamps[timeStamps.length - 1]);
     console.log("メーター距離:" + meterDistance + "m");
     console.log(fare + "円");
-    $('.meter').html(`<p class="meter-fare">${fare}</p><p class="meter-yen">円</p>`);
+    $('.meter-display').html(`<p class="meter-fare">${fare}</p><p class="meter-yen">円</p>`);
     if (hour >= 22 || hour < 5) {
-      $('.meter').prepend(`<p class="extra-fee">割増</p>`);
+      $('.meter-display').prepend(`<p class="extra-fee">割増</p>`);
     }
   }
 
@@ -163,9 +166,12 @@ function initMap() {
     fare = 420;
     meterDistance = 0;
     oneMeter = true;
-    $('.meter').html(
+    $('.meter-display').html(
       '<p class="meter-fare">0</p><p class="meter-yen">円</p>'
     );
+    $(".meter-button").html(
+      '<button id="pickup" class="btn pickup-button">実車</button>'
+    )
   }
 
   function ajaxScoreDetail () {
