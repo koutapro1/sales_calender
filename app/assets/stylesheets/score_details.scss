@@ -78,6 +78,10 @@
   content: counter(rowCount);
 }
 
+.dropdown-toggle:after {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .texi-meter {
     .meter-button {

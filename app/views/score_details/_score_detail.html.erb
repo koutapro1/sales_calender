@@ -9,11 +9,21 @@
     </div>
   </td>
   <td class="pickup-address"><%= score_detail.pickup_address %></td>
-  <td class="pickup-address"><%= score_detail.dropoff_address %></td>
+  <td class="dropoff-address"><%= score_detail.dropoff_address %></td>
   <td class="fare"><%= score_detail.fare %></td>
-  <td class="delete-button">
-    <%= link_to score_score_detail_path(score_detail.score_id, score_detail), method: :delete, data: { confirm: '削除しますか？' }, remote: true do %>
-      <span class="far fa-trash-alt"></span>
-    <% end %>
+  <td class="menus">
+    <div class="dropdown">
+      <span id="dropdown1" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-ellipsis-h"></i>
+      </span>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown1">
+        <%= link_to edit_score_score_detail_path(score_detail.score_id, score_detail), class: 'dropdown-item edit-link', remote: true do %>
+          <button class="btn btn-success"><span class="fas fa-edit"></span> 編集する</button>
+        <% end %>
+        <%= link_to score_score_detail_path(score_detail.score_id, score_detail), class: 'dropdown-item delete-link', method: :delete, data: { confirm: '削除しますか？' }, remote: true do %>
+          <button class="btn btn-danger"><span class="far fa-trash-alt"></span> 削除する</button>
+        <% end %>
+      </div>
+    </div>
   </td>
 </tr>
