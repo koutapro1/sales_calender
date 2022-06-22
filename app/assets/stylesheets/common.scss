@@ -12,13 +12,17 @@ body {
 }
 
 .navbar {
+  background-color: #288af3;
   .navbar-brand {
     margin: auto auto auto 8px;
     a {
-      color: #495057;
-      border-left: 5px #007bff solid;
+      color: white;
+      border-left: 5px white solid;
       padding-left: 0.5rem;
     }
+  }
+  .nav-link {
+    color: white!important;
   }
   .dropdown-custom.dropdown-menu {
     position: absolute;

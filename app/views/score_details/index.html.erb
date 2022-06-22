@@ -1,14 +1,21 @@
 <body>
-  <button id="pickup" style="font-size: 50px">pickup</button>
-  <button id="dropoff" style="font-size: 50px">dropoff</button>
-  <div class="extra-fee"></div>
-  <div class="meter">メーター料金: 0円</div>
+  <div class="texi-meter row">
+    <div class="meter-display col-6">
+      <p class="meter-fare">0</p>
+      <p class="meter-yen">円</p>
+    </div>
+    <div class="meter-button col-6">
+      <button id="pickup" class="btn pickup-button">実車</button>
+    </div>
+  </div>
 
-  <table border="1">
-    <tbody class="lists">
-      <%= render @score_details %>
-    </tbody>
-  </table>
+  <div class="row">
+    <table border="1" class="score-detail-table col-12">
+      <tbody class="lists">
+        <%= render @score_details %>
+      </tbody>
+    </table>
+  </div>
 
   <%= javascript_pack_tag 'score_details/index_pack' %>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script>
