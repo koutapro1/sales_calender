@@ -1,0 +1,21 @@
+var detached = $('.score-detail-<%= @score_detail.id %>').find('.fare, .menus').detach();
+$('.score-detail-<%= @score_detail.id %>').append('<%= j(render 'edit_form', score_detail: @score_detail) %>');
+console.log(detached)
+
+$(document).on('click.one', function(e) {
+  console.log("1");
+  if(!$(e.target).parents('.score-detail-<%= @score_detail.id %>').length) {
+    detached.find('.dropdown-menu').removeClass('show');
+    $('.score-detail-<%= @score_detail.id %>').find('.menus').replaceWith(detached);
+  }
+  $(document).off('click.one click.two');
+});
+
+$(document).on('click.two', '.menus', function (e) {
+  console.log("2");
+  if(!$(this).parents('.score-detail-<%= @score_detail.id %>').length) {
+    detached.find('.dropdown-menu').removeClass('show');
+    $('.score-detail-<%= @score_detail.id %>').find('.menus').replaceWith(detached);
+  }
+  $(document).off('click.one click.two');
+});
