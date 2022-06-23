@@ -1,0 +1,12 @@
+<% if @score_detail.errors.present? %>
+  $('.score-detail-<%= @score_detail.id %>').find('.edit-score-detail-field').css(
+    {'color':'#495057',
+    'background-color':'#fff',
+    'border-color':'#ff8080',
+    'outline':'0',
+    'box-shadow':'0 0 0 0.2rem hsl(0deg 100% 50% / 25%)',
+    'transition':'border-color .15s ease-in-out,box-shadow .15s ease-in-out'
+    })
+<% else %>
+  $('.score-detail-<%= @score_detail.id %>').replaceWith('<%= j(render 'score_detail', score_detail: @score_detail) %>')
+<% end %>

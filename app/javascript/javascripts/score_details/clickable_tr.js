@@ -9,7 +9,7 @@ $(document).on('click', '.menus', function (e) {
 })
 
 $(document).on('click', function(e) {
-  if(!$(e.target).closest('.dropdown').length) {
+  if(!$(e.target).parents('.dropdown').length) {
     $('.dropdown-menu').removeClass('show');
   }
 })

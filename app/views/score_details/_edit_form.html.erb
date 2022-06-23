@@ -1,0 +1,11 @@
+<td colspan="2" class="menus">
+  <%= form_with(model: [score_detail.score, score_detail], id: 'edit-score-detail', local: false) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class='form-group'>
+      <%= f.number_field :fare, class:'form-control edit-score-detail-field', value: "#{score_detail.fare}" %>
+    </div>
+    <div>
+      <%= f.submit "変更する", class: 'btn btn-primary submit-edit-score-detail' %>
+    </div>
+  <% end %>
+</td>
