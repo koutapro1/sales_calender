@@ -49,7 +49,7 @@
     margin-right: 0.2rem;
   }
 }
-  
+
 .score-detail-table {
   counter-reset: rowCount;
   background-color: white;
@@ -87,6 +87,43 @@
     text-align: center;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
+}
+
+.score-detail-show-field {
+  background-color: white;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.score-detail-show-table {
+  margin: auto;
+  text-align: center;
+  height: 10rem;
+  width: 100%;
+  color: rgb(75, 75, 75);
+  th, td {
+    display: block;
+  }
+  .pickup-time, .pickup-address {
+    float: left;
+  }
+  .wave-dash {
+    display: inline-block;
+  }
+  .dropoff-time, .dropoff-address {
+    float: right;
+  }
+  tr {
+    background-color: white;
+    border-bottom: #d8d8d8 1px solid;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+#map {
+  height: 60vh;
+  width: 100%;
 }
 
 @media (max-width: 767px) {
