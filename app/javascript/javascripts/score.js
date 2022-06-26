@@ -23,7 +23,7 @@ $(function () {
 
   const getStartTime = (selector) => {
     const classes = $(selector).attr('class').split(" ");
-    return classes[classes.length - 1];
+    return classes[1];
   };
 
   // ----------月度ジャンプの開閉

@@ -5,5 +5,5 @@ $(".error-messages-field").remove();
 $('.<%= @score.start_time.to_date %>').addClass("has-events")
 $('.<%= @score.start_time.to_date %>').html("<%= j(render('calendar_td', score: @score)) %>")
   $('.new-score-form').replaceWith("<%= j(render('scores/searches/score', searched_score: @score)) %>")
-  $('.js-searched-score').prepend('<div class="flash-messages alert alert-success"><%= @success_message %></div>')
+  $('.js-searched-score').prepend('<div class="flash-messages alert alert-success" style="margin: auto;"><%= @success_message %></div>')
 <% end %>

@@ -1,5 +1,6 @@
 <div class="profile-page text-center mypage">
   <main>
+    <%= render 'shared/flash_message' %>
     <h1>プロフィール</h1>
     <%= link_to '編集', edit_user_path(@user), class: 'btn btn-primary' %>
     <table class="table">

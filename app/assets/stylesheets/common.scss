@@ -34,7 +34,7 @@ body {
 
 .flash-messages {
   width: max-content;
-  margin: auto;
+  margin: auto auto 2rem auto;
 }
 
 .container-xl {
@@ -49,9 +49,12 @@ body {
   justify-content: center;
   align-items: center;
   .form-area {
+    padding: 3rem;
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
     h1 {
       font-size: 2rem;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
     }
     .error-messages-field {
       max-width: 90vw;
@@ -71,11 +74,6 @@ body {
       margin: 1rem 0;
     }
   }
-}
-
-.login-page {
-  position: relative;
-  top: -3rem;
 }
 
 @media (max-width: 767px) {
