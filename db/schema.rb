@@ -10,46 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_25_054709) do
+ActiveRecord::Schema.define(version: 2022_04_29_101806) do
 
-  create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
-  end
-
-  create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.string "service_name", null: false
-    t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
-    t.string "variation_digest", null: false
-    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "score_details", force: :cascade do |t|
-    t.text "coords", null: false
+    t.text "coords", null: false, array: true
     t.string "pickup_address", null: false
     t.string "dropoff_address", null: false
     t.datetime "pickup_time", null: false
     t.datetime "dropoff_time", null: false
-    t.integer "score_id", null: false
+    t.integer "fare", null: false
+    t.bigint "score_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "fare", null: false
     t.index ["score_id"], name: "index_score_details_on_score_id"
   end
 
@@ -59,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_05_25_054709) do
     t.text "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["start_time", "user_id"], name: "index_scores_on_start_time_and_user_id", unique: true
     t.index ["user_id"], name: "index_scores_on_user_id"
   end
@@ -78,8 +53,6 @@ ActiveRecord::Schema.define(version: 2022_05_25_054709) do
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "score_details", "scores"
   add_foreign_key "scores", "users"
 end
