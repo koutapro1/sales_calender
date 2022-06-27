@@ -1,6 +1,5 @@
 class ScoreDetail < ApplicationRecord
   belongs_to :score
-  serialize :coords, Array
 
   validates :coords,          presence: true
   validates :pickup_time,     presence: true

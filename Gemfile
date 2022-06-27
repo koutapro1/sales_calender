@@ -5,8 +5,8 @@ ruby '2.7.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.1.4.7'
-# Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
+# Use pg as the database for Active Record
+# gem 'pg'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
@@ -48,7 +48,7 @@ gem 'font-awesome-sass', '~> 5.15.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sqlite3'
+  gem 'pg'
   gem 'faker'
   # test
   gem 'factory_bot_rails'
