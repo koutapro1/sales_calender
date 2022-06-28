@@ -6,6 +6,9 @@
         <div class="score-in-td">
           <%= score.score %>
         </div>
+        <% if score.score_details.present? %>
+          <i class="fas fa-circle fa-xs has-score-detail"></i>
+        <% end %>
       <% end %>
     <% end %>
   </div>
