@@ -4,7 +4,7 @@ $(".error-messages-field").remove()
 <% else %>
   $('.<%= @score.start_time.to_date %>').addClass("has-events")
   $('.<%= @score.start_time.to_date %>').html("<%= j(render('calendar_td', score: @score)) %>")
-  $('.new-score-form').replaceWith("<%= j(render('scores/searches/score', searched_score: @score)) %>")
+  $('.new-score-form').replaceWith("<%= j(render('scores/searches/score', searched_score: @score, start_date: @start_date)) %>")
   $('.js-searched-score').prepend('<div class="flash-messages alert alert-success" style="margin: auto;"><%= @success_message %></div>')
   $('.total-score-result').html('<%= "#{total_score_in_current_month(@scores_in_current_month)} 円" %>')
   $('.average-score-result').html('<%= "#{average_score_in_current_month(@scores_in_current_month)} 円" %>')

@@ -2,7 +2,7 @@
   <% if @searched_score.nil? %>
       <%= render partial: 'scores/form', locals: { score: @score, start_time: start_time, start_date: start_date } %>
   <% else %>
-    <%= render 'score', searched_score: @searched_score %>
+    <%= render 'score', searched_score: @searched_score, start_date: start_date %>
   <% end %>
   <%= form_with url: check_scores_searches_path, method: :get, local: true do %>
     <input name="start_time" type="hidden" value="<%= start_time %>">
