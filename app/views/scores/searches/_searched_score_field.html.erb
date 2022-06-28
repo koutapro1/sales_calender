@@ -7,6 +7,10 @@
   <%= form_with url: check_scores_searches_path, method: :get, local: true do %>
     <input name="start_time" type="hidden" value="<%= start_time %>">
     <div class="text-left">
-      <%= button_tag '日報作成', type: 'submit', class: 'btn score-detail-button', method: :get %>
+      <% if @searched_score && @searched_score.score_details.present? %>
+        <%= button_tag '日報を見る', type: 'submit', class: 'btn score-detail-button', method: :get %>
+      <% else %>
+        <%= button_tag '日報作成', type: 'submit', class: 'btn score-detail-button', method: :get %>
+      <% end %>
     </div>
   <% end %>
