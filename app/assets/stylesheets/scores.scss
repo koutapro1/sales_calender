@@ -208,9 +208,9 @@
         border-bottom: solid 2px rgb(40, 138, 243);
       }
       .calculated-score-field {
-        .calculated-score {
+        .total-score, .average-score {
           display: flex;
-          .calculated-result {
+          .total-score-result, .average-score-result {
             display: block;
             margin-left: auto;
           }
