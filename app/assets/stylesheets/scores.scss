@@ -76,6 +76,10 @@
       color: rgb(50, 125, 254);
       padding-top: 0.7rem;
     }
+    .has-score-detail {
+      transform: scale(0.8);
+      color: #FF6D19;
+    }
   }
 
   table {
@@ -122,6 +126,27 @@
     }
     p {
       margin-bottom: 0;
+    }
+    .score-detail-button {
+      color: white;
+      background-color: #FF6D19;
+      border-color: #FF6D19;
+    }
+    .score-detail-button:hover {
+      color: white;
+      background-color: #da5e16;
+      border-color: #da5e16;
+    }
+    .score-detail-button:active {
+      color: white;
+      background-color: #da5e16!important;
+      border-color: #da5e16!important;
+    }
+    .score-detail-button:focus {
+      color: white;
+      background-color: #da5e16;
+      border-color: #da5e16;
+      box-shadow: 0 0 0 3px rgba(220, 126, 32, 0.5);
     }
   }
 }

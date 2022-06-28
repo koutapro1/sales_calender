@@ -7,6 +7,6 @@
   <%= form_with url: check_scores_searches_path, method: :get, local: true do %>
     <input name="start_time" type="hidden" value="<%= start_time %>">
     <div class="text-left">
-      <%= button_tag '日報作成', type: 'submit', class: 'btn btn-success score-detail-button', method: :get %>
+      <%= button_tag '日報作成', type: 'submit', class: 'btn score-detail-button', method: :get %>
     </div>
   <% end %>
