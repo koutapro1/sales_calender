@@ -1,5 +1,7 @@
 class ScoresController < ApplicationController
-  before_action :set_score, only: [:edit, :update, :destroy]
+  before_action :set_score, only: %i[edit update destroy]
+  before_action :set_start_date, only: %i[create edit update destroy]
+  before_action :set_scores_in_current_month, only: %i[create update destroy]
 
   def index
     start_date = params.fetch(:start_date, Date.today).to_date
@@ -33,5 +35,13 @@ class ScoresController < ApplicationController
 
   def set_score
     @score = Score.find(params[:id])
+  end
+
+  def set_start_date
+    @start_date = params[:start_date].to_date
+  end
+
+  def set_scores_in_current_month
+    @scores_in_current_month = current_user.scores.get_scores_in_current_month(@start_date)
   end
 end

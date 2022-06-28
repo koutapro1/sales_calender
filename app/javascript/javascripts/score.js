@@ -1,10 +1,10 @@
-import { format } from 'date-fns'
 $(function () {
   // ---------選んだ日付の売上詳細、又は売上追加フォームを表示するための処理----------
 
   // クリックした日付の日付を取得して、ajaxで送信
   $('.table td').click(function() {
     const startTime = getStartTime($(this));
+    const startDate = getStartDate();
     if ($('.js-searched-score').length) {
       $('.js-searched-score').remove()
     };
@@ -13,8 +13,9 @@ $(function () {
       type: 'GET',
       url: '/scores/searches/score.html',
       data: {
-        start_time: startTime
-        }
+        start_time: startTime,
+        start_date: startDate
+      }
     })
     .done(function (data) {
       $(".js-searched-score-field").html(data)
@@ -23,6 +24,11 @@ $(function () {
 
   const getStartTime = (selector) => {
     const classes = $(selector).attr('class').split(" ");
+    return classes[1];
+  };
+
+  const getStartDate = () => {
+    const classes = $('.start-date').attr('class').split(" ");
     return classes[1];
   };
 
