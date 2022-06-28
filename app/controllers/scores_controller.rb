@@ -8,6 +8,8 @@ class ScoresController < ApplicationController
   end
 
   def create
+    start_date = params[:start_date].to_date
+    @scores_in_current_month = current_user.scores.get_scores_in_current_month(start_date)
     @success_message = "売上を登録しました"
     @score = current_user.scores.build(score_params)
     @score.save
