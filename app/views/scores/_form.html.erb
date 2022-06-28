@@ -2,6 +2,8 @@
   <%= form_with(model: score, id: 'new-score', local: false) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
+    <%= hidden_field_tag :start_date, start_date %>
+
     <div class='form-group'>
       <%= f.hidden_field :start_time, value: start_time %>
     </div>

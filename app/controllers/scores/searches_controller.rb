@@ -9,7 +9,7 @@ class Scores::SearchesController < ApplicationController
   def score
     @searched_score = current_user.scores.find_by(start_time: params[:start_time])
     @score = Score.new
-    render partial: "searched_score_field", locals: { start_time: params[:start_time] }
+    render partial: "searched_score_field", locals: { start_time: params[:start_time], start_date: params[:start_date] }
   end
 
   # 日報ページに遷移するときに、選択した日付のScoreがなければ作成してから遷移する
