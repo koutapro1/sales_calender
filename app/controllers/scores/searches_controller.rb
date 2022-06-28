@@ -14,12 +14,7 @@ class Scores::SearchesController < ApplicationController
 
   # 日報ページに遷移するときに、選択した日付のScoreがなければ作成してから遷移する
   def check
-    @score = Score.find_by(start_time: params[:start_time], user: current_user)
-    if @score.present?
-      redirect_to score_score_details_path(@score)
-    else
-      @score = Score.create!(start_time: params[:start_time], user: current_user)
-      redirect_to score_score_details_path(@score)
-    end
+    @score = current_user.scores.find_or_create_by(start_time: params[:start_time])
+    redirect_to score_score_details_path(@score)
   end
 end
