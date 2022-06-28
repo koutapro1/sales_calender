@@ -27,6 +27,8 @@ class ScoresController < ApplicationController
   end
 
   def destroy
+    start_date = params[:start_date].to_date
+    @scores_in_current_month = current_user.scores.get_scores_in_current_month(start_date)
     @success_message = "売上を削除しました"
     @score.destroy!
   end
