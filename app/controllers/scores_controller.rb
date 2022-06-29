@@ -7,6 +7,7 @@ class ScoresController < ApplicationController
     start_date = params.fetch(:start_date, Date.today).to_date
     @scores = current_user.scores.get_scores_in_current_page(start_date)
     @scores_in_current_month = current_user.scores.get_scores_in_current_month(start_date)
+    destroy_empty_score(@scores)
   end
 
   def create
@@ -43,5 +44,13 @@ class ScoresController < ApplicationController
 
   def set_scores_in_current_month
     @scores_in_current_month = current_user.scores.get_scores_in_current_month(@start_date)
+  end
+
+  def destroy_empty_score(scores)
+    scores.each do |score|
+      if score.score == 0 && !score.score_details.present?
+        score.destroy!
+      end
+    end
   end
 end

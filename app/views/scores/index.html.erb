@@ -4,8 +4,13 @@
       <%= date.strftime('%-m/%-d') %>
       <% scores.each do |score| %>
         <div class="score-in-td">
-          <%= score.score %>
+          <% if score.score > 0 %>
+            <%= score.score %>
+          <% end %>
         </div>
+        <% if score.score_details.present? %>
+          <i class="fas fa-circle fa-xs has-score-detail"></i>
+        <% end %>
       <% end %>
     <% end %>
   </div>
