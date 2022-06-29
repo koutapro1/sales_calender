@@ -4,8 +4,33 @@
 
 .simple-calendar {
   .calendar-heading {
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
     font-size: 1.5rem;
-    padding-right: 0;
+    .main-field {
+      margin-top: 0.5rem;
+      margin-bottom: 0.2rem;
+      text-align: center;
+      .previous-link {
+        float: left;
+      }
+      .next-link {
+        float: right;
+      }
+      .js-toggle-button {
+        margin-left: 0.2rem;
+      }
+      .month-buttons {
+        float: right;
+        a {
+          margin-left: 1rem;
+        }
+      }
+    }
+    .js-month-jump {
+      display: none;
+      text-align: center;
+    }
   }
 
   .day {
@@ -13,7 +38,9 @@
   }
 
   .day:hover {
-    background-color: pink;
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.3);
+    background-color: rgba(118, 203, 255, 0.7);
   }
 
   .wday-0 {
@@ -36,120 +63,198 @@
 
   .prev-month, .next-month {
     color: rgba(58, 56, 56, 0.352);
-    .score_in_td {
-      color: rgba(58, 56, 56, 0.352);
+    background-color: white;
+    .score-in-td {
+      color: rgba(58, 56, 56, 0.352)!important;
     }
   }
 
   .current-month {}
 
   .has-events {
-    .score_in_td {
+    .score-in-td {
       color: rgb(50, 125, 254);
       padding-top: 0.7rem;
+    }
+    .has-score-detail {
+      transform: scale(0.8);
+      color: #FF6D19;
     }
   }
 
   table {
+    border: none;
     width: 100%;
     table-layout: fixed;
     word-break: break-all;
     word-wrap: break-all;
     text-align: center;
+    margin-bottom: 0.4rem;
+    border-collapse: separate;
+    border-spacing: 0 3px;
     th {
+      line-height: 0.5rem;
       text-align: center;
+      border: none;
+      font-size: 0.9rem;
+    }
+    td {
+      border: none;
+      background-color: white;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
     }
   }
 }
 
-.score-details {
-  position: relative;
+.score-status {
   top: 3vh;
   word-break:break-all;
   font-size: 1.2rem;
-  h3 {
-    font-size: 1.4rem;
-    font-weight: normal;
-    border-bottom: solid 2px rgb(0, 179, 255);
-  }
-  p {
-    margin-bottom: 0;
+  .row {
+    margin: auto;
+    .calculated-score-field, .js-searched-score-field {
+      padding-top: 0.7rem;
+      padding-bottom: 1rem;
+      background-color: white;
+      border-radius: 3px;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    h3 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      border-bottom: solid 2px rgb(0, 179, 255);
+    }
+    p {
+      margin-bottom: 0;
+    }
+    .score-detail-button {
+      color: white;
+      background-color: #FF6D19;
+      border-color: #FF6D19;
+    }
+    .score-detail-button:hover {
+      color: white;
+      background-color: #da5e16;
+      border-color: #da5e16;
+    }
+    .score-detail-button:active {
+      color: white;
+      background-color: #da5e16!important;
+      border-color: #da5e16!important;
+    }
+    .score-detail-button:focus {
+      color: white;
+      background-color: #da5e16;
+      border-color: #da5e16;
+      box-shadow: 0 0 0 3px rgba(220, 126, 32, 0.5);
+    }
   }
 }
 
   .js-searched-score-field {
+    .flash-messages {
+      padding: 0.5rem;
+    }
     .js-searched-score {
       position: relative;
     }
-    .delete-button {
-      position: absolute;
-      left: 8rem;
-      top: 0.25rem;
+    .submit-new-score, .score-detail-button {
+      margin-top: 0.5rem;
     }
   }
 
   .new-score-form {
     text-align: right;
     margin-top: 0;
+    .error-messages-field {
+      padding: 0;
+      text-align: center;
+      ul {
+        padding: 0;
+        li:before {
+          content:  "";
+          width:  5px;
+          height:  5px;
+          display:  inline-block;
+          background-color: rgb(114, 28, 36);
+          border-radius:  50%;
+          position: relative;
+          top: -3px;
+        }
+        li {
+          list-style-type: none;
+          font-size: 0.9rem;
+        }
+      }
+    }
     #score_score::placeholder {
       text-align: right;
     }
   }
 
 @media (max-width: 767px) {
-  .simple-calendar {
-    position: relative;
-    top: -1.5rem;
-    .calendar-heading {
-      margin-top: 1rem;
-      padding-top: 0.2rem;
-      font-size: 1.3rem;
-      .jump-form {
-        padding: 0;
-        .form-group {
-          margin: 1rem 0 0.5rem 0;
+  .calendar-page-body {
+    padding-right: 8px;
+    padding-left: 8px;
+    .simple-calendar {
+      .calendar-heading {
+        font-size: 1.3rem;
+        .main-field {
+          padding: 0.2rem 0.5rem;
+          line-height: 1.8rem;
+          font-size: 1rem;
+          color: #007bff;
         }
-        .form-control {
-          padding: 0;
+        .js-month-jump {
+          .form-group {
+            margin: 0;
+          }
+          padding: 0.5rem 1rem 1rem 1rem;
+          .form-control {
+            padding: 0;
+          }
         }
       }
-    }
 
-    tbody {
-      font-size: 0.7rem;
-      a {
+      tbody {
         font-size: 0.7rem;
+        a {
+          font-size: 0.7rem;
+        }
       }
     }
-  }
 
-  .score-details {
-    position: relative;
-    top: -3vh;
-    font-size: 1rem;
-    h3 {
-      font-size: 1.2rem;
-      font-weight: normal;
-      border-bottom: solid 2px rgb(0, 179, 255);
-    }
-    .calculated-score-field {
-      .calculated-score {
-        display: flex;
-        .calculated-result {
-          display: block;
-          margin-left: auto;
+    .score-status {
+      top: -3vh;
+      font-size: 1rem;
+      h3 {
+        font-size: 1.2rem;
+        font-weight: normal;
+        border-bottom: solid 2px rgb(40, 138, 243);
+      }
+      .calculated-score-field {
+        .total-score, .average-score {
+          display: flex;
+          .total-score-result, .average-score-result {
+            display: block;
+            margin-left: auto;
+          }
         }
       }
-    }
-    .new-score-form {
-      .form-group {
-        margin-bottom: 0;
-        .new-score-label {
-          margin-bottom: 0;
+      .js-searched-score-field {
+        min-height: 19rem;
+        .new-score-form {
+          .form-group {
+            margin-bottom: 0;
+            .new-score-label {
+              margin-bottom: 0;
+            }
+          }
         }
-      }
-      .submit-new-score {
-        margin-top: 0.5rem;
+        .edit-button, .delete-button {
+          font-size: 1.5rem;
+          margin-left: 0.5rem;
+        }
       }
     }
   }

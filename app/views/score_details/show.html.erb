@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="score-detail-show-field col-12">
+    <table class="score-detail-show-table">
+      <tbody>
+        <tr>
+          <th><p>乗降時間</p></th>
+          <td width="45%" class="pickup-time">
+            <p><%= @score_detail.pickup_time.strftime("%-H時%-M分%-S秒") %></p>
+          </td>
+          <td  width="10%" class="wave-dash"><p>〜</p></td>
+          <td width="45%"  class="dropoff-time">
+            <p><%= @score_detail.dropoff_time.strftime("%-H時%-M分%-S秒") %></p>
+          </td>
+        </tr>
+        <tr>
+          <th><p>乗降場所</p></th>
+          <td width="45%"  class="pickup-address">
+            <p><%= @score_detail.pickup_address %></p>
+          </td>
+          <td width="10%"  class ="wave-dash"><p>〜</p></td>
+          <td width="45%"  class="dropoff-address">
+            <p><%= @score_detail.dropoff_address %></p>
+          </td>
+        </tr>
+        <tr>
+          <th><p>料金</p></th>
+          <td class="fare">
+            <p><%= @score_detail.fare %>円</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p id="map"></p>
+  </div>
+</div>
+
+<%= javascript_pack_tag 'score_details/show_pack' %>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script>

@@ -1,0 +1,25 @@
+<tr class="score-detail-tr score-detail-<%= score_detail.id %>" data-href="/scores/<%= score_detail.score_id %>/score_details/<%= score_detail.id %>">
+  <td class="number" width="5%"></td>
+  <td class="time" width="10%">
+    <div class="pickup-time">
+      <%= score_detail.pickup_time.strftime("%H:%M") %>
+    </div>
+    <div class="dropoff-time">
+      <%= score_detail.dropoff_time.strftime("%H:%M") %>
+    </div>
+  </td>
+  <td class="pickup-address" width="30%"><%= score_detail.pickup_address %></td>
+  <td class="dropoff-address" width="30%"><%= score_detail.dropoff_address %></td>
+  <td class="fare" width="13%"><%= score_detail.fare %></td>
+  <td class="menus" width="12%">
+    <div class="dropdown">
+      <span id="dropdown1" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-ellipsis-h"></i>
+      </span>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown1">
+        <%= link_to "編集", edit_score_score_detail_path(score_detail.score_id, score_detail), class: 'edit-link btn btn-success', remote: true %>
+        <%= link_to "削除", score_score_detail_path(score_detail.score_id, score_detail), class: 'delete-link btn btn-danger', method: :delete, data: { confirm: '削除しますか？' }, remote: true %>
+      </div>
+    </div>
+  </td>
+</tr>

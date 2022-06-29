@@ -1,0 +1,137 @@
+.texi-meter {
+  text-align: center;
+  margin: 1rem auto;
+  .meter-button {
+    .btn {
+      color: white;
+      font-size: 2rem;
+      position: relative;
+      box-shadow: 0 5px 1px rgba(0,0,0,0.7);
+      border-radius:4px;
+      width: 60%;
+    }
+    .pickup-button {
+      background-color: #007bff;
+    }
+    .dropoff-button {
+      background-color: #ef693f;
+    }
+    .btn:active {
+      top: 5px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.7);
+    }
+    .pickup-button:active {
+      background-color: #026de0;
+    }
+    .dropoff-button:active {
+      background-color: #cd5631;
+    }
+  }
+}
+
+.meter-display {
+  background-color: rgb(33, 33, 33);
+  color: white;
+  text-align: center;
+  margin: auto;
+  width: 7rem;
+  height: 3rem;
+  line-height: 3rem;
+  p {
+    display: inline-block;
+  }
+  .meter-fare {
+    font-size: 1.5rem;
+  }
+  .extra-fee {
+    font-size: 0.5rem;
+    color: lightgreen;
+    margin-right: 0.2rem;
+  }
+}
+
+.score-detail-table {
+  counter-reset: rowCount;
+  background-color: white;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: none;
+}
+
+.score-detail-table > tbody > tr {
+  counter-increment: rowCount;
+  cursor: pointer;
+}
+
+.score-detail-table > tbody > .score-detail-tr:hover {
+  background-color: rgba(118, 203, 255, 0.7);
+}
+
+.score-detail-table > tbody > tr > td {
+  color: rgb(0, 123, 255);
+  border-left: none;
+  border-right: none;
+  border-bottom: solid 1px rgb(230, 230, 230);
+  padding: 1rem 0.3rem;
+}
+
+.score-detail-table > tbody > tr > td:first-child::before {
+  content: counter(rowCount);
+}
+
+.dropdown-toggle:after {
+  display: none;
+}
+
+.menus {
+  .dropdown-menu {
+    text-align: center;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.score-detail-show-field {
+  background-color: white;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.score-detail-show-table {
+  margin: 0.5rem 0 1rem 0;
+  text-align: center;
+  height: 10rem;
+  width: 100%;
+  color: rgb(75, 75, 75);
+  th, td {
+    display: block;
+  }
+  .pickup-time, .pickup-address {
+    float: left;
+  }
+  .wave-dash {
+    display: inline-block;
+  }
+  .dropoff-time, .dropoff-address {
+    float: right;
+  }
+  tr {
+    background-color: white;
+    border-bottom: #d8d8d8 1px solid;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+#map {
+  height: 60vh;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .texi-meter {
+    .meter-button {
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+}

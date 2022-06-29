@@ -11,11 +11,16 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap/dist/css/bootstrap.min.css
- *= require_tree .
  */
 
+// @import "flat-ui.min";
+// @import "shards.min";
+// @import "mdb.min";
+@import "custom_ui";
 @import "simple_calendar";
 @import "common";
 @import "scores";
+@import "users";
+@import "score_details";
 @import "font-awesome-sprockets";
 @import "font-awesome";

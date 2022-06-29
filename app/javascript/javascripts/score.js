@@ -1,10 +1,10 @@
-document.addEventListener("turbolinks:load", function() {
+$(function () {
   // ---------選んだ日付の売上詳細、又は売上追加フォームを表示するための処理----------
 
   // クリックした日付の日付を取得して、ajaxで送信
-  $('.table td').click(function(e){
-    var date = getSurfaceText($(this));
-    var start_date = setStartDate();
+  $('.table td').click(function() {
+    const startTime = getStartTime($(this));
+    const startDate = getStartDate();
     if ($('.js-searched-score').length) {
       $('.js-searched-score').remove()
     };
@@ -13,51 +13,40 @@ document.addEventListener("turbolinks:load", function() {
       type: 'GET',
       url: '/scores/searches/score.html',
       data: {
-        date: date,
-        start_date: start_date
-        }
+        start_time: startTime,
+        start_date: startDate
+      }
     })
     .done(function (data) {
       $(".js-searched-score-field").html(data)
     })
   });
 
-  // 子要素を含まないtextを取得
-  function getSurfaceText(selector){
-    var elem = $(selector[0].outerHTML);
-    elem.children().empty();
-    return $.trim(elem.text());
-  }
-
-  // URLから特定のパラメーターを取得
-  function getParam(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-  }
-
-  // 今日の日付を取得
-  function getToday() {
-    var now = new Date();
-    var y = now.getFullYear();
-    var m = now.getMonth() + 1;
-    var d = now.getDate();
-    var today = `${y}-${m}-${d}`
-    return today
+  const getStartTime = (selector) => {
+    const classes = $(selector).attr('class').split(" ");
+    return classes[1];
   };
 
-  // start_dateをパラメーターから取得。無ければ今日の日付を返す
-  function setStartDate() {
-    var start_date = getParam('start_date')
-    if(start_date){
-      return start_date
+  const getStartDate = () => {
+    const classes = $('.start-date').attr('class').split(" ");
+    return classes[1];
+  };
+
+  // ----------月度ジャンプの開閉
+  $(document).on("click", '.js-toggle-button, .calendar-title', function(){
+    $('.js-month-jump').slideToggle(200, alertFunc);
+  });
+  function alertFunc() {
+    if($(this).css('display') == 'block') {
+      $('.js-toggle-button').removeClass('fas fa-caret-down');
+      $('.js-toggle-button').addClass('fas fa-caret-up');
+      $('.calendar-heading').css('box-shadow', '')
+      $('.js-month-jump').css({'box-shadow': '0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05)'});
     }else{
-      var start_date = getToday()
-      return start_date
+      $('.js-toggle-button').removeClass('fas fa-caret-up');
+      $('.js-toggle-button').addClass('fas fa-caret-down');
+      $('.js-month-jump').css('box-shadow', '')
+      $('.calendar-heading').css({'box-shadow': '0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05)'});
     }
   };
-});
+})

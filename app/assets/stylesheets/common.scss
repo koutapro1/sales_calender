@@ -1,17 +1,29 @@
 html {
   height: 100%;
+  width: 100%;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   height: 100%;
+  width: 100%;
+  background-color: rgb(237, 240, 243);
+  color: rgb(75, 75, 75);
 }
 
 .navbar {
+  background-color: #288af3;
   .navbar-brand {
     margin: auto auto auto 8px;
     a {
-      color: #495057;
+      color: white;
+      border-left: 5px white solid;
+      padding-left: 0.5rem;
     }
+  }
+  .nav-link {
+    color: white!important;
   }
   .dropdown-custom.dropdown-menu {
     position: absolute;
@@ -22,7 +34,7 @@ body {
 
 .flash-messages {
   width: max-content;
-  margin: auto;
+  margin: auto auto 2rem auto;
 }
 
 .container-xl {
@@ -37,9 +49,12 @@ body {
   justify-content: center;
   align-items: center;
   .form-area {
+    padding: 3rem;
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
     h1 {
       font-size: 2rem;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
     }
     .error-messages-field {
       max-width: 90vw;
@@ -61,12 +76,12 @@ body {
   }
 }
 
-.login-page {
-  position: relative;
-  top: -3rem;
-}
-
 @media (max-width: 767px) {
+  .navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   .form-page {
     .form-area {
       .form-group {

@@ -16,6 +16,7 @@ module ScoresHelper
     today = Date.current
 
     td_class = ["day"]
+    td_class << day.to_date
     td_class << "wday-#{day.wday}"
     td_class << "today" if today == day
     td_class << "past" if today > day
@@ -25,6 +26,7 @@ module ScoresHelper
     td_class << "next-month" if dates_in_this_month.exclude?(day) && day > dates_in_this_month.last
     td_class << "current-month" if start_date.month == day.month
     td_class << "has-events" if sorted_events.fetch(day, []).any?
+    td_class << "start-date" if day.to_date == start_date.to_date
 
     td_class
   end
@@ -37,20 +39,5 @@ module ScoresHelper
     scores_in_current_month.sum { |hash| hash[:score] } / scores_in_current_month.size
   rescue ZeroDivisionError
     0
-  end
-
-  # クリックされた日付を売上登録フォームのstart_timeに入れる処理
-  def set_value_of_start_time(start_date, date)
-    if start_date >= Date.new(start_date.year, 12, 18) && start_date <= Date.new(start_date.year, 12, 31) && date.include?("12-")
-      "#{start_date.year}-#{date}".to_date
-    elsif start_date >= Date.new(start_date.year, 12, 18) && start_date <= Date.new(start_date.year, 12, 31) && date.include?("1-")
-      "#{start_date.year + 1}-#{date}".to_date
-    elsif start_date >= Date.new(start_date.year, 1, 1) && start_date <= Date.new(start_date.year, 1, 16) && date.include?("12-")
-      "#{start_date.year - 1}-#{date}".to_date
-    elsif start_date >= Date.new(start_date.year, 1, 1) && start_date <= Date.new(start_date.year, 1, 16) && date.include?("1-")
-      "#{start_date.year}-#{date}".to_date
-    else
-      "#{start_date.year}-#{date}".to_date
-    end
   end
 end

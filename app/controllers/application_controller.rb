@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
     redirect_to login_path, warning: 'ログインしてください'
   end
 
+  # すでにログイン済みの場合はカレンダーページに遷移させる
   def already_logged_in
     if logged_in?
       redirect_to root_path
     end
   end
-
 end

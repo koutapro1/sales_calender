@@ -5,8 +5,8 @@ ruby '2.7.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.1.4.7'
-# Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
+# Use pg as the database for Active Record
+# gem 'pg'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
@@ -18,7 +18,7 @@ gem 'uglifier'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
@@ -37,16 +37,18 @@ gem 'bootsnap', require: false
 
 gem 'sorcery'
 gem 'simple_calendar'
-gem 'jquery-rails'
 gem 'draper'
 gem 'rails-i18n'
-# アップデートすると@import "font-awesome";でバグがでるようになる
+gem 'dotenv-rails'
+gem 'thin'
+gem 'gon'
+# アップデートすると@import "font-awesome";でエラーがでるようになる
 gem 'font-awesome-sass', '~> 5.15.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sqlite3'
+  gem 'pg'
   gem 'faker'
   # test
   gem 'factory_bot_rails'

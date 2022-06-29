@@ -16,7 +16,7 @@
 // const imagePath = (name) => images(name, true)
 
 require("@rails/ujs").start();
-require("turbolinks").start();
 require("bootstrap");
+require("jquery");
 
 import '../javascripts/score'
