@@ -26,17 +26,17 @@ class Score < ApplicationRecord
   # 表示している月度 + カレンダーに表示される月度外の範囲
   def self.get_scores_in_current_page(start_date)
     if start_date.between?(Date.new(start_date.year, 12, 18), Date.new(start_date.year, 12, 31))
-      self.where(start_time: "#{Date.new(start_date.year, 12, 18).beginning_of_week}".."#{Date.new(start_date.year + 1, 1, 16).end_of_week}")
+      self.where(start_time: "#{Date.new(start_date.year, 12, 18).beginning_of_week}".."#{Date.new(start_date.year + 1, 1, 16).end_of_week}").includes(:score_details)
     elsif start_date.between?(Date.new(start_date.year, 1, 1), Date.new(start_date.year, 1, 16))
-      self.where(start_time: "#{Date.new(start_date.year - 1, 12, 18).beginning_of_week}".."#{Date.new(start_date.year, 1, 16).end_of_week}")
+      self.where(start_time: "#{Date.new(start_date.year - 1, 12, 18).beginning_of_week}".."#{Date.new(start_date.year, 1, 16).end_of_week}").includes(:score_details)
     elsif start_date.between?(Date.new(start_date.year, 1, 17), Date.new(start_date.year, 2, 15))
-      self.where(start_time: "#{Date.new(start_date.year, 1, 17).beginning_of_week}".."#{Date.new(start_date.year, 2, 15).end_of_week}")
+      self.where(start_time: "#{Date.new(start_date.year, 1, 17).beginning_of_week}".."#{Date.new(start_date.year, 2, 15).end_of_week}").includes(:score_details)
     elsif start_date.between?(Date.new(start_date.year, 2, 16), Date.new(start_date.year, 3, 17))
-      self.where(start_time: "#{Date.new(start_date.year, 2, 16).beginning_of_week}".."#{Date.new(start_date.year, 3, 17).end_of_week}")
+      self.where(start_time: "#{Date.new(start_date.year, 2, 16).beginning_of_week}".."#{Date.new(start_date.year, 3, 17).end_of_week}").includes(:score_details)
     elsif start_date >= Date.new(start_date.year, start_date.month, 18)
-      self.where(start_time: "#{Date.new(start_date.year, start_date.month, 18).beginning_of_week}".."#{Date.new(start_date.year, start_date.month + 1, 17).end_of_week}")
+      self.where(start_time: "#{Date.new(start_date.year, start_date.month, 18).beginning_of_week}".."#{Date.new(start_date.year, start_date.month + 1, 17).end_of_week}").includes(:score_details)
     elsif start_date <= Date.new(start_date.year, start_date.month, 17)
-      self.where(start_time: "#{Date.new(start_date.year, start_date.month - 1, 18).beginning_of_week}".."#{Date.new(start_date.year, start_date.month, 17).end_of_week}")
+      self.where(start_time: "#{Date.new(start_date.year, start_date.month - 1, 18).beginning_of_week}".."#{Date.new(start_date.year, start_date.month, 17).end_of_week}").includes(:score_details)
     end
   end
 end
