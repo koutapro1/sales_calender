@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :info, :warning, :danger
 
   before_action :require_login
+  before_action :ensure_domain
 
   private
 
@@ -14,5 +15,12 @@ class ApplicationController < ActionController::Base
     if logged_in?
       redirect_to root_path
     end
+  end
+
+  def ensure_domain
+    return unless /\.herokuapp.com/ =~ request.host
+    fdqn = 'sales-calendar.net'
+    port = ":#{request.port}" unless [80, 443].include?(request.port)
+    redirect_to "#{request.protocol}#{fdqn}#{port}#{request.path}", status: :moved_permanently
   end
 end
