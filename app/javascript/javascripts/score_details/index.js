@@ -46,7 +46,6 @@ function initMap() {
 
   function success (data) {
     if (status == "occupied") {
-      console.log(watchId);
       setTimestamp(data);
       coordinates.push(data.coords.latitude, data.coords.longitude);
       if (coordinates.length <= 4 && coordinates.length >= 3) {
@@ -109,13 +108,7 @@ function initMap() {
         fare += counter * 80;
         meterDistance = meterDistance % distanceLimit;
       }
-      console.log("時間:" + duration + "秒");
-      console.log("距離:" + distance + "m");
-      console.log("時速" + speed + "km");
     }
-    console.log(timeStamps[timeStamps.length - 1]);
-    console.log("メーター距離:" + meterDistance + "m");
-    console.log(fare + "円");
     $('.meter-display').html(`<p class="meter-fare">${fare}</p><p class="meter-yen">円</p>`);
     if (hour >= 22 || hour < 5) {
       $('.meter-display').prepend(`<p class="extra-fee">割増</p>`);
