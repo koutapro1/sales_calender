@@ -1,7 +1,7 @@
 class Scores::SearchesController < ApplicationController
   # 月度ジャンプ機能
   def index
-    redirect_path = %Q[#{root_path}?start_date=#{params["selected_month(1i)"]}-#{params["selected_month(2i)"]}-#{params["selected_month(3i)"]}]
+    redirect_path = %[#{root_path}?start_date=#{params["selected_month(1i)"]}-#{params["selected_month(2i)"]}-#{params["selected_month(3i)"]}]
     redirect_to redirect_path
   end
 

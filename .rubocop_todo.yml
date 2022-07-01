@@ -6,63 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
-# Layout/ExtraSpacing:
-#   Exclude:
-#     - 'db/migrate/20220118085641_sorcery_core.rb'
-#     - 'db/migrate/20220118092847_create_scores.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowForAlignment.
-# Layout/SpaceBeforeFirstArg:
-#   Exclude:
-#     - 'db/migrate/20220118085641_sorcery_core.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBrackets: space, no_space
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Exclude:
-#     - 'config/environments/production.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-# Layout/SpaceInsideHashLiteralBraces:
-#   Exclude:
-#     - 'app/models/score.rb'
-
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: final_newline, final_blank_line
-# Layout/TrailingEmptyLines:
-#   Exclude:
-#     - 'app/controllers/application_controller.rb'
-#     - 'app/models/score.rb'
-#     - 'app/models/user.rb'
-#     - 'db/seeds.rb'
-#     - 'spec/support/capybara.rb'
-#     - 'spec/support/login_macros.rb'
-
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowInHeredoc.
-# Layout/TrailingWhitespace:
-#   Exclude:
-#     - 'app/controllers/score_details_controller.rb'
-#     - 'app/controllers/users_controller.rb'
-#     - 'app/models/user.rb'
-#     - 'config/initializers/sorcery.rb'
-#     - 'spec/system/users_spec.rb'
-
 # Offense count: 1
 # Configuration parameters: AllowComments, AllowEmptyLambdas.
 Lint/EmptyBlock:
@@ -100,20 +43,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 14
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: NilOrEmpty, NotPresent, UnlessPresent.
-Rails/Blank:
-  Exclude:
-    - 'app/controllers/scores_controller.rb'
-
-# Offense count: 1
-# Configuration parameters: EnforcedStyle, AllowToTime.
-# SupportedStyles: strict, flexible
-Rails/Date:
-  Exclude:
-    - 'app/controllers/scores_controller.rb'
-
 # Offense count: 2
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: slashes, arguments
@@ -129,45 +58,32 @@ Rails/NotNullColumn:
   Exclude:
     - 'db/migrate/20220118095539_add_references_to_scores.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Rails/PluralizationGrammar:
-  Exclude:
-    - 'db/seeds.rb'
-
-# Offense count: 1
-# Configuration parameters: Include.
-# Include: db/**/*.rb
-Rails/ReversibleMigration:
-  Exclude:
-    - 'db/migrate/20220429101806_add_default_to_score.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: percent_q, bare_percent
-Style/BarePercentLiterals:
-  Exclude:
-    - 'app/controllers/scores/searches_controller.rb'
+# Style/BarePercentLiterals:
+#   Exclude:
+#     - 'app/controllers/scores/searches_controller.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/BlockComments:
-  Exclude:
-    - 'spec/spec_helper.rb'
+# # Offense count: 1
+# # This cop supports safe autocorrection (--autocorrect).
+# Style/BlockComments:
+#   Exclude:
+#     - 'spec/spec_helper.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowedVars.
-Style/FetchEnvVar:
-  Exclude:
-    - 'app/controllers/score_details_controller.rb'
+# # Offense count: 1
+# # This cop supports safe autocorrection (--autocorrect).
+# # Configuration parameters: AllowedVars.
+# Style/FetchEnvVar:
+#   Exclude:
+#     - 'app/controllers/score_details_controller.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/GlobalStdStream:
-  Exclude:
-    - 'config/environments/production.rb'
+# # Offense count: 1
+# # This cop supports unsafe autocorrection (--autocorrect-all).
+# Style/GlobalStdStream:
+#   Exclude:
+#     - 'config/environments/production.rb'
 
 # Offense count: 1
 # Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
