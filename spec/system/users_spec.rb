@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
+RSpec.describe 'Users', type: :system do
   describe 'ログイン前' do
     describe 'ユーザー登録' do
       before { visit new_user_path }
@@ -59,7 +59,7 @@ RSpec.describe "Users", type: :system do
   describe 'ログイン後' do
     let(:user) { create(:user) }
     let(:another_user) { create(:user) }
-    
+
     describe 'ユーザー編集' do
       before do
         login_as(user)

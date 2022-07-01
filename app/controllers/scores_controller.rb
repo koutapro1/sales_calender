@@ -4,14 +4,14 @@ class ScoresController < ApplicationController
   before_action :set_scores_in_current_month, only: %i[create update destroy]
 
   def index
-    start_date = params.fetch(:start_date, Date.today).to_date
+    start_date = params.fetch(:start_date, Time.zone.today).to_date
     @scores = current_user.scores.get_scores_in_current_page(start_date)
     @scores_in_current_month = current_user.scores.get_scores_in_current_month(start_date)
     destroy_empty_score(@scores)
   end
 
   def create
-    @success_message = "売上を登録しました"
+    @success_message = '売上を登録しました'
     @score = current_user.scores.build(score_params)
     @score.save
   end
@@ -19,12 +19,12 @@ class ScoresController < ApplicationController
   def edit; end
 
   def update
-    @success_message = "売上を変更しました"
+    @success_message = '売上を変更しました'
     @score.update(score_params)
   end
 
   def destroy
-    @success_message = "売上を削除しました"
+    @success_message = '売上を削除しました'
     @score.destroy!
   end
 
@@ -48,9 +48,9 @@ class ScoresController < ApplicationController
 
   def destroy_empty_score(scores)
     scores.each do |score|
-      if score.score == 0 && !score.score_details.present?
-        score.destroy!
-      end
+      next unless score.score.zero?
+
+      score.destroy! if score.score_details.blank?
     end
   end
 end

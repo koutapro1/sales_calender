@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  
+
   has_many :scores, dependent: :destroy
 
   validates :password, length: { in: 6..20 }, if: -> { new_record? || changes[:crypted_password] }
