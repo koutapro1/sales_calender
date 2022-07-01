@@ -66,57 +66,57 @@ Rails/NotNullColumn:
   Exclude:
     - 'db/migrate/20220118095539_add_references_to_scores.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'app/controllers/scores/searches_controller.rb'
+# # Offense count: 1
+# # This cop supports safe autocorrection (--autocorrect).
+# # Configuration parameters: PreferredDelimiters.
+# Style/PercentLiteralDelimiters:
+#   Exclude:
+#     - 'app/controllers/scores/searches_controller.rb'
 
-# Offense count: 12
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantSelf:
-  Exclude:
-    - 'app/models/score.rb'
+# # Offense count: 12
+# # This cop supports safe autocorrection (--autocorrect).
+# Style/RedundantSelf:
+#   Exclude:
+#     - 'app/models/score.rb'
 
-# Offense count: 76
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Enabled: false
+# # Offense count: 76
+# # This cop supports safe autocorrection (--autocorrect).
+# # Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
+# # SupportedStyles: single_quotes, double_quotes
+# Style/StringLiterals:
+#   Enabled: false
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiteralsInInterpolation:
-  Exclude:
-    - 'app/controllers/scores/searches_controller.rb'
+# # Offense count: 3
+# # This cop supports safe autocorrection (--autocorrect).
+# # Configuration parameters: EnforcedStyle.
+# # SupportedStyles: single_quotes, double_quotes
+# Style/StringLiteralsInInterpolation:
+#   Exclude:
+#     - 'app/controllers/scores/searches_controller.rb'
 
-# Offense count: 11
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, MinSize.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  Exclude:
-    - 'Gemfile'
-    - 'app/controllers/score_details_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'config/initializers/filter_parameter_logging.rb'
-    - 'config/routes.rb'
-    - 'db/migrate/20220316052350_add_unique_index_to_score.rb'
+# # Offense count: 11
+# # This cop supports safe autocorrection (--autocorrect).
+# # Configuration parameters: EnforcedStyle, MinSize.
+# # SupportedStyles: percent, brackets
+# Style/SymbolArray:
+#   Exclude:
+#     - 'Gemfile'
+#     - 'app/controllers/score_details_controller.rb'
+#     - 'app/controllers/users_controller.rb'
+#     - 'config/initializers/filter_parameter_logging.rb'
+#     - 'config/routes.rb'
+#     - 'db/migrate/20220316052350_add_unique_index_to_score.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: MinSize, WordRegex.
-# SupportedStyles: percent, brackets
-Style/WordArray:
-  EnforcedStyle: brackets
+# # Offense count: 1
+# # This cop supports safe autocorrection (--autocorrect).
+# # Configuration parameters: MinSize, WordRegex.
+# # SupportedStyles: percent, brackets
+# Style/WordArray:
+#   EnforcedStyle: brackets
 
-# Offense count: 16
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns, IgnoredPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 195
+# # Offense count: 16
+# # This cop supports safe autocorrection (--autocorrect).
+# # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns, IgnoredPatterns.
+# # URISchemes: http, https
+# Layout/LineLength:
+#   Max: 195

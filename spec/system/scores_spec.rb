@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Scores", type: :system do
+RSpec.describe 'Scores', type: :system do
   describe '売上登録' do
     let(:user) { create(:user) }
     before do

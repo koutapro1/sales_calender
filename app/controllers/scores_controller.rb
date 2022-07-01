@@ -11,7 +11,7 @@ class ScoresController < ApplicationController
   end
 
   def create
-    @success_message = "売上を登録しました"
+    @success_message = '売上を登録しました'
     @score = current_user.scores.build(score_params)
     @score.save
   end
@@ -19,12 +19,12 @@ class ScoresController < ApplicationController
   def edit; end
 
   def update
-    @success_message = "売上を変更しました"
+    @success_message = '売上を変更しました'
     @score.update(score_params)
   end
 
   def destroy
-    @success_message = "売上を削除しました"
+    @success_message = '売上を削除しました'
     @score.destroy!
   end
 

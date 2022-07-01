@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :require_login, only: %i[new create]
   before_action :already_logged_in, only: [:new]
-  before_action :set_user, only: [:show, :edit, :update]
-  before_action :forbid_access_to_other_user, only: [:show, :edit, :update]
+  before_action :set_user, only: %i[show edit update]
+  before_action :forbid_access_to_other_user, only: %i[show edit update]
 
   def new
     @user = User.new

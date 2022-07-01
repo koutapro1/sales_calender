@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   post '/login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy', as: :logout
 
-  resources :users,  only: [:new, :show, :create, :edit, :update]
-  resources :scores, only: [:index, :new, :create, :edit, :update, :destroy] do
-    resources :score_details, only: [:index, :show, :create, :edit, :update, :destroy]
+  resources :users,  only: %i[new show create edit update]
+  resources :scores, only: %i[index new create edit update destroy] do
+    resources :score_details, only: %i[index show create edit update destroy]
   end
 
   namespace :scores do
