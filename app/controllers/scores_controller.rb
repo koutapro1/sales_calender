@@ -48,7 +48,9 @@ class ScoresController < ApplicationController
 
   def destroy_empty_score(scores)
     scores.each do |score|
-      if score.score == 0 && !score.score_details.present?
+      next unless score.score == 0
+
+      if score.score_details.blank?
         score.destroy!
       end
     end
