@@ -50,9 +50,7 @@ class ScoresController < ApplicationController
     scores.each do |score|
       next unless score.score == 0
 
-      if score.score_details.blank?
-        score.destroy!
-      end
+      score.destroy! if score.score_details.blank?
     end
   end
 end
