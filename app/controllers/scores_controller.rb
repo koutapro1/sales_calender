@@ -4,7 +4,7 @@ class ScoresController < ApplicationController
   before_action :set_scores_in_current_month, only: %i[create update destroy]
 
   def index
-    start_date = params.fetch(:start_date, Date.today).to_date
+    start_date = params.fetch(:start_date, Time.zone.today).to_date
     @scores = current_user.scores.get_scores_in_current_page(start_date)
     @scores_in_current_month = current_user.scores.get_scores_in_current_month(start_date)
     destroy_empty_score(@scores)
