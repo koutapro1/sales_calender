@@ -45,10 +45,10 @@ class ScoreDetailsController < ApplicationController
 
   def score_detail_params
     params.require(:score_detail).permit(:pickup_address,
-                                        :dropoff_address,
-                                        :pickup_time,
-                                        :dropoff_time,
-                                        :fare,
-                                        coords: []).merge(score_id: params[:score_id])
+                                         :dropoff_address,
+                                         :pickup_time,
+                                         :dropoff_time,
+                                         :fare,
+                                         coords: []).merge(score_id: params[:score_id])
   end
 end
