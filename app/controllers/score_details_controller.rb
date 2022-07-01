@@ -1,7 +1,7 @@
 class ScoreDetailsController < ApplicationController
   protect_from_forgery
   before_action :set_score, only: [:index, :show, :edit, :update, :destroy]
-  
+
   def index
     @score_details = @score.score_details
     gon.score = @score

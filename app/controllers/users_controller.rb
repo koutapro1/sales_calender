@@ -3,13 +3,13 @@ class UsersController < ApplicationController
   before_action :already_logged_in, only: [:new]
   before_action :set_user, only: [:show, :edit, :update]
   before_action :forbid_access_to_other_user, only: [:show, :edit, :update]
-  
+
   def new
     @user = User.new
   end
 
   def show; end
-  
+
   def create
     @user = User.new(user_params)
     if @user.save
