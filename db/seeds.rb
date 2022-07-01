@@ -18,7 +18,7 @@ end
 User.all.each do |user|
   30.times do
     Score.create!(
-      start_time: Faker::Date.unique.between(from: 1.years.ago, to:1.years.from_now),
+      start_time: Faker::Date.unique.between(from: 1.years.ago, to: 1.years.from_now),
       score: ("#{rand(1..1000)}" + "00").to_i,
       user: user
     )
