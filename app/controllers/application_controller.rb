@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   # .herokuapp.comにアクセスがあった際に、sales-calendar.netに301リダイレクトさせる
   def ensure_domain
     return unless /\.herokuapp.com/ =~ request.host
+
     fdqn = 'sales-calendar.net'
     port = ":#{request.port}" unless [80, 443].include?(request.port)
     redirect_to "#{request.protocol}#{fdqn}#{port}#{request.path}", status: :moved_permanently
