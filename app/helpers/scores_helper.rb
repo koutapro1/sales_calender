@@ -1,7 +1,5 @@
 module ScoresHelper
-
   def set_classes_for(day, start_date, sorted_events, date_range)
-
     dates_in_this_month = case date_range.last.month
                           when 1 then
                             (Date.new(date_range.first.year, 12, 18)..Date.new(date_range.last.year, 1, 16)).to_a
