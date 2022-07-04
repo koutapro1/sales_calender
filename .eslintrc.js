@@ -12,5 +12,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'max-len': ['error', 120],
+    "prefer-destructuring": ["error", {"object": true, "array": false}]
   },
 };
