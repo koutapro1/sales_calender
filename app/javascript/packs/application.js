@@ -18,5 +18,3 @@
 require("@rails/ujs").start();
 require("bootstrap");
 require("jquery");
-
-import '../javascripts/score'
