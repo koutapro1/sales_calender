@@ -2,10 +2,10 @@
   <td class="number" width="5%"></td>
   <td class="time" width="10%">
     <div class="pickup-time">
-      <%= score_detail.pickup_time.strftime("%H:%M") %>
+      <%= score_detail.pickup_time_short %>
     </div>
     <div class="dropoff-time">
-      <%= score_detail.dropoff_time.strftime("%H:%M") %>
+      <%= score_detail.dropoff_time_short %>
     </div>
   </td>
   <td class="pickup-address" width="30%"><%= score_detail.pickup_address %></td>
