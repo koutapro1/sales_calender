@@ -40,7 +40,7 @@ class ScoreDetailsController < ApplicationController
   private
 
   def set_score
-    @score = Score.find(params[:score_id])
+    @score = current_user.scores.find(params[:score_id])
   end
 
   def score_detail_params
