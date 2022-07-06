@@ -4,7 +4,7 @@ class ScoreDetailsController < ApplicationController
   before_action :set_score_detail, only: %i[show edit update destroy]
 
   def index
-    @score_details = @score.score_details
+    @score_details = @score.score_details.decorate
     gon.score = @score
   end
 
@@ -18,6 +18,7 @@ class ScoreDetailsController < ApplicationController
   end
 
   def show
+    @score_detail = @score_detail.decorate
     gon.score_detail = @score_detail
     gon.translated_coordinates = @score_detail.translate_for_google_map
     gon.google_map_api_key = ENV.fetch('GOOGLE_MAP_API_KEY')
