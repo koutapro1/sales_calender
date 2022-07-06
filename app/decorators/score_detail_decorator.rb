@@ -1,12 +1,19 @@
 class ScoreDetailDecorator < ApplicationDecorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  def pickup_time_long
+    object.pickup_time.strftime("%-H時%-M分%-S秒")
+  end
+
+  def dropoff_time_long
+    object.dropoff_time.strftime("%-H時%-M分%-S秒")
+  end
+
+  def pickup_time_short
+    object.pickup_time.strftime("%H:%M")
+  end
+
+  def dropoff_time_short
+    object.dropoff_time.strftime("%H:%M")
+  end
 end

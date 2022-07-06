@@ -5,11 +5,11 @@
         <tr>
           <th><p>乗降時間</p></th>
           <td width="45%" class="pickup-time">
-            <p><%= @score_detail.pickup_time.strftime("%-H時%-M分%-S秒") %></p>
+            <p><%= @score_detail.pickup_time_long %></p>
           </td>
           <td  width="10%" class="wave-dash"><p>〜</p></td>
           <td width="45%"  class="dropoff-time">
-            <p><%= @score_detail.dropoff_time.strftime("%-H時%-M分%-S秒") %></p>
+            <p><%= @score_detail.dropoff_time_long %></p>
           </td>
         </tr>
         <tr>

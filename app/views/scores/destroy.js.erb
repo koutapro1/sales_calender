@@ -1,4 +1,4 @@
-$('.<%= @score.start_time.to_date %> .score-in-td, .has-score-detail').remove();
+$('.<%= @score.start_time.to_date %> .score-in-td, .<%= @score.start_time.to_date %> .has-score-detail').remove();
 $('.js-searched-score-field').empty();
 $('.js-searched-score-field').prepend('<h3>詳細</h3>')
 $('.js-searched-score-field').append('<div class="flash-messages alert alert-success"><%= @success_message %></div>')
