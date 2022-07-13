@@ -48,10 +48,10 @@
     <div class="calculated-score-field col-5">
       <h3><%= t('date.month_names')[date_range.last.month] + '度' %></h3>
       <div class="total-score">
-        <p>合計:</p> <p class="total-score-result"><%= "#{total_score_in_current_month(@scores_in_current_month)} 円" %></p>
+        <p>合計:</p> <p class="total-score-result"><%= "#{@scores_in_current_month.calc_total_score} 円" %></p>
       </div>
       <div class="average-score">
-        <p>平均:</p> <p class="average-score-result"><%= "#{average_score_in_current_month(@scores_in_current_month)} 円" %></p>
+        <p>平均:</p> <p class="average-score-result"><%= "#{@scores_in_current_month.calc_average_score} 円" %></p>
       </div>
     </div>
     <div class="js-searched-score-field col-7">
