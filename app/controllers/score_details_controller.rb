@@ -1,7 +1,7 @@
 class ScoreDetailsController < ApplicationController
   protect_from_forgery
   before_action :set_score, only: %i[index show edit update destroy]
-  before_action :set_score_detail, only: %i[show edit update destroy]
+  before_action :set_score_detail, only: %i[show edit destroy]
 
   def index
     @score_details = @score.score_details.decorate
@@ -24,10 +24,10 @@ class ScoreDetailsController < ApplicationController
     gon.google_map_api_key = ENV.fetch('GOOGLE_MAP_API_KEY')
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
+    @score_detail = @score.score_details.find(params[:id]).decorate
     @score_detail.update(score_detail_params)
   end
 
