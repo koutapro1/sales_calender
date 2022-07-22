@@ -17,3 +17,4 @@
 
 require("@rails/ujs").start();
 window.$ = window.jQuery = require('jquery');
+import 'bootstrap';

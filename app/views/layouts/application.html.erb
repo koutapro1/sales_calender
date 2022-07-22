@@ -9,9 +9,8 @@
 
     <%= include_gon %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
-    <%= stylesheet_pack_tag 'application' %>
 
     <% if Rails.env.production? %>
       <%= render 'layouts/google_analytics' %>
