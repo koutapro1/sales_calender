@@ -1,4 +1,2 @@
-import 'remodal/dist/remodal.css'
-import 'remodal/dist/remodal-default-theme.css'
-import 'remodal/dist/remodal'
+import 'bootstrap'
 import '../../javascripts/scores/score'

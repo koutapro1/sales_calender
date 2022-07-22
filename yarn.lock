@@ -4380,7 +4380,7 @@ jest-worker@^26.5.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jquery@*, jquery@^3.6.0:
+jquery@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
   integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
@@ -6359,13 +6359,6 @@ regjsparser@^0.8.2:
   integrity sha512-J3LABycON/VNEu3abOviqGHuB/LOtOQj8SKmfP9anY5GfAVw/SPjwzSjxGjbZXIxbGfqTHtJw58C2Li/WkStmA==
   dependencies:
     jsesc "~0.5.0"
-
-remodal@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/remodal/-/remodal-1.1.1.tgz#00f580b09417b2b7e7a425b17327ec10f3d596c3"
-  integrity sha512-creNSaqbg5tddt+6wckMQ5BAYIrlanpZoPhRt2q/hXPsAEavapSucBGFOsfyjTPPGQdyUxy5jXLjSnNhpCIK6A==
-  dependencies:
-    jquery "*"
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
