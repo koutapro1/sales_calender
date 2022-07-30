@@ -1,16 +1,27 @@
-<h3><%= start_time.to_date.strftime('%-m/%-d') %> 詳細</h3>
-  <% if @searched_score.nil? %>
-      <%= render partial: 'scores/form', locals: { score: @score, start_time: start_time, start_date: start_date } %>
-  <% else %>
-    <%= render 'score', searched_score: @searched_score, start_date: start_date %>
-  <% end %>
-  <%= form_with url: check_scores_searches_path, method: :get, local: true do %>
-    <input name="start_time" type="hidden" value="<%= start_time %>">
-    <div class="text-left">
-      <% if @searched_score && @searched_score.score_details.present? %>
-        <%= button_tag '日報を見る', type: 'submit', class: 'btn score-detail-button', method: :get %>
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h3><%= start_time.to_date.strftime('%-m/%-d') %> 詳細</h3>
+      <% if @searched_score.nil? %>
+        <%= render partial: 'scores/form', locals: { score: @score, start_time: start_time, start_date: start_date } %>
       <% else %>
-        <%= button_tag '日報作成', type: 'submit', class: 'btn score-detail-button', method: :get %>
+        <%= render 'score', searched_score: @searched_score, start_date: start_date %>
       <% end %>
     </div>
-  <% end %>
+    <div class="modal-footer">
+    <%= form_with url: check_scores_searches_path, method: :get, local: true do %>
+        <input name="start_time" type="hidden" value="<%= start_time %>">
+        <div class="text-left">
+          <% if @searched_score && @searched_score.score_details.present? %>
+            <%= button_tag '日報を見る', type: 'submit', class: 'btn score-detail-button', method: :get %>
+          <% else %>
+            <%= button_tag '日報作成', type: 'submit', class: 'btn score-detail-button', method: :get %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
