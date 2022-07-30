@@ -43,7 +43,7 @@ class ScoresController < ApplicationController
   end
 
   def set_scores_in_current_month
-    @scores_in_current_month = current_user.scores.get_scores_in_current_month(@start_date)
+    @scores_in_current_month = current_user.scores.get_scores_in_current_month(@start_date).decorate
   end
 
   def destroy_empty_score(scores)
