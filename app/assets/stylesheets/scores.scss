@@ -112,7 +112,7 @@
   font-size: 1.2rem;
   .row {
     margin: auto;
-    .calculated-score-field, .js-searched-score-field {
+    .calculated-score-field {
       padding-top: 0.7rem;
       padding-bottom: 1rem;
       background-color: white;
@@ -149,7 +149,6 @@
       box-shadow: 0 0 0 3px rgba(220, 126, 32, 0.5);
     }
   }
-}
 
   .js-searched-score-field {
     .flash-messages {
@@ -160,6 +159,7 @@
     }
     .submit-new-score, .score-detail-button {
       margin-top: 0.5rem;
+      width: 100%;
     }
   }
 
@@ -191,6 +191,67 @@
       text-align: right;
     }
   }
+}
+
+.modal {
+  .modal-dialog {
+    width: 85%;
+    margin: auto;
+    h3 {
+      border-bottom: solid 2px rgb(0, 179, 255);
+      font-weight: normal;
+    }
+    p {
+      margin-bottom: 0;
+    }
+    .new-score-label {
+      font-weight: bold;
+    }
+    .submit-new-score, .score-detail-button {
+      width: 100%;
+    }
+    .submit-new-score {
+      margin-top: 0.5rem;
+    }
+    .score-detail-form {
+      width: 100%;
+      .score-detail-button {
+        color: white;
+        background-color: #FF6D19;
+        border-color: #FF6D19;
+      }
+      .score-detail-button:hover {
+        color: white;
+        background-color: #da5e16;
+        border-color: #da5e16;
+      }
+      .score-detail-button:active {
+        color: white;
+        background-color: #da5e16!important;
+        border-color: #da5e16!important;
+      }
+      .score-detail-button:focus {
+        color: white;
+        background-color: #da5e16;
+        border-color: #da5e16;
+        box-shadow: 0 0 0 3px rgba(220, 126, 32, 0.5);
+      }
+    }
+    .searched-score {
+      th {
+        text-align: center;
+      }
+      th, td {
+        border-bottom: 1px solid #dee2e6;
+        border-top: none;
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+}
 
 @media (max-width: 767px) {
   .calendar-page-body {
