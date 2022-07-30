@@ -127,69 +127,6 @@
     p {
       margin-bottom: 0;
     }
-    .score-detail-button {
-      color: white;
-      background-color: #FF6D19;
-      border-color: #FF6D19;
-    }
-    .score-detail-button:hover {
-      color: white;
-      background-color: #da5e16;
-      border-color: #da5e16;
-    }
-    .score-detail-button:active {
-      color: white;
-      background-color: #da5e16!important;
-      border-color: #da5e16!important;
-    }
-    .score-detail-button:focus {
-      color: white;
-      background-color: #da5e16;
-      border-color: #da5e16;
-      box-shadow: 0 0 0 3px rgba(220, 126, 32, 0.5);
-    }
-  }
-
-  .js-searched-score-field {
-    .flash-messages {
-      padding: 0.5rem;
-    }
-    .js-searched-score {
-      position: relative;
-    }
-    .submit-new-score, .score-detail-button {
-      margin-top: 0.5rem;
-      width: 100%;
-    }
-  }
-
-  .new-score-form {
-    text-align: right;
-    margin-top: 0;
-    .error-messages-field {
-      padding: 0;
-      text-align: center;
-      ul {
-        padding: 0;
-        li:before {
-          content:  "";
-          width:  5px;
-          height:  5px;
-          display:  inline-block;
-          background-color: rgb(114, 28, 36);
-          border-radius:  50%;
-          position: relative;
-          top: -3px;
-        }
-        li {
-          list-style-type: none;
-          font-size: 0.9rem;
-        }
-      }
-    }
-    #score_score::placeholder {
-      text-align: right;
-    }
   }
 }
 
@@ -204,18 +141,45 @@
     p {
       margin-bottom: 0;
     }
-    .new-score-label {
-      font-weight: bold;
-    }
-    .submit-new-score, .score-detail-button {
+    .new-score-form {
+      margin-top: 0;
+      .error-messages-field {
+        padding: 0;
+        text-align: center;
+        ul {
+          padding: 0;
+          li:before {
+            content:  "";
+            width:  5px;
+            height:  5px;
+            display:  inline-block;
+            background-color: rgb(114, 28, 36);
+            border-radius:  50%;
+            position: relative;
+            top: -3px;
+          }
+          li {
+            list-style-type: none;
+          }
+        }
+      }
+      #score_score::placeholder {
+        text-align: right;
+      }
+      .new-score-label {
+        font-weight: bold;
+      }
+      .submit-new-score {
       width: 100%;
-    }
-    .submit-new-score {
-      margin-top: 0.5rem;
+      }
+      .submit-new-score {
+        margin-top: 0.5rem;
+      }
     }
     .score-detail-form {
       width: 100%;
       .score-detail-button {
+        width: 100%;
         color: white;
         background-color: #FF6D19;
         border-color: #FF6D19;
@@ -249,6 +213,9 @@
     .buttons {
       display: flex;
       justify-content: space-evenly;
+    }
+    .flash-messages {
+      margin: auto;
     }
   }
 }

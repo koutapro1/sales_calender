@@ -1,18 +1,20 @@
-<table class="table searched-score">
-  <tr>
-    <th style="width: 40%">売上:</th>
-    <td style="width: 60%"><%= searched_score.score %> 円</td>
-  </tr>
-  <tr>
-    <th style="width: 40%">メモ:</th>
-    <td style="width: 60%"><%= searched_score.memo %></td>
-  </tr>
-</table>
-<div class="buttons">
-  <%= link_to edit_score_path(searched_score, start_date: start_date), class: "edit-button", remote: true do %>
-    <span class="fas fa-edit fa-2x"></span>
-  <% end %>
-  <%= link_to score_path(searched_score, start_date: start_date), method: :delete, data: { confirm: '売上を削除しますか？ ※日報データがある場合は削除されてしまいます。' }, class: "delete-button", remote: true do %>
-    <span class="far fa-trash-alt fa-2x"></span>
-  <% end %>
+<div class="searched-score">
+  <table class="table">
+    <tr>
+      <th style="width: 40%">売上:</th>
+      <td style="width: 60%"><%= searched_score.score %> 円</td>
+    </tr>
+    <tr>
+      <th style="width: 40%">メモ:</th>
+      <td style="width: 60%"><%= searched_score.memo %></td>
+    </tr>
+  </table>
+  <div class="buttons">
+    <%= link_to edit_score_path(searched_score, start_date: start_date), class: "edit-button", remote: true do %>
+      <span class="fas fa-edit fa-2x"></span>
+    <% end %>
+    <%= link_to score_path(searched_score, start_date: start_date), method: :delete, data: { confirm: '売上を削除しますか？ ※日報データがある場合は削除されてしまいます。' }, class: "delete-button", remote: true do %>
+      <span class="far fa-trash-alt fa-2x"></span>
+    <% end %>
+  </div>
 </div>
