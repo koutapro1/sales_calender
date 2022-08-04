@@ -45,7 +45,7 @@
 </div>
 <div class="score-status">
   <div class="row">
-    <div class="calculated-score-field col-5">
+    <div class="calculated-score-field col-12">
       <h3><%= t('date.month_names')[date_range.last.month] + '度' %></h3>
       <div class="total-score">
         <p>合計:</p> <p class="total-score-result"><%= "#{@scores_in_current_month.calc_total_score} 円" %></p>
@@ -54,8 +54,22 @@
         <p>平均:</p> <p class="average-score-result"><%= "#{@scores_in_current_month.calc_average_score} 円" %></p>
       </div>
     </div>
-    <div class="js-searched-score-field col-7">
-      <h3>詳細</h3>
+  </div>
+</div>
+<!-- modal_start -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="label1">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Modal body
+      </div>
     </div>
   </div>
 </div>
+<!-- modal_end -->

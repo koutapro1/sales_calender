@@ -28,7 +28,8 @@ $(() => {
       },
     })
       .done((data) => {
-        $('.js-searched-score-field').html(data);
+        $('#modal1').modal('show')
+        $('#modal1').html(data);
       });
   });
 

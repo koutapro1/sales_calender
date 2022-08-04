@@ -1,6 +1,5 @@
 $('.<%= @score.start_time.to_date %> .score-in-td, .<%= @score.start_time.to_date %> .has-score-detail').remove();
-$('.js-searched-score-field').empty();
-$('.js-searched-score-field').prepend('<h3>詳細</h3>')
-$('.js-searched-score-field').append('<div class="flash-messages alert alert-success"><%= @success_message %></div>')
-$('.total-score-result').html('<%= "#{total_score_in_current_month(@scores_in_current_month)} 円" %>')
-$('.average-score-result').html('<%= "#{average_score_in_current_month(@scores_in_current_month)} 円" %>')
+$(".flash-messages").remove();
+$('.searched-score').replaceWith('<div class="flash-messages alert alert-success" style="margin: 1.3rem auto auto auto;"><%= @success_message %></div>');
+$('.total-score-result').html('<%= "#{@scores_in_current_month.calc_total_score} 円" %>');
+$('.average-score-result').html('<%= "#{@scores_in_current_month.calc_average_score} 円" %>');
