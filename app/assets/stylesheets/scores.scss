@@ -71,15 +71,17 @@
 
   .current-month {}
 
-  .has-events {
-    .score-in-td {
-      color: rgb(50, 125, 254);
-      padding-top: 0.7rem;
-    }
-    .has-score-detail {
-      transform: scale(0.8);
-      color: #FF6D19;
-    }
+  .score-in-td {
+    color: rgb(50, 125, 254);
+    padding-top: 0.7rem;
+  }
+  .has-score-detail {
+    transform: scale(0.8);
+    color: #FF6D19;
+  }
+  .has-schedule {
+    transform: scale(0.8);
+    color: blue;
   }
 
   table {

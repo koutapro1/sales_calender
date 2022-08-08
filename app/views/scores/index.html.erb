@@ -1,15 +1,19 @@
 <main class="row">
   <div class="col calendar-page-body">
-    <%= SimpleCalendar::CustomLengthCalendar.new(self, {events: @scores}).render do |date, scores| %>
-      <%= date.strftime('%-m/%-d') %>
-      <% scores.each do |score| %>
-        <div class="score-in-td">
-          <% if score.score > 0 %>
-            <%= score.score %>
+    <%= SimpleCalendar::ScoreCalendar.new(self, {events: @scores, second_events: @schedules, second_attribute: :work_on}).render do |date, events| %>
+      <div><%= date.strftime('%-m/%-d') %></div>
+      <% events.each do |event| %>
+        <% if event.is_a? Score %>
+          <div class="score-in-td">
+            <% if event.score > 0 %>
+              <%= event.score %>
+            <% end %>
+          </div>
+          <% if event.score_details.present? %>
+            <i class="fas fa-circle fa-xs has-score-detail"></i>
           <% end %>
-        </div>
-        <% if score.score_details.present? %>
-          <i class="fas fa-circle fa-xs has-score-detail"></i>
+        <% elsif event.is_a? Schedule %>
+          <i class="fas fa-circle fa-xs has-schedule"></i>
         <% end %>
       <% end %>
     <% end %>
