@@ -4,16 +4,16 @@
       <div><%= date.strftime('%-m/%-d') %></div>
       <% events.each do |event| %>
         <% if event.is_a? Score %>
-          <div class="score-in-td">
-            <% if event.score > 0 %>
+          <% if event.score > 0 %>
+            <div class="score-in-td">
               <%= event.score %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
           <% if event.score_details.present? %>
-            <i class="fas fa-circle fa-xs has-score-detail"></i>
+            <i class="fas fa-circle fa-xs score-detail-mark"></i>
           <% end %>
         <% elsif event.is_a? Schedule %>
-          <i class="fas fa-circle fa-xs has-schedule"></i>
+          <i class="fas fa-circle fa-xs schedule-mark"></i>
         <% end %>
       <% end %>
     <% end %>

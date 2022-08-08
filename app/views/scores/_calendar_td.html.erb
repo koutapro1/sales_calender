@@ -1,5 +1,8 @@
 <%= score.start_time.strftime('%-m/%-d') %>
-<%= content_tag :div, score.score, class: "score-in-td" %>
 <% if score.score_details.present? %>
-  <i class="fas fa-circle fa-xs has-score-detail"></i>
+  <i class="fas fa-circle fa-xs score-detail-mark"></i>
 <% end %>
+<% if current_user.schedules.find_by(work_on: score.start_time).present? %>
+  <i class="fas fa-circle fa-xs schedule-mark"></i>
+<% end %>
+<%= content_tag :div, score.score, class: "score-in-td" %>

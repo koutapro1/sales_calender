@@ -73,13 +73,13 @@
 
   .score-in-td {
     color: rgb(50, 125, 254);
-    padding-top: 0.7rem;
+    padding-top: 0.8rem;
   }
-  .has-score-detail {
+  .score-detail-mark {
     transform: scale(0.8);
     color: #FF6D19;
   }
-  .has-schedule {
+  .schedule-mark {
     transform: scale(0.8);
     color: blue;
   }
@@ -104,6 +104,25 @@
       border: none;
       background-color: white;
       box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+  }
+  .score-detail-mark, .schedule-mark {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+  }
+  .has-score-detail {
+    .schedule-mark {
+      left: 35%;
+      transform: translateX(-35%) scale(0.8);
+    }
+  }
+  .has-schedule {
+    .score-detail-mark {
+      right: 35%;
+      transform: translateX(35%) scale(0.8);
     }
   }
 }
@@ -251,6 +270,24 @@
         a {
           font-size: 0.7rem;
         }
+        .score-detail-mark, .schedule-mark {
+          position: absolute;
+          top: 25px;
+          left: 50%;
+          transform: translateX(-50%) scale(0.8);
+        }
+        .has-score-detail {
+          .schedule-mark {
+            left: 35%;
+            transform: translateX(-35%) scale(0.8);
+          }
+        }
+        .has-schedule {
+          .score-detail-mark {
+            right: 35%;
+            transform: translateX(35%) scale(0.8);
+          }
+        }
       }
     }
 
@@ -269,21 +306,6 @@
             display: block;
             margin-left: auto;
           }
-        }
-      }
-      .js-searched-score-field {
-        min-height: 19rem;
-        .new-score-form {
-          .form-group {
-            margin-bottom: 0;
-            .new-score-label {
-              margin-bottom: 0;
-            }
-          }
-        }
-        .edit-button, .delete-button {
-          font-size: 1.5rem;
-          margin-left: 0.5rem;
         }
       }
     }
