@@ -33,58 +33,7 @@
     }
   }
 
-  .day {
-    height: 9vh;
-  }
-
-  .day:hover {
-    transform: translate3d(0, -4px, 0);
-    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.3);
-    background-color: rgba(118, 203, 255, 0.7);
-  }
-
-  .wday-0 {
-    color: red;
-  }
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {
-    color: blue;
-  }
-
-  .today {}
-  .past {}
-  .future {}
-
-  .start-date {}
-
-  .prev-month, .next-month {
-    color: rgba(58, 56, 56, 0.352);
-    background-color: white;
-    .score-in-td {
-      color: rgba(58, 56, 56, 0.352)!important;
-    }
-  }
-
-  .current-month {}
-
-  .score-in-td {
-    color: rgb(50, 125, 254);
-    padding-top: 0.8rem;
-  }
-  .score-detail-mark {
-    transform: scale(0.8);
-    color: #FF6D19;
-  }
-  .schedule-mark {
-    transform: scale(0.8);
-    color: blue;
-  }
-
-  table {
+  .calendar-table {
     border: none;
     width: 100%;
     table-layout: fixed;
@@ -106,23 +55,75 @@
       box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
       position: relative;
     }
-  }
-  .score-detail-mark, .schedule-mark {
-    position: absolute;
-    top: 32px;
-    left: 50%;
-    transform: translateX(-50%) scale(0.8);
-  }
-  .has-score-detail {
-    .schedule-mark {
-      left: 35%;
-      transform: translateX(-35%) scale(0.8);
+    .day {
+      height: 9vh;
     }
-  }
-  .has-schedule {
+  
+    .day:hover {
+      transform: translate3d(0, -4px, 0);
+      box-shadow: 0 4px 3px rgba(0, 0, 0, 0.3);
+      background-color: white;
+    }
+  
+    .wday-0 {
+      color: red;
+    }
+    .wday-1 {}
+    .wday-2 {}
+    .wday-3 {}
+    .wday-4 {}
+    .wday-5 {}
+    .wday-6 {
+      color: blue;
+    }
+  
+    .today {
+      background: #FFFFC0;
+    }
+    .past {}
+    .future {}
+  
+    .start-date {}
+  
+    .prev-month, .next-month {
+      color: rgba(58, 56, 56, 0.352);
+      background-color: white;
+      .score-in-td {
+        color: rgba(58, 56, 56, 0.352)!important;
+      }
+    }
+  
+    .current-month {}
+  
+    .score-in-td {
+      color: rgb(50, 125, 254);
+      padding-top: 0.8rem;
+    }
     .score-detail-mark {
-      right: 35%;
-      transform: translateX(35%) scale(0.8);
+      transform: scale(0.8);
+      color: #FF6D19;
+    }
+    .schedule-mark {
+      transform: scale(0.8);
+      color: blue;
+    }
+    .score-detail-mark, .schedule-mark {
+      position: absolute;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.8);
+    }
+    .has-score-detail {
+      .schedule-mark {
+        left: 35%;
+        transform: translateX(-35%) scale(0.8);
+      }
+    }
+    .has-schedule {
+      .score-detail-mark {
+        right: 35%;
+        transform: translateX(35%) scale(0.8);
+      }
     }
   }
 }
