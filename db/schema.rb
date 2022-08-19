@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_29_101806) do
+ActiveRecord::Schema.define(version: 2022_08_19_073440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "schedules", force: :cascade do |t|
+    t.date "work_on", null: false
+    t.integer "shift", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_schedules_on_user_id"
+    t.index ["work_on", "user_id"], name: "index_schedules_on_work_on_and_user_id", unique: true
+  end
 
   create_table "score_details", force: :cascade do |t|
     t.text "coords", null: false, array: true
@@ -48,11 +58,13 @@ ActiveRecord::Schema.define(version: 2022_04_29_101806) do
     t.datetime "updated_at", null: false
     t.string "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.integer "role", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
   end
 
+  add_foreign_key "schedules", "users"
   add_foreign_key "score_details", "scores"
   add_foreign_key "scores", "users"
 end
