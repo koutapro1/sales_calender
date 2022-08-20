@@ -22,6 +22,7 @@ gem 'jbuilder'
 gem 'bootsnap', require: false
 
 gem 'draper'
+gem 'enum_help'
 gem 'gon'
 gem 'rails-i18n'
 gem 'simple_calendar'
