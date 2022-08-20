@@ -5,11 +5,9 @@
       <% schedules.each do |schedule| %>
         <% if schedule.present? %>
           <div class="shift-selector-wrapper">
-            <select name="<%= date %>" class="shift-selector">
-              <option value="0">隔勤</option>
-              <option value="1">日勤</option>
-              <option value="2">夜勤</option>
-            </select>
+            <%= form_with model: schedule do |f| %>
+              <%= f.select :shift, Schedule.shifts.keys, { selected: schedule.shift }, class: 'shift-selector' %>
+            <% end %>
           </div>
         <% end %>
       <% end %>
