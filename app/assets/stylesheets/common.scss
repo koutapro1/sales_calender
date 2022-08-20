@@ -41,8 +41,7 @@ body {
   height: 100%;
 }
 
-// ------------------
-
+// --------ログイン/ユーザー登録/編集 フォーム----------
 .form-page {
   height: 100%;
   display: flex;
@@ -94,14 +93,6 @@ body {
       .form-group {
         max-width: 250px;
       }
-    }
-  }
-
-  .new-score-form {
-    margin-top: 0.4rem;
-    .btn {
-      position: relative;
-      z-index: 10;
     }
   }
 }
