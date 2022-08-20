@@ -6,7 +6,7 @@
         <% if schedule.present? %>
           <div class="shift-selector-wrapper">
             <%= form_with model: schedule do |f| %>
-              <%= f.select :shift, Schedule.shifts.keys, { selected: schedule.shift }, class: 'shift-selector' %>
+              <%= f.select :shift, Schedule.shifts_i18n.invert.keys, { selected: schedule.shift_i18n }, class: 'shift-selector' %>
             <% end %>
           </div>
         <% end %>
