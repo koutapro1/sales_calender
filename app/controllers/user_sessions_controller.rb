@@ -18,4 +18,10 @@ class UserSessionsController < ApplicationController
     logout
     redirect_back_or_to login_path, success: 'ログアウトしました'
   end
+
+  def guest_login
+    user = User.find_by!(role: :guest)
+    auto_login(user)
+    redirect_to root_path
+  end
 end
