@@ -19,10 +19,14 @@
       <%= hidden_field_tag :start_date, @start_date %>
       <% @schedules.each do |schedule| %>
         <%= f.hidden_field "schedules[][work_on]", value: schedule.work_on, class: [schedule.work_on, 'work-on']  %>
-        <%= f.hidden_field "schedules[][shift]", value: schedule.shift, class: [schedule.work_on, 'shift'] %>
+        <%= f.hidden_field "schedules[][shift]", value: Schedule.shifts[schedule.shift], class: [schedule.work_on, 'shift'] %>
       <% end %>
-      <%= f.submit %>
+      <%= f.submit nil, class: 'btn btn-primary' %>
     <% end %>
+  </div>
+
+  <div class="col-12">
+    <p class="work-count"><%= @schedules.count_work_days %> 出番</p>
   </div>
 </main>
 

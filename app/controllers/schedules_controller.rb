@@ -1,7 +1,7 @@
 class SchedulesController < ApplicationController
   def new
     @start_date = params.fetch(:start_date, Time.zone.today).to_date
-    @schedules = current_user.schedules.get_schedules_in_current_month(@start_date)
+    @schedules = current_user.schedules.get_schedules_in_current_month(@start_date).decorate
     gon.schedules = @schedules
   end
 
