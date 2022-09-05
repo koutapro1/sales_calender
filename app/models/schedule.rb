@@ -39,4 +39,11 @@ class Schedule < ApplicationRecord
       where(work_on: Date.new(start_date.year, start_date.month - 1, 18).beginning_of_week.to_s..Date.new(start_date.year, start_date.month, 17).end_of_week.to_s)
     end
   end
+
+  def self.get_unselected_schedule(schedule_params, schedules_in_current_month)
+    dates_in_params = schedule_params.map { |s| s[:work_on].to_date }
+    dates_in_db = schedules_in_current_month.map { |s| s[:work_on].to_date }
+    unselected_dates = dates_in_db - dates_in_params
+    where(work_on: unselected_dates)
+  end
 end

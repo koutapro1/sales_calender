@@ -16,6 +16,7 @@
 
   <div class="col-12 shift-form">
     <%= form_with url: schedules_path, class: 'schedule-form' do |f| %>
+      <%= hidden_field_tag :start_date, @start_date %>
       <% @schedules.each do |schedule| %>
         <%= f.hidden_field "schedules[][work_on]", value: schedule.work_on, class: [schedule.work_on, 'work-on']  %>
         <%= f.hidden_field "schedules[][shift]", value: schedule.shift, class: [schedule.work_on, 'shift'] %>
