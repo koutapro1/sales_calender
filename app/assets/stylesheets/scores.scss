@@ -62,7 +62,6 @@
     .day:hover {
       transform: translate3d(0, -4px, 0);
       box-shadow: 0 4px 3px rgba(0, 0, 0, 0.3);
-      background-color: white;
     }
   
     .wday-0 {
@@ -113,17 +112,8 @@
       left: 50%;
       transform: translateX(-50%) scale(0.8);
     }
-    .has-score-detail {
-      .schedule-mark {
-        left: 35%;
-        transform: translateX(-35%) scale(0.8);
-      }
-    }
     .has-schedule {
-      .score-detail-mark {
-        right: 35%;
-        transform: translateX(35%) scale(0.8);
-      }
+      background-color: rgb(255, 235, 200);
     }
   }
 }
@@ -271,23 +261,11 @@
         a {
           font-size: 0.7rem;
         }
-        .score-detail-mark, .schedule-mark {
+        .score-detail-mark {
           position: absolute;
           top: 25px;
           left: 50%;
           transform: translateX(-50%) scale(0.8);
-        }
-        .has-score-detail {
-          .schedule-mark {
-            left: 35%;
-            transform: translateX(-35%) scale(0.8);
-          }
-        }
-        .has-schedule {
-          .score-detail-mark {
-            right: 35%;
-            transform: translateX(35%) scale(0.8);
-          }
         }
       }
     }
