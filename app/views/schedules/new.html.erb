@@ -15,7 +15,7 @@
   </div>
 
   <div class="col-12 shift-form">
-    <%= form_with url: schedules_path, class: 'schedule-form' do |f| %>
+    <%= form_with url: schedules_path, class: 'schedule-form', remote: true do |f| %>
       <%= hidden_field_tag :start_date, @start_date %>
       <% @schedules.each do |schedule| %>
         <%= f.hidden_field "schedules[][work_on]", value: schedule.work_on, class: [schedule.work_on, 'work-on']  %>
@@ -29,5 +29,10 @@
     <p class="work-count"><%= @schedules.count_work_days %> 出番</p>
   </div>
 </main>
+<!-- modal -->
+<div class="modal fade schedule-modal" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+  </div>
+</div>
 
 <%= javascript_pack_tag 'schedules/new_pack' %>

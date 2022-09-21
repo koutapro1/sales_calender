@@ -13,6 +13,5 @@ class SchedulesController < ApplicationController
     unless schedule_params.empty?
       Schedule.upsert_all(schedule_params, unique_by: :index_schedules_on_work_on_and_user_id)
     end
-    redirect_to new_schedule_path
   end
 end
