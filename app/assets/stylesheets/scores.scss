@@ -118,26 +118,44 @@
   }
 }
 
-.score-status {
+.status {
   top: 3vh;
   word-break:break-all;
   font-size: 1.2rem;
   .row {
     margin: auto;
-    .calculated-score-field {
+    .status-field-wrapper {
       padding-top: 0.7rem;
       padding-bottom: 1rem;
       background-color: white;
       border-radius: 3px;
       box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-    h3 {
-      font-size: 1.4rem;
-      font-weight: normal;
-      border-bottom: solid 2px rgb(0, 179, 255);
-    }
-    p {
-      margin-bottom: 0;
+      h3 {
+        font-size: 1.4rem;
+        font-weight: normal;
+        border-bottom: solid 2px rgb(0, 179, 255);
+      }
+      .status-field {
+        display: flex;
+        justify-content: space-around;
+        .score-status, .schedule-status {
+          width: 45%;
+        }
+        .total-score, .average-score, .work-days-count {
+          display: flex;
+          margin: 2px 0;
+          .total-score-result, .average-score-result, .work-days-count-result {
+            margin-left: auto;
+          }
+        }
+        p {
+          margin-bottom: 0;
+        }
+        .line {
+          width: 1px;
+          background-color: rgba(0, 0, 0, .1);
+        }
+      }
     }
   }
 }
@@ -270,21 +288,14 @@
       }
     }
 
-    .score-status {
+    .status {
       top: -3vh;
       font-size: 1rem;
-      h3 {
-        font-size: 1.2rem;
-        font-weight: normal;
-        border-bottom: solid 2px rgb(40, 138, 243);
-      }
-      .calculated-score-field {
-        .total-score, .average-score {
-          display: flex;
-          .total-score-result, .average-score-result {
-            display: block;
-            margin-left: auto;
-          }
+      .status-field-wrapper {
+        h3 {
+          font-size: 1.2rem;
+          font-weight: normal;
+          border-bottom: solid 2px rgb(40, 138, 243);
         }
       }
     }
