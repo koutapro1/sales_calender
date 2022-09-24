@@ -30,7 +30,7 @@ const countWorkDays = () => {
       wDays += 0.5;
     }
   })
-  $('.work-count').html(`${wDays} 出番`);
+  $('.work-count').html(`${wDays} 出番を選択中...`);
 }
 
 // クリックした日付を選択状態にするか選択解除する処理

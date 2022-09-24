@@ -1,5 +1,5 @@
 <main class="row">
-  <div class="col-12 calendar-page-body">
+  <div class="calendar-page-body col-12">
     <%= SimpleCalendar::ScheduleCalendar.new(self, {events: @schedules, attribute: :work_on}).render do |date, schedules| %>
       <%= date.strftime('%-m/%-d') %>
       <% schedules.each do |schedule| %>
@@ -13,20 +13,22 @@
       <% end %>
     <% end %>
   </div>
-
-  <div class="col-12 shift-form">
-    <%= form_with url: schedules_path, class: 'schedule-form', remote: true do |f| %>
-      <%= hidden_field_tag :start_date, @start_date %>
-      <% @schedules.each do |schedule| %>
-        <%= f.hidden_field "schedules[][work_on]", value: schedule.work_on, class: [schedule.work_on, 'work-on']  %>
-        <%= f.hidden_field "schedules[][shift]", value: Schedule.shifts[schedule.shift], class: [schedule.work_on, 'shift'] %>
-      <% end %>
-      <%= f.submit nil, class: 'btn btn-primary' %>
-    <% end %>
-  </div>
-
-  <div class="col-12">
-    <p class="work-count"><%= @schedules.count_work_days %> 出番</p>
+  <div class="schedule-form-area-wrapper col-12">
+    <div class="schedule-form-area">
+      <div class="work-count-area">
+        <p class="work-count"><%= @schedules.count_work_days %> 出番を選択中...</p>
+      </div>
+      <div class="shift-form">
+        <%= form_with url: schedules_path, class: 'schedule-form', remote: true do |f| %>
+          <%= hidden_field_tag :start_date, @start_date %>
+          <% @schedules.each do |schedule| %>
+            <%= f.hidden_field "schedules[][work_on]", value: schedule.work_on, class: [schedule.work_on, 'work-on']  %>
+            <%= f.hidden_field "schedules[][shift]", value: Schedule.shifts[schedule.shift], class: [schedule.work_on, 'shift'] %>
+          <% end %>
+          <%= f.submit nil, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </main>
 <!-- modal -->
