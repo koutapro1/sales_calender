@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :already_logged_in, only: [:new]
   before_action :set_user, only: %i[show edit update]
   before_action :forbid_access_to_other_user, only: %i[show edit update]
+  before_action :restrict_guest_access, only: %i[edit update]
 
   def new
     @user = User.new
@@ -39,6 +40,10 @@ class UsersController < ApplicationController
 
   def forbid_access_to_other_user
     redirect_to root_path, danger: '権限がありません' if @user != current_user
+  end
+
+  def restrict_guest_access
+    redirect_to user_path, danger: 'ゲストユーザーではご利用になれません' if @user.guest?
   end
 
   def user_params
