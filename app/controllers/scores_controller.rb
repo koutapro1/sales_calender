@@ -7,6 +7,7 @@ class ScoresController < ApplicationController
     start_date = params.fetch(:start_date, Time.zone.today).to_date
     @scores = current_user.scores.get_scores_in_current_page(start_date)
     @scores_in_current_month = current_user.scores.get_scores_in_current_month(start_date).decorate
+    @schedules = current_user.schedules.get_schedules_in_current_month(start_date).decorate
     destroy_empty_score(@scores)
   end
 

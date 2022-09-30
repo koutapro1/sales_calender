@@ -1,0 +1,73 @@
+<div class="simple-calendar">
+  <div class="calendar-heading">
+    <div class="main-field">
+      <div class="previous-link">
+        <%= link_to(calendar.url_for_previous_view) do %>
+          <i class="fas fa-angle-double-left"></i>
+        <% end %>
+      </div>
+      <span class="calendar-title"><%= date_range.last.year %>年<%= t('date.month_names')[date_range.last.month] + '度' %></span>
+      <span class="js-toggle-button fas fa-caret-down"></span>
+      <div class="next-link">
+        <%= link_to(calendar.url_for_next_view) do %>
+          <i class="fas fa-angle-double-right"></i>
+        <% end %>
+      </div>
+    </div>
+      <%= render 'scores/month_jump', start_date: start_date %>
+  </div>
+
+  <table class="table calendar-table">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: set_classes_for(day, start_date, sorted_events, date_range) do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+              <% else %>
+                <% passed_block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="status">
+  <div class="row">
+    <div class="status-field-wrapper col-12">
+      <h3><%= t('date.month_names')[date_range.last.month] + '度' %></h3>
+      <div class="status-field">
+        <div class="score-status">
+          <div class="total-score">
+            <p>合計:</p> <p class="total-score-result"><%= "#{@scores_in_current_month.calc_total_score} 円" %></p>
+          </div>
+          <div class="average-score">
+            <p>平均:</p> <p class="average-score-result"><%= "#{@scores_in_current_month.calc_average_score} 円" %></p>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="schedule-status">
+          <div class="work-days-count">
+            <p>出番数:</p> <p class="work-days-count-result"><%= @schedules.count_work_days %> 出番</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+  </div>
+</div>

@@ -12,6 +12,7 @@ module ScoresHelper
                           end
 
     today = Date.current
+    events = sorted_events.fetch(day, [])
 
     td_class = ['day']
     td_class << day.to_date
@@ -22,8 +23,11 @@ module ScoresHelper
     td_class << 'start-date' if day.to_date == start_date.to_date
     td_class << 'prev-month' if dates_in_this_month.exclude?(day) && day < dates_in_this_month.first
     td_class << 'next-month' if dates_in_this_month.exclude?(day) && day > dates_in_this_month.last
-    td_class << 'current-month' if start_date.month == day.month
-    td_class << 'has-events' if sorted_events.fetch(day, []).any?
+    td_class << 'current-month' if dates_in_this_month.include?(day)
+    events.each do |event|
+      td_class << 'has-score-detail' if event.is_a?(Score) && event.score_details.present?
+      td_class << 'has-schedule' if event.is_a?(Schedule)
+    end
     td_class << 'start-date' if day.to_date == start_date.to_date
 
     td_class

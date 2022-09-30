@@ -98,6 +98,8 @@ GEM
       activesupport (>= 5.0)
       request_store (>= 1.0)
       ruby2_keywords
+    enum_help (0.0.19)
+      activesupport (>= 3.0.0)
     erubi (1.10.0)
     eventmachine (1.2.7)
     execjs (2.8.1)
@@ -326,6 +328,7 @@ DEPENDENCIES
   capybara
   dotenv-rails
   draper
+  enum_help
   factory_bot_rails
   faker
   font-awesome-sass (~> 5.15.1)

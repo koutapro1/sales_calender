@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       score: 売上
+      schedule: スケジュール
     attributes:
       user:
         name: ユーザーネーム
@@ -14,6 +15,12 @@ ja:
         score: 売上
         memo: メモ
         start_time: 日付
+  enums:
+    schedule:
+      shift:
+        every_other_day: 隔勤
+        day: 日勤
+        night: 夜勤
   simple_calendar:
     previous: "<<"
     next: ">>"

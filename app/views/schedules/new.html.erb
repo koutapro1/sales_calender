@@ -1,0 +1,40 @@
+<main class="row">
+  <div class="calendar-page-body col-12">
+    <%= SimpleCalendar::ScheduleCalendar.new(self, {events: @schedules, attribute: :work_on}).render do |date, schedules| %>
+      <%= date.strftime('%-m/%-d') %>
+      <% schedules.each do |schedule| %>
+        <% if schedule.present? %>
+          <div class="shift-selector-wrapper">
+            <%= form_with model: schedule do |f| %>
+              <%= f.select :shift, {'隔勤': 0, '日勤': 1, '夜勤': 2}, { selected: Schedule.shifts[schedule.shift] }, class: [schedule.work_on, 'shift-selector'] %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="schedule-form-area-wrapper col-12">
+    <div class="schedule-form-area">
+      <div class="work-count-area">
+        <p class="work-count"><%= @schedules.count_work_days %> 出番を選択中...</p>
+      </div>
+      <div class="shift-form">
+        <%= form_with url: schedules_path, class: 'schedule-form', remote: true do |f| %>
+          <%= hidden_field_tag :start_date, @start_date %>
+          <% @schedules.each do |schedule| %>
+            <%= f.hidden_field "schedules[][work_on]", value: schedule.work_on, class: [schedule.work_on, 'work-on']  %>
+            <%= f.hidden_field "schedules[][shift]", value: Schedule.shifts[schedule.shift], class: [schedule.work_on, 'shift'] %>
+          <% end %>
+          <%= f.submit nil, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- modal -->
+<div class="modal fade schedule-modal" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+  </div>
+</div>
+
+<%= javascript_pack_tag 'schedules/new_pack' %>

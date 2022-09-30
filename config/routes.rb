@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :scores, only: %i[index new create edit update destroy] do
     resources :score_details, only: %i[index show create edit update destroy]
   end
+  resources :schedules, only: %i[new create update]
 
   namespace :scores do
     resources :searches, only: :index do
