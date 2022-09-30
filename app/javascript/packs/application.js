@@ -16,5 +16,5 @@
 // const imagePath = (name) => images(name, true)
 
 require("@rails/ujs").start();
-require("bootstrap");
-require("jquery");
+window.$ = window.jQuery = require('jquery');
+import 'bootstrap';

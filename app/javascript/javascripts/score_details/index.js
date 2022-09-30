@@ -1,5 +1,7 @@
 import { format } from 'date-fns';
 
+import { throttle } from 'throttle-debounce';
+
 const getHaversineDistance = require('get-haversine-distance');
 
 const initMap = () => {
@@ -191,7 +193,7 @@ const initMap = () => {
       '<button id="dropoff" class="btn dropoff-button">支払い</button>',
     );
     watchId = navigator.geolocation.watchPosition(
-      $.throttle(5000, successWatchPosition),
+      throttle(5000, successWatchPosition),
       failWatchPosition,
       {
         enableHighAccuracy: true,

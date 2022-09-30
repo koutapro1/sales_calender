@@ -33,56 +33,7 @@
     }
   }
 
-  .day {
-    height: 9vh;
-  }
-
-  .day:hover {
-    transform: translate3d(0, -4px, 0);
-    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.3);
-    background-color: rgba(118, 203, 255, 0.7);
-  }
-
-  .wday-0 {
-    color: red;
-  }
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {
-    color: blue;
-  }
-
-  .today {}
-  .past {}
-  .future {}
-
-  .start-date {}
-
-  .prev-month, .next-month {
-    color: rgba(58, 56, 56, 0.352);
-    background-color: white;
-    .score-in-td {
-      color: rgba(58, 56, 56, 0.352)!important;
-    }
-  }
-
-  .current-month {}
-
-  .has-events {
-    .score-in-td {
-      color: rgb(50, 125, 254);
-      padding-top: 0.7rem;
-    }
-    .has-score-detail {
-      transform: scale(0.8);
-      color: #FF6D19;
-    }
-  }
-
-  table {
+  .calendar-table {
     border: none;
     width: 100%;
     table-layout: fixed;
@@ -102,95 +53,201 @@
       border: none;
       background-color: white;
       box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    .day {
+      height: 9vh;
+    }
+  
+    .day:hover {
+      transform: translate3d(0, -4px, 0);
+      box-shadow: 0 4px 3px rgba(0, 0, 0, 0.3);
+    }
+  
+    .wday-0 {
+      color: red;
+    }
+    .wday-1 {}
+    .wday-2 {}
+    .wday-3 {}
+    .wday-4 {}
+    .wday-5 {}
+    .wday-6 {
+      color: blue;
+    }
+  
+    .today {
+      background: #FFFFC0;
+    }
+    .past {}
+    .future {}
+  
+    .start-date {}
+  
+    .prev-month, .next-month {
+      color: rgba(58, 56, 56, 0.352);
+      background-color: white;
+      .score-in-td {
+        color: rgba(58, 56, 56, 0.352)!important;
+      }
+    }
+  
+    .current-month {}
+  
+    .score-in-td {
+      color: rgb(50, 125, 254);
+      padding-top: 0.8rem;
+    }
+    .score-detail-mark {
+      transform: scale(0.8);
+      color: #FF6D19;
+    }
+    .schedule-mark {
+      transform: scale(0.8);
+      color: blue;
+    }
+    .score-detail-mark, .schedule-mark {
+      position: absolute;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.8);
+    }
+    .has-schedule {
+      background-color: rgb(255, 235, 200);
     }
   }
 }
 
-.score-status {
+.status {
   top: 3vh;
   word-break:break-all;
   font-size: 1.2rem;
   .row {
     margin: auto;
-    .calculated-score-field, .js-searched-score-field {
+    .status-field-wrapper {
       padding-top: 0.7rem;
       padding-bottom: 1rem;
       background-color: white;
       border-radius: 3px;
       box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-    h3 {
-      font-size: 1.4rem;
-      font-weight: normal;
-      border-bottom: solid 2px rgb(0, 179, 255);
-    }
-    p {
-      margin-bottom: 0;
-    }
-    .score-detail-button {
-      color: white;
-      background-color: #FF6D19;
-      border-color: #FF6D19;
-    }
-    .score-detail-button:hover {
-      color: white;
-      background-color: #da5e16;
-      border-color: #da5e16;
-    }
-    .score-detail-button:active {
-      color: white;
-      background-color: #da5e16!important;
-      border-color: #da5e16!important;
-    }
-    .score-detail-button:focus {
-      color: white;
-      background-color: #da5e16;
-      border-color: #da5e16;
-      box-shadow: 0 0 0 3px rgba(220, 126, 32, 0.5);
+      h3 {
+        font-size: 1.4rem;
+        font-weight: normal;
+        border-bottom: solid 2px rgb(0, 179, 255);
+      }
+      .status-field {
+        display: flex;
+        justify-content: space-around;
+        .score-status, .schedule-status {
+          width: 45%;
+        }
+        .total-score, .average-score, .work-days-count {
+          display: flex;
+          .total-score-result, .average-score-result, .work-days-count-result {
+            margin-left: auto;
+          }
+        }
+        p {
+          margin-bottom: 0;
+        }
+        .line {
+          width: 1px;
+          background-color: rgba(0, 0, 0, .1);
+        }
+      }
     }
   }
 }
 
-  .js-searched-score-field {
-    .flash-messages {
-      padding: 0.5rem;
+.modal {
+  .modal-dialog {
+    width: 85%;
+    margin: auto;
+    h3 {
+      border-bottom: solid 2px rgb(0, 179, 255);
+      font-weight: normal;
     }
-    .js-searched-score {
-      position: relative;
+    p {
+      margin-bottom: 0;
     }
-    .submit-new-score, .score-detail-button {
-      margin-top: 0.5rem;
-    }
-  }
-
-  .new-score-form {
-    text-align: right;
-    margin-top: 0;
-    .error-messages-field {
-      padding: 0;
-      text-align: center;
-      ul {
+    .new-score-form {
+      margin-top: 0;
+      .error-messages-field {
         padding: 0;
-        li:before {
-          content:  "";
-          width:  5px;
-          height:  5px;
-          display:  inline-block;
-          background-color: rgb(114, 28, 36);
-          border-radius:  50%;
-          position: relative;
-          top: -3px;
-        }
-        li {
-          list-style-type: none;
-          font-size: 0.9rem;
+        text-align: center;
+        ul {
+          padding: 0;
+          li:before {
+            content:  "";
+            width:  5px;
+            height:  5px;
+            display:  inline-block;
+            background-color: rgb(114, 28, 36);
+            border-radius:  50%;
+            position: relative;
+            top: -3px;
+          }
+          li {
+            list-style-type: none;
+          }
         }
       }
+      #score_score::placeholder {
+        text-align: right;
+      }
+      .new-score-label {
+        font-weight: bold;
+      }
+      .submit-new-score {
+      width: 100%;
+      }
+      .submit-new-score {
+        margin-top: 0.5rem;
+      }
     }
-    #score_score::placeholder {
-      text-align: right;
+    .score-detail-form {
+      width: 100%;
+      .score-detail-button {
+        width: 100%;
+        color: white;
+        background-color: #FF6D19;
+        border-color: #FF6D19;
+      }
+      .score-detail-button:hover {
+        color: white;
+        background-color: #da5e16;
+        border-color: #da5e16;
+      }
+      .score-detail-button:active {
+        color: white;
+        background-color: #da5e16!important;
+        border-color: #da5e16!important;
+      }
+      .score-detail-button:focus {
+        color: white;
+        background-color: #da5e16;
+        border-color: #da5e16;
+        box-shadow: 0 0 0 3px rgba(220, 126, 32, 0.5);
+      }
+    }
+    .searched-score {
+      th {
+        text-align: center;
+      }
+      th, td {
+        border-bottom: 1px solid #dee2e6;
+        border-top: none;
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-evenly;
+    }
+    .flash-messages {
+      margin: auto;
     }
   }
+}
 
 @media (max-width: 767px) {
   .calendar-page-body {
@@ -221,39 +278,23 @@
         a {
           font-size: 0.7rem;
         }
+        .score-detail-mark {
+          position: absolute;
+          top: 25px;
+          left: 50%;
+          transform: translateX(-50%) scale(0.8);
+        }
       }
     }
 
-    .score-status {
+    .status {
       top: -3vh;
       font-size: 1rem;
-      h3 {
-        font-size: 1.2rem;
-        font-weight: normal;
-        border-bottom: solid 2px rgb(40, 138, 243);
-      }
-      .calculated-score-field {
-        .total-score, .average-score {
-          display: flex;
-          .total-score-result, .average-score-result {
-            display: block;
-            margin-left: auto;
-          }
-        }
-      }
-      .js-searched-score-field {
-        min-height: 19rem;
-        .new-score-form {
-          .form-group {
-            margin-bottom: 0;
-            .new-score-label {
-              margin-bottom: 0;
-            }
-          }
-        }
-        .edit-button, .delete-button {
-          font-size: 1.5rem;
-          margin-left: 0.5rem;
+      .status-field-wrapper {
+        h3 {
+          font-size: 1.2rem;
+          font-weight: normal;
+          border-bottom: solid 2px rgb(40, 138, 243);
         }
       }
     }

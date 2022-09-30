@@ -2,6 +2,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :scores, dependent: :destroy
+  has_many :schedules, dependent: :destroy
 
   enum role: { general: 0, guest: 1}
 

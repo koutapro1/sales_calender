@@ -1,2 +1,5 @@
 <%= score.start_time.strftime('%-m/%-d') %>
+<% if score.score_details.present? %>
+  <i class="fas fa-circle fa-xs score-detail-mark"></i>
+<% end %>
 <%= content_tag :div, score.score, class: "score-in-td" %>

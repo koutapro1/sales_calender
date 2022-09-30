@@ -1,0 +1,47 @@
+.schedule-table {
+  min-height: 28rem;
+  tbody {
+    height: 100%;
+    tr {
+      height: 20%;
+    }
+  }
+  .has-schedule {
+    background-color: pink!important;
+  }
+  .day:hover {
+    transform: initial!important;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05)!important;
+    background-color: white;
+  }
+  .shift-selector-wrapper {
+    display: flex;
+    justify-content: center;
+    .shift-selector {
+      display: block;
+      margin: auto;
+    }
+  }
+}
+
+.schedule-form-area-wrapper {
+  padding: 0 0.5rem;
+  .schedule-form-area {
+    min-height: 4rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+    .work-count {
+      margin: 0;
+      color: rgb(0, 123, 255);
+    }
+  }
+}
+
+.schedule-modal {
+  .modal-header {
+    padding: 5px 1rem;
+  }
+}
